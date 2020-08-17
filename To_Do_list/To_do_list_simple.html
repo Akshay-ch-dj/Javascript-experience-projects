@@ -7,27 +7,52 @@
     <title>To Do List</title>
 </head>
 <body>
-    <h1>SAMPLE</h1>    
+    <div class="wrapper">
+        <div class="header">
+            <h1>To-Do List</h1>
+        </div>
+        <!-- The add task textbox -->
+        <div class="add-task">
+            <!-- custom idea: add changing placeholders -->
+            <input type="text" id="new-task-input" placeholder="Make a task..make a day">
+            <!-- Add button -->
+            <button class="add-task-button">+</button>
+        </div>
 
+        <!-- The tasks listed below -->
+        <!-- header -->
+        <div class="task-list-header">
+            <h2>Tasks</h2>
+            <!-- need a button to clear all tasks completed -->
+            <button class="clear-completed-btn">Clear Complete</button>
+        </div>
+        <!-- tasks -->
+        <div class="task-list-wrapper">
+            <!-- In this list the templates get added -->
+            <ul class="task-list"></ul>
+                
+            </ul>
+        </div>
+    </div>
 
+    <!-- The template: that gets added each time it creates a to-do item,
+        to the ul. element with the text entered in the above textbox. -->
+    
+    <!-- The template tag elements are designed to be used with JS, they are hidden 
+    when the html page loads -->
 
+    <!-- <template id="task-template"> -->
+        <!-- need a list element with a checkbox -->
+        <li class="task">
+            <input type="checkbox">
+            <label>
+                <!-- In place of the label, it needed the user entered content -->
+                <span class="check-mark">&#10004;</span>
+                <span class="custom-checkbox"></span>
+            </label>
+        </li>
+    <!-- </template> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="/To_Do_list/To_do_list_simple.js"></script>
+    <script src="/To_Do_list/To_do_list_simple.js"></script>
 </body>
 </html>
