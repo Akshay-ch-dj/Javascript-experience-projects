@@ -16,7 +16,7 @@
             <!-- custom idea: add changing placeholders -->
             <input type="text" id="new-task-input" placeholder="Make a task..make a day">
             <!-- Add button -->
-            <button class="add-task-button">+</button>
+            <button class="add-task-btn">+</button>
         </div>
 
         <!-- The tasks listed below -->
@@ -41,7 +41,7 @@
     <!-- The template tag elements are designed to be used with JS, they are hidden 
     when the html page loads -->
 
-    <!-- <template id="task-template"> -->
+    <template id="task-template">
         <!-- need a list element with a checkbox -->
         <li class="task">
             <input type="checkbox">
@@ -49,9 +49,10 @@
                 <!-- In place of the label, it needed the user entered content -->
                 <span class="check-mark">&#10004;</span>
                 <span class="custom-checkbox"></span>
+                <!-- below here the input text will appear -->
             </label>
         </li>
-    <!-- </template> -->
+    </template>
 
     <script src="/To_Do_list/To_do_list_simple.js"></script>
 </body>
