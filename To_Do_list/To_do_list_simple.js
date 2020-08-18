@@ -31,6 +31,20 @@ addTaskBtn.addEventListener('click', () => {
     }
 });
 
+// To clear the completed taskList items
+
+clearCompleteBtn.addEventListener('click', () => {
+    /* All list template elements with class task, create an array and loop 
+    through each, check the input-checked/not, remove the checked ones */
+    const tasks = document.querySelectorAll('.task');
+    tasks.forEach(task => {
+        const checked = task.querySelector('input').checked;
+        if (checked) {
+            task.remove();
+        }
+    })
+});
+
 // The addTask function- The main fun.
 
 function addTask() {
@@ -56,19 +70,6 @@ function addTask() {
     id++;
 }
 
-// To clear the completed taskList items
-
-clearCompleteBtn.addEventListener('click', () => {
-    /* All list template elements with class task, create an array and loop 
-    through each, check the input-checked/not, remove the checked ones */
-    const tasks = document.querySelectorAll('.task');
-    tasks.forEach(task => {
-        const checked = task.querySelector('input').checked;
-        if(checked){
-            task.remove();
-        }
-    })
-});
 
 // For validating the input(only blank line check..add more checks further)
 function inputValid(){
