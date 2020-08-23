@@ -1,3 +1,410 @@
+// console.log('hello world');
+
+// let firstName = 'Johnas';
+// console.log(firstName);
+
+// var lastName = 'Smith';
+// var age = 30;
+
+// '$' and "_" can be used to start a variable name
+
+// alert for data input
+
+// var lastName = prompt('What is his last name');
+// console.log(lastName)
+
+// operators
+
+// var year, yearJohn, yearMark;
+// year = 2020;
+// yearJohn = year - 28;
+// yearMark = year - 34;
+
+// // console.log(`John's DOB: ${yearJohn}`);
+
+// // The typeof operator
+
+// console.log(typeof yearJohn)  // number
+// var x;
+// var y = null;
+// console.log(typeof x);
+// console.log(typeof y);
+
+// operator precedence
+
+// var now = 2020;
+// var yearJohn = 1989;
+// var fullAge = 20;
+
+// var isFullAge = now - yearJohn >= fullAge;
+// // '-' executed first cz it got more operator precedence
+// // USE grouping '()' arithmetic, cz it got the highest precedence
+
+// x = (3-5)*4 - 6;
+// console.log(x);
+// console.log(isFullAge);
+
+// // Multiple assignments
+
+// var x, y;
+// x = y = (3/5)-6+(3*5);
+
+// // Assignment operator works from right to left
+
+// console.log(x, y);
+
+
+// challenge1
+
+// BMI = mass/(height**2)
+
+// var massOfMark = 70;
+
+// console.log(typeof massOfMark)
+
+// var massOfJohn = 78;
+// var heightOfMark = 1.65;
+// var heightOfJohn = 1.64;
+
+// function BMIcalc(mass, height) {
+//     return mass/(height**2)
+// }
+
+// var BMIofMark = BMIcalc(massOfMark, heightOfMark);
+// var BMIofJohn = BMIcalc(massOfJohn, heightOfJohn);
+
+// console.log(`BMI of Mark: ${BMIofMark} \nBMI of John: ${BMIofJohn}`)
+// console.log(`Is Mark's BMI higher than John's? ${BMIofMark > BMIofJohn}`)
+
+// // if - else
+
+// var firstName = 'Akshay';
+// var civilStatus = 'single';
+
+// var isMarried = false;
+
+// if (civilStatus === 'married') {
+//     console.log(firstName + 'is married');
+// } else {
+//     console.log(firstName + ' misaries will end soon :)')
+// }
+
+// if (isMarried) {
+//     console.log(firstName + 'is married');
+// } else {
+//     console.log(firstName + ' misaries will end soon :)')
+// }
+
+// Boolean logic &&-AND, ||-OR, !-NOT
+
+// // Ternary operator
+// // if-else in one line
+
+// var firstName = 'Akshay';
+// var age = 25;
+
+// age >= 18 ? console.log(firstName + ' drinks beer.') 
+// : console.log(firstName + ' drinks juice.');
+
+// var drink = age >= 18 ? 'beer' : 'juice';
+// // Either beer or juice as result
+
+// console.log(`Yes ${firstName} drinks ${drink}`)
+
+// // switch statement
+
+// var job = 'teacher';
+// switch (job) {
+//     case 'teacher':
+//     case 'instructor':
+//         console.log(firstName + ' teaches kids how to code.');
+//         break;
+//     case 'driver':
+//         console.log(firstName + ' drives an uber in Lisbon.');
+//         break;
+//     default:
+//         console.log(firstName + ' does something else.');
+// }
+
+// // Truthy and Falsy Values
+
+// // falsy values:- null, 0, '', NaN
+// // They turn out to be false when evaluated on an If else condition.
+// // Truthy values:- Not falsy values
+
+// var height = 0; // '0' is also a falsy value, need to consider the occurance
+// // of zero in every if-else block--> it may simply trip em all.
+// // Even check the empty strings in cases that affects.(|| height === '')
+
+// if (height || height === 0 ) {
+//     console.log('variable is defined');
+// } else {
+//     console.log('variable has NOT been defined');
+// }
+
+// Type coercion:- js tries to type convert things, more of trap than a help.
+
+// Coding challenge
+
+// Johnes team score in last 3 cricket matches. 89, 120, 103 runs.(10 over matches)
+//  Mikes's team scores : - 116, 94 and 123
+
+// 1) calc. tha avg of each team
+// 2) declare which team wins in avg. colnsole.log winner with avg score.
+// 3) change scores to show different winners. Consider draw too.
+
+// 4) Mathew also playes cricket his team scored 97, 134 and 105 points.
+// compare this three and log the average winner.
+
+// function avgCalc(score1, score2, score3) {
+//     return (score1 + score2 + score3)/ 3
+// }
+
+// function roundToTwo(num) {
+//     return +(Math.round(num + "e+2") + "e-2");
+// }
+
+// avgJohnes = roundToTwo(avgCalc(101, 120, 103));
+// avgMikes = roundToTwo(avgCalc(101, 120, 103));
+// avgMathew = roundToTwo(avgCalc(102, 120, 103));
+
+// function showWinner(avgJohnes, avgMikes, avgMathew) {
+//     if (avgJohnes > avgMikes && avgJohnes > avgMathew) {
+//         return (`Jones team is the winner with avg score ${avgJohnes}`);
+//     } else if (avgMikes > avgMathew) {
+//         return (`Mikes team is the winner with avg score ${avgMikes}`);
+//     } else if (avgMikes < avgMathew) {
+//         return (`Mathew\'s team is the winner with avg score ${avgMathew}`);
+//     } else {
+//         var drawTeam;
+//         if (avgJohnes === avgMikes && avgJohnes === avgMathew) {
+//             drawTeam = 'All';
+//         } else if (avgJohnes === avgMikes) {
+//             drawTeam = 'Mike\'s and Johne\'s'
+//         } else if (avgMikes === avgMathew) {
+//             drawTeam = 'Mike\'s and Mathew\'s'
+//         } else {
+//             drawTeam = 'Johne\'s and Mathew\'s'
+//         } 
+//         return (`${drawTeam} teams are in draw`)
+//     }
+// }
+
+// console.log(showWinner(avgJohnes, avgMikes, avgMathew));
+
+// // Functions
+
+// function calcAge(birthYear) {
+//     return 2020 - birthYear;
+// }
+
+// function yearsUntilRetairment(year, firstName) {
+//     var age = calcAge(year);
+//     var retirement = 65-age;
+//     console.log(`${firstName} retires in year ${2020 + retirement}`)
+// }
+
+// yearsUntilRetairment(1995, 'Akshay')
+ 
+// function statements and expressions
+
+
+// // Function expression
+// var whatDoYouDo = function(job, firstName) {
+//     switch(job) {
+//         case 'teacher':
+//             return firstName + ' teaching now';
+//         case 'driver':
+//             return firstName + ' drives a cab';
+//         case 'designer':
+//             return firstName + ' designs some websites';
+//         default:
+//             return firstName + ' got no job';
+//     }
+// }
+
+// console.log(whatDoYouDo('noJob', 'Akshay'));
+
+// // Expressions always produce a value other than declarations(usual function 
+// // declarations)
+
+// //  Arrays
+
+// var names = ['John', 'Mark', 'Jane'];
+// var years = new Array(1990, 1992, 1994, 1995);
+
+// console.log(names[2]); // No negative indexes
+
+// // Length of the array
+
+// console.log(names.length);
+
+// names[1] = 'Ben';
+
+// names[5] = 'Mary';  // Got two empty cells then "mary" 
+// console.log(names);
+ 
+// // Can hold different data types
+
+// var john = ['John', 'Smith', 1990, 'teacher', false]
+
+// // Array methods
+
+// john.push('blue');  // Add element to the end of the array
+// john.unshift('Mr.');  // Add element to the start of the array
+// console.log(john);
+
+// john.pop() // Removes the last element
+// john.pop()
+// console.log(john);
+
+// john.shift()  // Removes the first element
+
+// console.log(john);
+
+// console.log(john.indexOf(1990));
+
+
+// challenge 3
+
+
+// // Different restaurant bills $124, $48 and $268.
+
+// // Tip calculator: likes to tip 20% of the bill when the bill is less than 
+// // $50, 15% when the bill is between $50 and $200, and 10% if the bill is 
+// // more than $200.
+
+// // in the end needs an array with all the three tips and another one with 
+// // all the final paid amounts(bill + tip).
+
+// function roundToOne(num) {
+//     return +(Math.round(num + "e+1") + "e-1");
+// }
+
+// var tip = function(bill) {
+//     if (bill < 50) {
+//         return roundToOne(0.2 * bill);
+//     } else if (bill <= 200 && bill >= 50) {
+//         return roundToOne(0.15 * bill);
+//     } else if (bill > 200) {
+//         return roundToOne(0.1 * bill);
+//     }   
+// }
+
+// function billDisplay(bill1, bill2, bill3) {
+//     tipList = [tip(bill1), tip(bill2), tip(bill3)];
+//     amountList = [tipList[0] + bill1, tipList[1] + bill2, tipList[2] + bill3];
+//     console.log(`The list of tips: ${tipList}\n\The list of total amounts: ${amountList}`);
+// }
+
+// billDisplay(124, 48, 268)
+
+// // objects and properties
+
+// var akshay = {
+//     firstName: 'Akshay',
+//     lastName: 'Chandran',
+//     dob: 1995,
+//     family: ['Jane', 'Mark', 'Bob'],
+//     job: 'No-Job',
+//     isMarried: false
+// };
+
+// console.log(akshay.firstName);  // Direct approach
+// console.log(akshay['lastName']);  // string approach
+
+// x = 'dob';
+
+// console.log(akshay[x]);
+
+// // change data
+
+// akshay.job = 'not going for a job';
+// akshay['isMarried'] = true;
+// console.log(akshay)
+
+// var aks = new Object();  // new object syntax.
+
+// // Methods in object
+
+// var akshay = {
+//     firstName: 'Akshay',
+//     lastName: 'Chandran',
+//     dob: 1995,
+//     family: ['Jane', 'Mark', 'Bob'],
+//     job: 'No-Job',
+//     isMarried: false,
+//     calcOwnAge: function() {
+//         this.age = 2020 - this.dob;         // The 'this' keyword first appearance
+//     },
+// };
+
+// // console.log(akshay.calcAge(1995));
+// console.log(akshay.calcOwnAge());
+
+// // akshay.age = akshay.calcOwnAge();
+// // console.log(akshay.age);  // This can be done directly inside the object
+// console.log(akshay);
+
+// Coding challenge 4
+
+// The first challenge(BMI) with objects
+
+// For rounding off the decimal by two places(from stackoverflow)
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2") + "e-2");
+}
+
+
+// challenge
+var mark = {
+    fullName: 'Mark Mathayi',
+    mass: 65,
+    height: 1.60,
+    calcBMI: function() {
+        this.BMI = this.mass/(this.height**2);
+        return roundToTwo(this.BMI);
+    }
+};
+
+var john = {
+    fullName: 'John Thommi',
+    mass: 77,
+    height: 1.64,
+    calcBMI: function () {
+        this.BMI = this.mass / (this.height ** 2);
+        return roundToTwo(this.BMI);
+    }
+};
+
+mark.calcBMI();
+john.calcBMI();
+
+function displayBMI(person1, person2) {
+    if (person1.BMI > person2.BMI) {
+        var bmiChampion = {
+            winner: person1.fullName, 
+            BMI: person1.BMI
+        };
+    } else if (person1.BMI < person2.BMI) {
+        var bmiChampion = {
+            winner: person2.fullName, 
+            BMI: person2.BMI
+        };
+    } else {
+        var bmiChampion = {
+            winner: `Both ${person1.fullName} and ${person2.fullName} BMI 
+            are same.`,
+            BMI: person1.BMI
+        };
+    }
+
+    console.log(`Highest BMI: ${bmiChampion.winner}\nBMI value: ${roundToTwo(bmiChampion.BMI)}`)
+}
+
+displayBMI(mark, john);
+
+
 /*****************************
 * Variables and data types
 */
