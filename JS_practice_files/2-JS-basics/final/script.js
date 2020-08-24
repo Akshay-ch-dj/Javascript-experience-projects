@@ -350,59 +350,187 @@
 
 // The first challenge(BMI) with objects
 
-// For rounding off the decimal by two places(from stackoverflow)
-function roundToTwo(num) {
-    return +(Math.round(num + "e+2") + "e-2");
-}
+// // For rounding off the decimal by two places(from stackoverflow)
+// function roundToTwo(num) {
+//     return +(Math.round(num + "e+2") + "e-2");
+// }
 
 
-// challenge
-var mark = {
-    fullName: 'Mark Mathayi',
-    mass: 65,
-    height: 1.60,
-    calcBMI: function() {
-        this.BMI = this.mass/(this.height**2);
-        return roundToTwo(this.BMI);
-    }
-};
+// // challenge
+// var mark = {
+//     fullName: 'Mark Mathayi',
+//     mass: 65,
+//     height: 1.60,
+//     calcBMI: function() {
+//         this.BMI = this.mass/(this.height**2);
+//         return roundToTwo(this.BMI);
+//     }
+// };
 
-var john = {
-    fullName: 'John Thommi',
-    mass: 77,
-    height: 1.64,
-    calcBMI: function () {
-        this.BMI = this.mass / (this.height ** 2);
-        return roundToTwo(this.BMI);
-    }
-};
+// var john = {
+//     fullName: 'John Thommi',
+//     mass: 77,
+//     height: 1.64,
+//     calcBMI: function () {
+//         this.BMI = this.mass / (this.height ** 2);
+//         return roundToTwo(this.BMI);
+//     }
+// };
 
-mark.calcBMI();
-john.calcBMI();
+// mark.calcBMI();
+// john.calcBMI();
 
-function displayBMI(person1, person2) {
-    if (person1.BMI > person2.BMI) {
-        var bmiChampion = {
-            winner: person1.fullName, 
-            BMI: person1.BMI
-        };
-    } else if (person1.BMI < person2.BMI) {
-        var bmiChampion = {
-            winner: person2.fullName, 
-            BMI: person2.BMI
-        };
-    } else {
-        var bmiChampion = {
-            winner: `Both ${person1.fullName} and ${person2.fullName} BMI 
-            are same.`,
-            BMI: person1.BMI
-        };
-    }
+// function displayBMI(person1, person2) {
+//     if (person1.BMI > person2.BMI) {
+//         var bmiChampion = {
+//             winner: person1.fullName, 
+//             BMI: person1.BMI
+//         };
+//     } else if (person1.BMI < person2.BMI) {
+//         var bmiChampion = {
+//             winner: person2.fullName, 
+//             BMI: person2.BMI
+//         };
+//     } else {
+//         var bmiChampion = {
+//             winner: `Both ${person1.fullName} and ${person2.fullName} BMI 
+//             are same.`,
+//             BMI: person1.BMI
+//         };
+//     }
 
-    console.log(`Highest BMI: ${bmiChampion.winner}\nBMI value: ${roundToTwo(bmiChampion.BMI)}`)
-}
+//     console.log(`Highest BMI: ${bmiChampion.winner}\nBMI value: ${roundToTwo(bmiChampion.BMI)}`)
+// }
 
-displayBMI(mark, john);
+// displayBMI(mark, john);
+
+// // Loops 
+
+// for (var i = 0; i < 10; i++) {
+//     console.log(i);
+// }
+
+// var akshay = ['Akshay', 'Chandran', 1998, 'designer', false];
+
+// for (var i = 0; i < akshay.length; i++) {
+//     console.log(akshay[i]);
+// }
+
+// i = 0;
+// while(i < akshay.length) {
+//     console.log(akshay[i]);
+//     i++;
+// }
+
+
+// // Break and continue
+// var akshay = ['Akshay', 'Chandran', 1998, 'designer', false];
+
+// for (var i = 0; i < akshay.length; i++) {
+//     if (typeof(akshay[i]) !== 'string') continue;
+//     console.log(akshay[i]);
+// }
+//  for (var i = 0; i < akshay.length; i++) {
+//      if (typeof(akshay[i]) == 'number') break;
+//      console.log(akshay[i]);
+//  }
+
+
+// // Challenge 5:- Advanced Tip calculator
+
+// // John and family goes to 5 different locations.
+// //  billList = [124, 48, 268, 180, 42];
+// // 20% when bill is less than $50, 15% => 50 <= bill < 200, 10% bill >= 200
+// // use objects and loops
+// // object with array for bill value, method to calc. tip, iterate and calc 
+// // the tip 
+// // o/p. create a new array containing all tips, array containing final paid 
+// // amounts (bill + tip). 
+
+// // Extra: -  Marks family also gone for a trip, 4 different restaurants,
+// // bills, $- 77, 375, 110, 45 
+// // Marks way of tip, 20% => bill < 100,  10% => 100 - 300, 25% - bill > 300
+// //  use a function to calculate tha avg. of given array of tips
+// //  Calculate the average tip for each family.
+// //  log on which family paid the highest tip in average.
+
+
+// var john = {
+//     name: 'Jhon Kurishinkal',
+//     bills: [124, 48, 268, 180, 42],
+//     calcTip: function(b = this.bills) {
+//         this.tipList = [];
+//         this.totalList = [];
+//         for (var i = 0; i < b.length; i++) {
+//             if (b[i] < 50) {
+//                 this.tipList.push(b[i] * 0.2);
+//             } else if (b[i] >= 50 && b[i] < 200) {
+//                 this.tipList.push(b[i] * 0.15);
+//             } else {
+//                 this.tipList.push(b[i] * 0.1);
+//             }
+//             // The length of two arrays will be same(no need another iteration)
+//             this.totalList.push(this.tipList[i] + b[i])
+//         }
+
+//     }
+
+// } 
+
+// var mark = {
+//     name: 'Mark Kaduvakkunnel',
+//     bills: [77, 375, 110, 45],
+//     calcTip: function (b = this.bills) {
+//         this.tipList = [];
+//         this.totalList = [];
+//         for (var i = 0; i < b.length; i++) {
+//             if (b[i] < 100) {
+//                 this.tipList.push(b[i] * 0.2);
+//             } else if (b[i] >= 100 && b[i] < 300) {
+//                 this.tipList.push(b[i] * 0.1);
+//             } else {
+//                 this.tipList.push(b[i] * 0.25);
+//             }
+//             // The length of two arrays will be same(no need another iteration)
+//             this.totalList.push(this.tipList[i] + b[i])
+//         }
+
+//     }
+
+// } 
+
+// john.calcTip();
+// mark.calcTip();
+
+// function averageBill(list) {
+//     var sum = 0;
+//     for (i = 0; i < list.length; i++) {
+//         sum += list[i];
+//     }
+//     return sum/list.length;
+// }
+
+// var families = [john, mark];
+
+// function displayBills(families) {
+//     for (var i = 0; i < families.length; i++) {
+//         console.log(`Holiday Expense of ${families[i].name}'s family:
+//         Avg tip given: \$${averageBill(families[i].tipList)}
+//         Avg Total bill: \$${averageBill(families[i].totalList)}`);
+//     }
+
+// }
+
+// displayBills(families);
+
+// console.log((averageBill(john.tipList) > averageBill(mark.tipList)? john.name 
+// : mark.name) + ' spent more more average tip ' );
+
+
+
+
+
+
 
 
 /*****************************
