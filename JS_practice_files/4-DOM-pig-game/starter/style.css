@@ -17,7 +17,7 @@
 
 body {
     /* linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)),  */
-    background-image: url(back2.jpg);
+    background-image: url('https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/back2.jpg?raw=true');
     background-size: cover;
     background-position: center;
     font-family: Lato;
@@ -83,7 +83,7 @@ body {
     content: "\2022";
     font-size: 1.9rem;
     position: absolute;
-    color: #000000;
+    color: #ff0000;
     top: -7px;
     right: 10px;
     

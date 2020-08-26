@@ -84,7 +84,8 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         // The dice images are named accordingly, change the src attribute to change the img
-        diceDOM.src = `dice-${dice}.png`;
+        diceDOM.src = `https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/dice-${dice}.png?raw=true`;
+        
 
         // 3. Update the roundScore if the number is not 1
         if (dice !== 1) {
@@ -105,7 +106,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         // Update the UI
         document.getElementById(`score-${activePlayer}`).textContent = scores[activePlayer];
         // Check if player won the game
-        if (scores[activePlayer] >= 20) {
+        if (scores[activePlayer] >= 100) {
             // Add winner class to the player active panel
             document.querySelector(`#name-${activePlayer}`).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
