@@ -43,6 +43,7 @@ function resetGame() {
     });
 
     document.querySelector(`.player-0-panel`).classList.add('active');
+    document.querySelector('.dice').classList.add('animate1');
 }
 
 function playerChange() {
@@ -70,6 +71,11 @@ resetGame();
 
 // Adding the roll button click-event listener,
 document.querySelector('.btn-roll').addEventListener('click', function() {
+
+    document.querySelector('.dice').classList.toggle('animate1');
+    document.querySelector('.dice').classList.toggle('animate2');
+    
+    
     if(gamePlaying) {
         // 1. When ROLL DICE is clicked, random number(b/w 1-6) generated.
         var dice = Math.floor(Math.random() * 6) + 1;
