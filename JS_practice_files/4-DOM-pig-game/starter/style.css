@@ -158,6 +158,48 @@ i {
     font-size: 1.4rem;
     text-shadow: 2px, 2px, teal;
 }
+
+.target-score{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 14%;
+    background: linear-gradient(to right, #fadcac, #ddc399);
+    padding: 10px;
+    border-radius: 8px;
+     box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.863);
+}
+
+.target-score input{
+    background: none;
+    border-style: none;
+    border: none;
+    width: 180px;
+    border-bottom: 2px solid #009fcf;
+    text-align: center;
+    font-family: Lato;
+    font-size: 1.1rem;
+    color: #158467;;
+    text-transform: uppercase;
+    cursor: text;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.6;
+}
+
+.target-score input:focus{
+    outline: none;
+    opacity: 1;
+    font-size: 1.3rem;
+}
+
+.target-show{
+    text-align: center;
+    font-family: Lato;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
 .btn-roll { 
     top: 403px;
     font-weight: 400;
@@ -175,20 +217,33 @@ i {
     border-radius: 3px;
 }
 
-.dice-container{
+.dice-container1{
     position: absolute;
     width: 150px;
     height: 150px;
     /* margin: auto; */
     top: 178px;
-    left: 50%;
+    left: 58%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.dice {
+.dice-container2{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    /* margin: auto; */
+    top: 178px;
+    left: 42%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dice1, .dice2 {
     position: relative;
     height: 100px;
     box-shadow: 0px 0px 2px 4px rgba(255, 255, 255, 0.863);
