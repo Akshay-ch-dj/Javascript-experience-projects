@@ -206,7 +206,7 @@ An object is created using a function constructor.
 
 // function maxHeartRate(el) {
 //     if (el >= 18 && el <= 81) {
-//         return Math.round(206.9 - (0.67 * el))  // age is the e
+//         return Math.round(206.9 - (0.67 * el))  // age is the el
 //     } else {
 //         return -1;
 //     }
@@ -251,3 +251,159 @@ An object is created using a function constructor.
 
 // // Can call it directly
 // interviewQuestion('teacher')('Makri');
+
+
+// Practice first class functions
+
+// function countdown(callback) {
+//     // setTimeout function: to set intervals for execution
+//     // setTimeout(function, 2000) :- wait for two second, then execute the fun.
+//     setTimeout(callback(), 2000);
+// }
+
+// function createMultiplier(multiplierValue) {
+//     return function (value) {
+//         return value * multiplierValue;
+//     }
+// }
+
+// var doubler = createMultiplier(2);
+// var tripler = createMultiplier(3);
+// console.log(doubler(4));
+// console.log(tripler(4));
+
+
+// // IIFE: - Immediately invoked functions
+
+// If we need declare a variable that is not visible globally, one way is to 
+// declare it inside a function
+
+// function game() {
+//     var score = Math.random() * 10; // (0 - 9, incl. decimals)
+//     console.log(score >= 5);
+// }
+
+// game();
+
+// // With using IIFE, 
+
+// (function () {
+//     var score = Math.random() * 10; // (0 - 9, incl. decimals)
+//     console.log(score >= 5);
+// })();
+
+// // Using the parenthesis- "(fun..)", it just trick the js parser- it didn't 
+// // think as function. (the things inside the '()' cannot be a function.
+// // It should be treated as a expression, not as a fun. declaration. the variable
+// // "score" cannot be accessed from outside, data privacy.
+
+// // console.log(score); // which is undefined
+
+// // Passing arguments to IIFE,
+
+// (function (goodLuck) {
+//     var score = Math.random() * 10; // (0 - 9, incl. decimals)
+//     console.log(score >= 5 - goodLuck);
+// })(5);
+
+// // We can only call IIFE once cz it is not assigned to any variable,
+// // But we are not using IIFE to create reusable code, but to escape the global 
+// // scope/Data privacy.
+
+
+// // JS CLOSURES
+
+
+// // fn. to calculate how many years left until retirement
+
+// function retirement(retirAge) {
+//     var a = ' years left until retirement.';
+//     return function(yearOfBirth) {
+//         var age = 2020 - yearOfBirth;
+//         console.log((retirAge - age) + a);
+//     }
+// }
+
+// // The retire age differs for country to country
+
+// var retireUS = retirement(66);
+// retireUS(1995);
+
+// // or
+
+// retirement(60)(1994);
+
+// // There is probably unnoticed thing happens, ie. var a, and the retirAge 
+// // parameter are accessible to the anonymous return function.
+// // By the execution stack workflow, a function gets popped out from the stack
+// // after its execution, with the first call with 'retirement(66)', fun. runs 
+// // and returns (here another fun.) value to retireUS, its running completed and 
+// // gets kick out from the stack, but somehow the values are available again to 
+// // use on the retireUS(inner Function) at the time we call it.
+// // 
+// // THIS IS THE CLOSURE.
+// // summary:- An inner function has always access to the variables and 
+// // parameters of its outer function, even after the outer function has 
+// // returned.
+// // The secret to closure is even after a function returns and its ex. context
+// // get closed, but it didn't get removed from the scope chain.
+// // ie the var. object and the scope chain doesn't gone. its still in memory 
+// // and can be accessed.
+// // (the ex. context consists of three main parts. 
+// // Variable Object (VO), Scope chain, 'this variable')
+// // When we call retireUS it puts a new execution context on the stack. In the 
+// // scope chain, since inner function to the retirement written lexically, it got
+// // gets access to its scope.
+// // Since the variable object of the retirement function is still there, the scope
+// // chain stays intact, ie. it keeps working, so one can access the variables 
+// // that are created in the retirement function long after the fun. completes its 
+// // execution.(after its execution context is gone).
+// // The current execution context has closed in on the outer variable object(
+// // of retirement), it can use it, thats why its called closure, the scope chain 
+// // always stays intact.
+// // We don't create a closure manually, its a setting/feature built in to js, 
+
+// // SUMMARY: An inner function has always access to the variables and parameters
+// // of its outer function, even after the outer function has returned.
+// // 
+// // 
+
+
+// function retirement(retirAge) {
+//     var a = ' years left until retirement.';
+//     return function(yearOfBirth) {
+//         var age = 2020 - yearOfBirth;
+//         console.log((retirAge - age) + a);
+//     }
+// }
+
+// // The retire age differs for country to country
+
+// var retireUS = retirement(66);
+// var retireGermany = retirement(65);
+// var retireIndia = retirement(63);
+
+// retireUS(1995);
+// retireGermany(1995);
+// retireIndia(1995);
+
+// // Challenge - interview question function with closure
+
+// function interviewQuestions(job) {
+//     return function(name) {
+//         switch (job) {
+//             case 'designer':
+//                 console.log(`${name} can you please explain what UX design is`);
+//                 break;
+//             case 'teacher':
+//                 console.log(`What subject do ypu teach, ${name}?`);
+//                 break;
+//             default:
+//                 console.log(`Hello ${name}, what do you do?`);
+//                 break;
+//         }
+//     }
+// }
+
+// var teacherAppl = interviewQuestions('teacher');
+// teacherAppl('sandhya');
