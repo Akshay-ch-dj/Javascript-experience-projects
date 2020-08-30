@@ -306,8 +306,8 @@ An object is created using a function constructor.
 //     console.log(score >= 5 - goodLuck);
 // })(5);
 
-// // We can only call IIFE once cz it is not assigned to any variable,
-// // But we are not using IIFE to create reusable code, but to escape the global 
+// // here, we only call IIFE once cz it is not assigned to any variable,
+// // But here IIFE used not to create reusable code, but to escape the global 
 // // scope/Data privacy.
 
 
@@ -407,3 +407,141 @@ An object is created using a function constructor.
 
 // var teacherAppl = interviewQuestions('teacher');
 // teacherAppl('sandhya');
+
+/*
+Just got these doubts, and some random notes 
+
+Whats my basic understanding till now, Js creates an execution context for 
+every function called , that contains 3 things 
+
+i) variable object:- that stores all the variable declared, inner functions   
+declared in the function(called hoisting) and also the arguments passed. 
+
+ii) scope chain:- it is a pointer to the location of variable objects - the fn. 
+got access to, simply the var. objects of current functions and all of its 
+parents(up to the global context). 
+
+iii) 'this' variable:- in a regular fn. call this points to the global 
+object(window object), in a method call this points to the parent object. 
+
+when a function gets called its execution context gets added to the execution 
+stack, and removed when execution gets completed. In this lecture about 
+JS closure, I don't completely understands what happening, doubts are, 
+
+1) The execution context of main function(here the retirement() fn.) get 
+closed,does that means cleared from cache/memory, then how it's scope stays 
+and its variable object remains intact (these are parts of the execution 
+context object(ie. I think a js object)), when the object gets cleared how its 
+parameters stays ? 
+
+2) Does the closure works on all functions, or if js identifies the functions 
+with return functions, and holds the vo and scope of those functions .,
+expecting the call. 
+
+3) By the definition of scope chain, it is clear that the return function 
+scope will gets pointed to the parent function( ie the retirement() fn here), 
+is that is why  it not gets removed..
+
+function retirement(retireAge) {
+    var a = ' years left until retirement.';
+    return function(yearOfBirth) {
+        var age = 2020 - yearOfBirth;
+        console.log((retireAge - age) + a);
+    }
+}
+
+var retireUS = retirement(66);
+
+Some one says, one of the best way to find a solution is to collect all the 
+information you got and write it down, your brain will process it 
+automatically and gives you a better logical answer...that's what I'm doing 
+now( doing it here cz someone may find it helpful....or some one with better 
+idea can answer this one..), 
+
+what i got up finally is, When a Js script runs, 
+the parser checks the code.Then it moves to the process of creating execution 
+context, the first one is the Global context, all lines in the script gets 
+executed, the functions and variables are hoisted before the execution starts. 
+scope chain created lexical scoping(parent-children positioning).Every time a 
+inner(child) function calls new scope chain created in its ex. context. 
+
+The execution stack is another JS object(I think...). Which keeps track of the 
+currently executing function, Individual execution contexts get pushed to 
+execution stack when a function gets called and popped out, when it completes 
+the execution.(there is always the global context at the index-0 - until 
+program closes). 
+
+The scope chain is created every time function gets called, 
+it gets added to the scope chain object, if a variable called doesn't find in 
+its own scope, it just moves up to look the parent scope. for the return 
+function in the code, its scope chain includes the parent fun. 
+
+scope and the 
+values for 'a' and 'retireAge' pointing to the variable object of the parent 
+function, but the parent object is closed its execution, now where to look for 
+the data...??
+my assumptions from above, 
+
+1) the parent execution context only removed from the execution stack object, 
+but it is still in memory, as the pointer is to this location it can be 
+recovered. 
+
+2) There may be some special closure method/function to store this bonded 
+data, (as said above the complexity is reduced by typing this much, now the 
+only question how exactly it stored..) (I typed this much cz.. it is asked in 
+every JS job interview what a closure is? ) But who cares in the deep how 
+closure works....as for me, I only cares about its practicality, below is the 
+widely used practical application of closure..
+
+var add = (function () {
+    var counter = 0;
+    return function () {
+            counter += 1;
+            return counter;
+        }
+})();
+
+add();
+add();
+add();
+
+console.log(add());
+console.log(add());
+// the counter is now 5
+
+This one uses previously covered IIFE(immediately invoked functions)..
+explanations 
+
+> The self invoking function only runs once [ '()' at end ], it sets the 
+counter to zero, also returns a function expression that's get assigned to 
+'add' variable. 
+
+> The returned function(child function) can access it's parent variable
+( here the 'counter') and can modify it. 
+
+> Now add() is the return function, 
+every time it called it iterates and return the new counter value 
+
+This is the 
+best way to implement a counter function, cz if we assign the 'counter' 
+variable as global, it can be accessed by all others and hard to manage in a 
+large script, Here the scope of the parent function can be called protected by 
+its child-return function, it is the only function that got the pointer in its 
+scope chain to the 'counter' variable or simply the only one bound by closure.
+
+*/
+
+// // Counter
+
+// var add = (function () {
+//     var counter = 0;
+//     return function () { counter += 1; return counter }
+// })();
+
+// add();
+// add();
+// add();
+
+// console.log(add());
+// console.log(add());
+// // the counter is now 5
