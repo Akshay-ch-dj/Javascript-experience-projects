@@ -640,26 +640,6 @@ scope chain to the 'counter' variable or simply the only one bound by closure.
 // var ages = arrayCalc(ages, fullAgeJapan);
 // console.log(ages);
 
-// Coding challenge
-
-/* Fun quiz game in the console,
-1. Function constructor called question, to describe a question, it should include,
-a) question itself
-b) answer from which the player can choose the correct one(in object or array)
-c) correct answer (I would use a number for this)
-2) create a couple of questions using the constructor
-3) store them inside an array
-4) select one random question and log it on the console, with the possible answers (
-    each question should have a number) (as a method in question object)
-5) use the prompt function to ask the user for the correct answer. The user should input
-    the number of the correct answer such as you displayed it on Task 4.
-6) Check if the answer is correct and print to the console whether the answer is
-    correct or not (can use another method for this)
-7) suppose this could be a plugin for other programmers to use i their code. So
-    make sure that all your code is private and doesn't interfere with other programmers
-    code (IIFE)
-*/
-
 // // Practice
 
 // function countOnline(usersObj) {
@@ -676,3 +656,167 @@ c) correct answer (I would use a number for this)
 
 
 // console.log(countOnline({ Alan: { online: false }, Jeff: { online: true }, Sarah: { online: false } }));
+
+
+// Coding challenge
+
+/* Fun quiz game in the console,
+1. Function constructor called question, to describe a question, it should include,
+a) question itself
+b) answer from which the player can choose the correct one(in object or array)
+c) correct answer (I would use a number for this)
+2) create a couple of questions using the constructor
+3) store them inside an array
+4) select one random question and log it on the console, with the possible answers (
+    each question should have a number) (as a method in question object)
+5) use the prompt function to ask the user for the correct answer. The user should input
+    the number of the correct answer such as you displayed it on Task 4.
+6) Check if the answer is correct and print to the console whether the answer is
+    correct or not (can use another method for this)
+7) suppose this could be a plugin for other programmers to use in their code. So
+    make sure that all your code is private and doesn't interfere with other programmers
+    code (IIFE)
+*/
+
+// var Question = function(question, answerList, correctAns) {
+//     this.question = question;
+//     this.answerList = answerList;
+//     this.correctAns = correctAns;
+// }
+
+// Question.prototype.checkCorrect = function(response) {
+//     return response === this.correctAns;
+// }
+
+// Question.prototype.displayCorrect = function(response) {
+//     console.log(this.checkCorrect(response));
+//     if (this.checkCorrect(response)) {
+//         console.log('Woohoo! Correct answer.');
+//     } else {
+//         console.log("Naan Naa! Wrong answer, Try again");
+//     }
+// }
+
+// questionList = [];
+
+// questionList.push(
+//     new Question(
+//         'Who is the co-founder and leader of Tesla motors?',
+//         ['Sundar Pichai', 'Elon Musk', 'Jeff Besos'],
+//         1
+//     )
+// );
+
+// questionList.push(
+//     new Question(
+//         'Who is the american president now?',
+//         ['Donald Trump', 'Barack Obama', 'Bill Clinton'],
+//         0
+//     )
+// );
+
+// questionList.push(
+//     new Question(
+//         'Who is the indian prime minister?',
+//         ['Donald Trump', 'Ram Nath Kovind', 'Narendra Modi'],
+//         2
+//     )
+// );
+
+
+// function randomQues() {
+//     var randNo = Math.floor(Math.random() * (questionList.length));
+//     console.log(questionList[randNo].question);
+//     for (var i = 0; i < 3; i++) {
+//         console.log(`${i} : ${questionList[randNo].answerList[i]}\n`);
+//     }
+//     var response = parseInt(prompt('Open your console, enter the key of your answer.'));
+//     questionList[randNo].displayCorrect(response);
+// }
+
+// randomQues();
+
+// var askQues = (function() {
+
+//     // Constructor for each question object.
+//     var Question = function (question, answerList, correctAns) {
+//         this.question = question;
+//         this.answerList = answerList;
+//         this.correctAns = correctAns;
+//     }
+
+//     // Prototype methods for the question object
+//     Question.prototype.checkCorrect = function (response) {
+//         return response === this.correctAns;
+//     }
+
+//     Question.prototype.displayCorrect = function (response) {
+//         if (this.checkCorrect(response)) {
+//             console.log('Woohoo! Correct answer.');
+//         } else {
+//             console.log("Naan Naa! Wrong answer, Try again");
+//         }
+//     }
+
+//     // Array to add questions
+//     questionList = [];
+
+//     questionList.push(
+//         new Question(
+//             'Who is the CEO of Tesla motors?',
+//             ['Sundar Pichai', 'Elon Musk', 'Jeff Bezos'],
+//             1
+//         )
+//     );
+
+//     questionList.push(
+//         new Question(
+//             'Who is the american president now?',
+//             ['Donald Trump', 'Barack Obama', 'Bill Clinton'],
+//             0
+//         )
+//     );
+
+//     questionList.push(
+//         new Question(
+//             'Who is the indian prime minister?',
+//             ['Donald Trump', 'Ram Nath Kovind', 'Narendra Modi'],
+//             2
+//         )
+//     );
+
+//     // the return function- only one got access to the constructor and the list
+//     // bounded by closure.
+//     return function () {
+//         // randomly select a question from the list
+//         var randNo = Math.floor(Math.random() * (questionList.length));
+//         console.log(questionList[randNo].question);
+//         for (var i = 0; i < 3; i++) {
+//             // Format the display of options
+//             console.log(`${i} : ${questionList[randNo].answerList[i]}\n`);
+//         }
+//         // prompt input connverted to integer for checking
+//         var response = parseInt(prompt('Open your console, enter the key of your answer.'));
+//         // check the response using inbuilt method(prototype)
+//         questionList[randNo].displayCorrect(response);
+//     }
+// })();
+
+// askQues();
+
+/*
+Expert or lvl 2 update to the code
+
+1. After you display the results, display the next random question( a function
+for this call it after displaying the result)
+
+2. After task 8, the game never ends. so include the option to quit the game if
+the user writes 'exit' instead of the answer, in this case don't call the function
+from task 8.
+
+3. Track the user's score to make the game more fun! each time an answer is correct
+add 1 point to the score (hint: use closure)
+
+4. Display the score in the console.
+
+*/
