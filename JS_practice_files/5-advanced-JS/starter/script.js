@@ -795,7 +795,7 @@ c) correct answer (I would use a number for this)
 //             // Format the display of options
 //             console.log(`${i} : ${questionList[randNo].answerList[i]}\n`);
 //         }
-//         // prompt input connverted to integer for checking
+//         // prompt input converted to integer for checking
 //         var response = parseInt(prompt('Open your console, enter the key of your answer.'));
 //         // check the response using inbuilt method(prototype)
 //         questionList[randNo].displayCorrect(response);
@@ -810,7 +810,7 @@ Expert or lvl 2 update to the code
 1. After you display the results, display the next random question( a function
 for this call it after displaying the result)
 
-2. After task 8, the game never ends. so include the option to quit the game if
+2. After task 1, the game never ends. so include the option to quit the game if
 the user writes 'exit' instead of the answer, in this case don't call the function
 from task 8.
 
@@ -820,3 +820,89 @@ add 1 point to the score (hint: use closure)
 4. Display the score in the console.
 
 */
+
+// var askQues = (function () {
+
+//     // Global variables
+//     // var score = 0;
+//     var randNo = 0;
+
+//     // instead of using score as a random variable, using as a closure
+//     // (update)
+//     var score = (function() {
+//         scoreCount = 0;
+//         return function() {
+//             return scoreCount++;
+//         }
+//     })();
+
+//     // Constructor for each question object.
+//     var Question = function (question, answerList, correctAns) {
+//         this.question = question;
+//         this.answerList = answerList;
+//         this.correctAns = correctAns;
+//     }
+
+//     // Prototype methods for the question object
+//     Question.prototype.displayCorrect = function (response) {
+//         if ((response - 1) === this.correctAns) {
+//             console.log('\nWoohoo! Correct answer.');
+//             console.log('\nYour current score: ', score);
+//         } else {
+//             console.log("\nNaan Naa! Wrong answer, Try again");
+//         }
+//     }
+
+//     // Array to add questions
+//     var questionList = [];
+
+//     questionList.push(
+//         new Question(
+//             'Who is the CEO of Tesla motors?',
+//             ['Sundar Pichai', 'Elon Musk', 'Jeff Bezos'],
+//             1
+//         )
+//     );
+
+//     questionList.push(
+//         new Question(
+//             'Who is the american president now?',
+//             ['Donald Trump', 'Barack Obama', 'Bill Clinton'],
+//             0
+//         )
+//     );
+
+//     questionList.push(
+//         new Question(
+//             'Who is the indian prime minister?',
+//             ['Donald Trump', 'Ram Nath Kovind', 'Narendra Modi'],
+//             2
+//         )
+//     );
+
+//     function logQuestion() {
+//         // randomly select a question from the list
+//         randNo = Math.floor(Math.random() * (questionList.length));
+//         console.log(questionList[randNo].question);
+//         for (var i = 0; i < questionList[randNo].answerList.length; i++) {
+//             // Format the display of options
+//             console.log(`${i + 1} : ${questionList[randNo].answerList[i]}\n`);
+//         }
+//     }
+
+//     // the return function- only one got access to the constructor and the list
+//     // bounded by closure.
+//     return function () {
+//         var response = 'play';
+//         while (response !== 'exit') {
+//             console.log('**************************************************');
+//             logQuestion();
+//             response = prompt('Open your console, enter the key of your answer. Type \'exit\' to close the game');
+//             // check the response using inbuilt method(prototype)
+//             // prompt input converted to integer for checking
+//             questionList[randNo].displayCorrect(parseInt(response));
+//         }
+//     }
+// })();
+
+// askQues();
