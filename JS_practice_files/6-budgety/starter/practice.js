@@ -31,3 +31,6 @@
 
 // })(budgetController, UIController);
 // // The above are the real parameters passed
+
+// NOTES:
+// 1. Add an input valid to the keypress event listener
