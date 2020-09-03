@@ -25,7 +25,47 @@ var budgetController = (function () {
         totals: {
             exp: 0,
             inc: 0
+        },
+        // to set id based on array length.
+        idGen: function(type) {
+            var currItem = this.allItems[type];
+            if (currItem.length > 0) {
+                // ID = last-obj-ID + 1
+                return currItem[currItem.length - 1].id + 1;
+            }
+            return 0;
         }
+    };
+
+    // Create a public module, so that other modules can access and add data in.
+    return {
+        // To add anew data: type(inc/exp),
+        addItem: function(type, des, amount) {
+            var newItem, ID;
+
+            // Generate id
+            ID = data.idGen(type);
+
+            // create a new object for every entry with the constructor.
+            if (type === 'inc') {
+                newItem = new Income(ID, des, amount);
+            } else if (type === 'exp') {
+                newItem = new Expense(ID, des, amount);
+            }
+
+            // Add the newly created object to expected array,
+            data.allItems[type].push(newItem);
+            // raise the net totals
+            data.totals[type] += parseInt(amount);
+
+            // return the new item created.
+            return newItem;
+        },
+
+        // For testing only
+        testing: function() {
+            console.log(data);
+        },
     };
 
 })();
@@ -86,9 +126,13 @@ var controller = (function(budgetCtrl, UICtrl) {
     }
 
     var ctrlAddItem = function() {
+        var input, newItem
+
         // 1. Get the filled input data as an object
-        var input = UICtrl.getInput();
+        input = UICtrl.getInput();
+
         // 2. Add the item to the budget control for calcs.
+        newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
         // 3. Modify the UI
 
