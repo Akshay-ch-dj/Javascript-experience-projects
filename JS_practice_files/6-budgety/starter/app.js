@@ -80,7 +80,13 @@ var UIController = (function() {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
-        btnOK: '.add__btn'
+        btnOK: '.add__btn',
+        itemDescription: '.item__description',
+        itemContainer: '.clearfix',
+        itemValue: '.item__value',
+        itemPercentage: '.item__percentage',
+        incomeList: '.income__list',
+        expenseList: '.expenses__list'
     };
 
     // (2). Public functions
@@ -96,6 +102,47 @@ var UIController = (function() {
                 value: document.querySelector(DOMStrings.inputValue).value
             };
          },
+
+        // The newly created object is in newItem variable
+        addListItem: function(obj, type) {
+            var parList, selectTemplate, templateItems, description, itemValue,
+                container, percentage;
+
+            selectTemplate = document.getElementById('item-template');
+            // Selects all child elements under the template
+            templateItems = document.importNode(selectTemplate.content, true);
+
+            // Select items to modify
+            description = templateItems.querySelector(DOMStrings.itemDescription);
+            itemValue = templateItems.querySelector(DOMStrings.itemValue);
+            container = templateItems.querySelector(DOMStrings.itemContainer);
+            percentage = templateItems.querySelector(DOMStrings.itemPercentage);
+            // Modify the templates
+            description.append(obj.description); // add description
+
+            if (type === 'inc') {
+                itemValue.append(obj.value); // add amount
+                container.id = `income-${obj.id}`; // id change
+                percentage.remove(); // remove percentage for income
+
+                parList = document.querySelector(DOMStrings.incomeList); // select the income-list parent
+
+            } else if (type === 'exp') {
+                itemValue.append(obj.value);
+                container.id = `expense-${obj.id}`;
+                percentage.remove(); // add percentage for expense
+
+                parList = document.querySelector(DOMStrings.expenseList); // select the expenses-list parent
+            }
+
+            // Add the modified templates
+            parList.appendChild(templateItems);
+            console.log(parList);
+            // Replace the placeholder with the actual data received
+
+            // Insert the html into the DOM
+        },
+
         //  Expose DOMStrings to public.
         getDOMStrings: function() {
             return DOMStrings;
@@ -135,6 +182,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
         // 3. Modify the UI
+        UICtrl.addListItem(newItem, input.type);
 
         // 4. Calculate the budget
 
