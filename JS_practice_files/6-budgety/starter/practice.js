@@ -58,3 +58,31 @@
 //     // Insert the HTML into the DOM
 //     document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
 // },
+
+// For the deletion process, using event delegation- The parent html is the one
+// ie, both parent to income and expenses, The "container" class is selected,
+
+// The event.target of the ctrlDeleteItem is the "X" icon. It needed to delete the
+// Whole template containing the item. therefore the whole parent div element and its
+// id are the actual needed item when clicking the icon.
+
+// var ctrlDeleteItem = function (event) {
+//     // identify the clicked item
+//     console.log(event.target);
+//     // delete the item from object
+
+//     // delete the item from UI
+
+// };
+
+// Need to move up in the DOM from the icon to the actual target ie, the div container
+// This is called DOM Traversing.
+/*The target property returns the html element in the node.
+then the "event.target.parentNode", it just goes to the adjacent parent element, here it is the
+class="item__delete--btn", but on counting it actually need the 5th top parent element.
+Gonna chain the "parentNode" property until reaches the desired parent.
+"event.target.parentNode.parentNode.parentNode.parentNode",
+we need it's ID, so,
+"event.target.parentNode.parentNode.parentNode.parentNode.id",
+returns - "income-0", "income-1"....as each list item got unique ID.
+*/

@@ -98,6 +98,16 @@ var budgetController = (function () {
             };
         },
 
+        // return function for deletion
+        deleteItem: function(itemID, type) {
+            var listSelect = data.allItems[type];
+            for (var i = 0; i < listSelect.length; i++) {
+                if (listSelect[i].id === itemID) {
+                    listSelect.splice(i, 1);
+                }
+            }
+        },
+
         // For testing only
         testing: function() {
             console.log(data);
@@ -118,7 +128,8 @@ var UIController = (function() {
         inputValue: '.add__value',
         btnOK: '.add__btn',
         itemDescription: '.item__description',
-        itemContainer: '.clearfix',
+        template: '.item-template',
+        itemContainer: '.item',
         itemValue: '.item__value',
         itemPercentage: '.item__percentage',
         incomeList: '.income__list',
@@ -126,7 +137,8 @@ var UIController = (function() {
         budgetLabel: '.budget__value',
         incomeLabel: '.budget__income--value',
         expenseLabel: '.budget__expenses--value',
-        percentageLabel: '.budget__expenses--percentage'
+        percentageLabel: '.budget__expenses--percentage',
+        templateContainer: '.container'
     };
 
     // (2). Public functions
@@ -148,7 +160,7 @@ var UIController = (function() {
             var parList, selectTemplate, templateItems, description, itemValue,
                 container, percentage;
 
-            selectTemplate = document.getElementById('item-template');
+            selectTemplate = document.querySelector(DOMStrings.template);
             // Selects all child elements under the template
             templateItems = document.importNode(selectTemplate.content, true);
 
@@ -222,6 +234,7 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER:- For Interconnecting the independent modules, passed as arguments
 var controller = (function(budgetCtrl, UICtrl) {
 
+    // The event listeners here
     var setupEventListeners = function() {
         // Fetched the DOM strings
         var DOM = UICtrl.getDOMStrings();
@@ -236,7 +249,9 @@ var controller = (function(budgetCtrl, UICtrl) {
             if (event.keyCode === 13 || event.which === 13) {
                 ctrlAddItem();
             }
-        })
+        });
+
+        document.querySelector(DOM.templateContainer).addEventListener('click', ctrlDeleteItem);
     }
 
     var updateBudget = function() {
@@ -251,6 +266,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         UICtrl.displayBudget(budget);
     };
 
+    // Add input content when clicked
     var ctrlAddItem = function() {
         var input, newItem
 
@@ -270,6 +286,18 @@ var controller = (function(budgetCtrl, UICtrl) {
             // 7. calculate and update budget
             updateBudget();
         }
+    };
+
+    // Function to delete item when clicked, event is the callback property of click,
+    // console.log(event.target) ==> gives the current mouse target, in the event delegation
+    // by looking up the target it revels from where the event comes from,
+    var ctrlDeleteItem = function(event) {
+        // identify the clicked item
+        console.log(event.target.parentNode.parentNode.parentNode.parentNode.id);
+        // delete the item from object
+
+        // delete the item from UI
+
     };
 
     // create a public 'init'(initialization) function to call event-listeners
