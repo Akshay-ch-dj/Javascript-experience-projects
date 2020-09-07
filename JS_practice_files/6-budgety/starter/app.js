@@ -221,9 +221,12 @@ var UIController = (function() {
             }
         },
 
-        deleteUIItem: function(Item, type) {
-            //Grab the template
-
+        deleteUIItem: function(itemID) {
+            // Grab the template from the entire ID passed(eg: "inc-2")
+            // Using the removeChild method (opposite of appendChild)
+            // var el = document.getElementById(itemID);
+            // el.parentNode.removeChild(el);
+            document.getElementById(itemID).remove();
             // Remove the template
         },
 
@@ -300,11 +303,11 @@ var controller = (function(budgetCtrl, UICtrl) {
         var itemID, splitID, type, objID
 
         // identify the clicked item
+        // itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        itemID = event.target.closest('.item').id
 
-        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
-
-        // Use regex or something to verify the ID(that it contains income tag)
-        if (itemID) {
+        // Use regex to verify the ID(that it contains expected tag: avoid collision with other id)
+        if (itemID && /inc|exp/.test(itemID)) {
             // Need to extract number(ID) and type part from the ID("inc-1" or "exp-1")
             // Can use the split() method of string.
             splitID = itemID.split('-');
@@ -313,8 +316,12 @@ var controller = (function(budgetCtrl, UICtrl) {
 
             // Return the "type" and "ID" to the BudgetController and UIController
             budgetCtrl.deleteDataItem(type, objID);
-            // Update the new budget
+            // For UIController return full ID (itemID) for deletion.
+            UICtrl.deleteUIItem(itemID);
 
+            // Update the new budget (There is already the function to calc. and disp.
+            // the. current available data.)
+            updateBudget();
         }
 
 

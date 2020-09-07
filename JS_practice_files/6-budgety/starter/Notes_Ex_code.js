@@ -93,6 +93,54 @@ Things to clear UP,
 2.) Add an if condition to validate the id fetching(if needed regex then with it).
 */
 
+// The modification part
+/*
+// identify the clicked item
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+    Using the closest() method ie,
+    eg: // Starting from the inner most level
+        var start = document.getElementById("source");
+
+        start.closest(".something1").classList.add("dropCap");
+        {The 'something1' class is 5 level up of the start}
+
+    itemID = event.target.closest('.item').id
+    console.log(itemID);
+
+    "That One Works!...Yoo"
+
+    Which also solves the Issue of hitting wrong id's.
+
+    // But a little practice in regex is always appreciated
+    // console.log(/"^inc|^exp"/.exec("inc-5"));
+
+    // function myFunction() {
+    //     var str = "ell-5";
+    //     var patt = new RegExp("inc|exp");
+    //     var res = patt.exec(str);
+    //     console.log(res);
+    // }
+
+    // myFunction();
+
+    // // console.log(new RegExp("inc|exp").exec("inc-5"));
+    // console.log(/inc|exp/.exec("i5c-5"));
+
+    // if (/inc|exp/.exec("i5c-5")) {
+    //     console.log("Yes");
+    // } else {
+    //     console.log("No");
+    // }
+
+    // use test() in place of exec(), if needed a boolean result only(exec also works with if -else)
+
+    // if (/inc|exp/.test("inc-5")) {
+    //     console.log("Yes");
+    // } else {
+    //     console.log("No");
+    // }
+*/
+
 /*
 Adding the Delete method to budget control app,
 my method,
@@ -129,5 +177,17 @@ Going with my method- less code less worry,
 
 // Deleting the item from UI:
 
+Jonas Method:
+// Using the removeChild method (opposite of appendChild)
+var el = document.getElementById(itemID);
+el.parentNode.removeChild(el);
+
+Trying using:
+document.getElementById(itemID).remove();
+
+// For Updating the budget
+there is the updateBudget() method: that calculates the budget, totalInc, totalExp, percentage
+
 
 */
+
