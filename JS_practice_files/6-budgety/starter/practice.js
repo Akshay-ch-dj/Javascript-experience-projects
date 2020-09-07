@@ -79,10 +79,55 @@
 // This is called DOM Traversing.
 /*The target property returns the html element in the node.
 then the "event.target.parentNode", it just goes to the adjacent parent element, here it is the
-class="item__delete--btn", but on counting it actually need the 5th top parent element.
+class="item__delete--btn", but on counting it, actually need the 5th top parent element.
 Gonna chain the "parentNode" property until reaches the desired parent.
 "event.target.parentNode.parentNode.parentNode.parentNode",
 we need it's ID, so,
 "event.target.parentNode.parentNode.parentNode.parentNode.id",
-returns - "income-0", "income-1"....as each list item got unique ID.
+returns - "inc-0", "inc-1"..."exp-0", "exp-1".as each list item got unique ID.
+(jonas logic is funny, he doesn't added any other id elements in the html, so there not need to be
+worried about other id's and other clicks, but I'm worried, We need universal methods that can be applied to
+other projects )
+Things to clear UP,
+1.) The hardcoded parentNodes
+2.) Add an if condition to validate the id fetching(if needed regex then with it).
+*/
+
+/*
+Adding the Delete method to budget control app,
+my method,
+// return function for deletion of data
+        deleteDataItem: function (type, itemID) {
+            var listSelect = data.allItems[type];
+            for (var i = 0; i < listSelect.length; i++) {
+                if (listSelect[i].id === itemID) {
+                    listSelect.splice(i, 1);
+                }
+            }
+        },
+
+passed an id = 3,
+// data.allItems[type][id] ==> It will select index item three
+
+Using map instead of a for loop, Jonas method
+var idList, index;
+
+idList = data.allItems[type].map(function(current) {
+    return current.id;
+});
+
+index = ids.indexOf(id); // Returns the index of current needed object in the List
+// index = -1, if the item is not found in the array
+
+if (index !== -1) {
+    data.allItems[type].splice(index, 1);
+}
+
+In applying there is 1 bug 1) the id need to be converted to int,
+(use the testing function for testing)
+Going with my method- less code less worry,
+
+// Deleting the item from UI:
+
+
 */

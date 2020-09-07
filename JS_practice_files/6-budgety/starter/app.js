@@ -72,6 +72,16 @@ var budgetController = (function () {
             return newItem;
         },
 
+        // return function for deletion of data
+        deleteDataItem: function (type, itemID) {
+            var listSelect = data.allItems[type];
+            for (var i = 0; i < listSelect.length; i++) {
+                if (listSelect[i].id === itemID) {
+                    listSelect.splice(i, 1);
+                }
+            }
+        },
+
         calculateBudget: function() {
 
             // Total income & Total Expenses
@@ -96,16 +106,6 @@ var budgetController = (function () {
                 totalExp: data.totals.exp,
                 percentage: data.percentage
             };
-        },
-
-        // return function for deletion
-        deleteItem: function(itemID, type) {
-            var listSelect = data.allItems[type];
-            for (var i = 0; i < listSelect.length; i++) {
-                if (listSelect[i].id === itemID) {
-                    listSelect.splice(i, 1);
-                }
-            }
         },
 
         // For testing only
@@ -174,14 +174,14 @@ var UIController = (function() {
 
             if (type === 'inc') {
                 itemValue.append(obj.value); // add amount
-                container.id = `income-${obj.id}`; // id change
+                container.id = `inc-${obj.id}`; // id change
                 percentage.remove(); // remove percentage for income
 
                 parList = document.querySelector(DOMStrings.incomeList); // select the income-list parent
 
             } else if (type === 'exp') {
                 itemValue.append(obj.value);
-                container.id = `expense-${obj.id}`;
+                container.id = `exp-${obj.id}`;
                 percentage.remove(); // add percentage for expense
 
                 parList = document.querySelector(DOMStrings.expenseList); // select the expenses-list parent
@@ -219,7 +219,12 @@ var UIController = (function() {
             } else {
                 document.querySelector(DOMStrings.percentageLabel).textContent = '---';
             }
+        },
 
+        deleteUIItem: function(Item, type) {
+            //Grab the template
+
+            // Remove the template
         },
 
         //  Expose DOMStrings to public.
@@ -292,8 +297,27 @@ var controller = (function(budgetCtrl, UICtrl) {
     // console.log(event.target) ==> gives the current mouse target, in the event delegation
     // by looking up the target it revels from where the event comes from,
     var ctrlDeleteItem = function(event) {
+        var itemID, splitID, type, objID
+
         // identify the clicked item
-        console.log(event.target.parentNode.parentNode.parentNode.parentNode.id);
+
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+
+        // Use regex or something to verify the ID(that it contains income tag)
+        if (itemID) {
+            // Need to extract number(ID) and type part from the ID("inc-1" or "exp-1")
+            // Can use the split() method of string.
+            splitID = itemID.split('-');
+            type = splitID[0];
+            objID = parseInt(splitID[1]);
+
+            // Return the "type" and "ID" to the BudgetController and UIController
+            budgetCtrl.deleteDataItem(type, objID);
+            // Update the new budget
+
+        }
+
+
         // delete the item from object
 
         // delete the item from UI
