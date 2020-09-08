@@ -191,3 +191,125 @@ there is the updateBudget() method: that calculates the budget, totalInc, totalE
 
 */
 
+// Part 3-------
+/*
+1. Add the percentage in the box side.
+ --- For that need to modify the budgetCtrl.calculateBudget() and UICtrl.displayBudget(budget)
+paths in creating
+create a separate function ----> create a prototype in expense object.
+
+// Prototype for expense object
+    Expense.prototype.expPercentage = function() {
+        if (data.totals.inc > 0) {
+            this.percentage = Math.round((this.value / data.totals.inc) * 100);
+        }
+    };
+
+// If expense item gets deleted the percentage also gets deleted... no worries.
+
+//  Adding to the UI.
+
+*/
+
+/*
+// Prototype for expense object
+Expense.prototype.expPercentage = function() {
+    if (data.budget > 0) {
+        this.percentage = Math.round((this.value / data.totals.inc) * 100);
+    }
+};
+
+budgetControls addItem functions expense part.
+
+if (type === 'inc') {
+    newItem = new Income(ID, des, amount);
+} else if (type === 'exp') {
+    newItem = new Expense(ID, des, amount);
+    newItem.expPercentage();
+}
+
+
+*/
+
+/*
+// Income formatting
+1. All numbers need a decimal part 2 places, also Equally alligned
+2. Positive numbers have '+' sign, negative got '-' sign.
+3. Comma separator for the numbers, 1,000
+
+// Mine extra - add rupees symbol
+Use AltGr + $ with language set to ENG INDIA. ₹
+*/
+
+/*
+// To round the numbers in to two
+
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2") + "e-2");
+}
+
+*/
+
+// function roundToTwo(num) {
+//     return +(Math.round(num + "e+2") + "e-2");
+// }
+
+/*
+var num = -4;
+
+// For fixing any number up to 2 decimals.
+num = Math.abs(num);
+num = num.toFixed(2);
+
+console.log(num);
+console.log(4.94566.toFixed(2));
+
+*/
+
+// To add comma
+
+// 1. Split the number to integer and decimal(after fixing the two decimal)
+// var num, intPart;
+
+// num = -100000000;
+
+// num = Math.abs(num).toFixed(2);
+// console.log(num);
+
+// // toString() method converts to string
+// intPart = Math.floor(num).toString().split('');
+// console.log(intPart);
+
+// var i = intPart.length - 3;
+
+// console.log(i);
+
+// while (i > 0) {
+//     intPart.splice(i, 0, ",");
+//     i -= 2;
+// };
+
+// // intPart.splice(i, 1, ",");
+// console.log(intPart.join(''));
+
+// // Use the join() method and splice() to add items
+
+// Current Date using date object constructor
+
+// Use Change Events
+/*
+To change the color of input fields acc to inc and exp
+add an event listener for a change event to happen in the +/- input field
+*/
+
+// Traverse through array and call the given function
+// var nodeListForEach = function (list, callback) {
+//     for (var i = 0; i < list.length; i++) {
+//         callback(list[i], i);
+//     }
+// };
+
+// Final considerations
+
+// 1. Clear 
+// 2. Add Local Storage
