@@ -311,5 +311,36 @@ add an event listener for a change event to happen in the +/- input field
 
 // Final considerations
 
-// 1. Clear 
+// 1. Clear the problem with blank percentages if added later
 // 2. Add Local Storage
+
+/*
+Algo. for dynamic percentages
+
+// On budget controller
+1. select all exp items
+2. call its proto method for each item add
+
+// UI
+1. select all exp items, ie child to exp parent
+2. update its percentage by matching id/ calling budjet function
+
+
+*/
+
+// // Trying childNodes
+// var childes;
+// childes = document.querySelector('.expenses__list').childNodes;
+
+// console.log(childes);
+
+// // Explaining this Traverse and call
+// var nodeListForEach = function (list, callback) {
+//     for (var i = 0; i < list.length; i++) {
+//         callback(list[i], i);
+//     }
+// };
+
+// if the list given is the updated expense list
+
+// Done but not using any child node or children

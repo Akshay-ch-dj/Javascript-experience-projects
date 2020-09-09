@@ -45,6 +45,13 @@ var budgetController = (function () {
                 return currItem[currItem.length - 1].id + 1;
             }
             return 0;
+        },
+        updateExpPercentage: function() {
+            // Select all exp items
+            this.allItems.exp.forEach(function(item) {
+                // Call its 'expPercentage' function
+                item.expPercentage();
+            });
         }
     };
 
@@ -115,6 +122,14 @@ var budgetController = (function () {
                 totalExp: data.totals.exp,
                 percentage: data.percentage
             };
+        },
+
+        dynamicPercentageCalc: function() {
+            // call the updatePercentage method in data object
+            data.updateExpPercentage();
+            // Now the percentage data of each object updated.
+            // return the objects
+            return data.allItems.exp
         },
 
         // For testing only
@@ -317,6 +332,21 @@ var UIController = (function() {
             document.querySelector(DOMStrings.inputBtn).classList.toggle('red');
         },
 
+        // 'obj' is the updated exp objects from budgetController
+        dynamicPercentage: function(obj) {
+
+            // Match the id and select items from DOM
+            obj.forEach(function(curr) {
+                var item = document.getElementById(`exp-${curr.id}`);
+                percentage = item.querySelector(DOMStrings.itemPercentage);
+                if (curr.percentage > 0) {
+                    percentage.textContent = curr.percentage + '%';
+                } else {
+                    percentage.textContent = '___';
+                };
+            });
+        },
+
         //  Expose DOMStrings to public.
         getDOMStrings: function() {
             return DOMStrings;
@@ -361,6 +391,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 6. Display the budget on top UI.
         UICtrl.displayBudget(budget);
+
+        // 7. Dynamic exp percentages
+        UICtrl.dynamicPercentage(budgetCtrl.dynamicPercentageCalc());
     };
 
     // Add input content when clicked
