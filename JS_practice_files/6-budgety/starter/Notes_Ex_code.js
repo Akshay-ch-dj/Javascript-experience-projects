@@ -344,3 +344,117 @@ Algo. for dynamic percentages
 // if the list given is the updated expense list
 
 // Done but not using any child node or children
+
+
+/*
+var localBudget;
+
+/ Check for local storage(helper fun.)
+    function checkForLocal() {
+        if (localStorage.getItem('localBudget') === null) {
+            // If no item named 'localBudget' setup the data object.
+            localBudget = data;
+        } else {
+            localBudget = JSON.parse(localStorage.getItem('localBudget'));
+        }
+    }
+
+    // **********************  Local Storage *************************
+        // Save to localStorage
+        saveToLocal: function() {
+            localBudget = data;
+            localStorage.setItem('localBudget', JSON.stringify(localBudget));
+        },
+
+        // Retrieve from localStorage
+        getFromLocal: function() {
+            checkForLocal();
+            data = localBudget;
+            // return data.allItems;
+        },
+
+        // For delete from localStorage after deleting the element from
+        // main data structure, call the saveToLocal()
+        // *****************************************************************
+
+        var updateBudget = function() {
+            // 8. Save to local storage
+            budgetCtrl.saveToLocal();
+        }
+
+        return {
+        init: function() {
+            ctrlRetrieveItem();
+            updateBudget();
+            UICtrl.displayMonth();
+            // UICtrl.displayBudget({
+            //     budget: 0,
+            //     totalInc: 0,
+            //     totalExp: 0,
+            //     percentage: -1
+            // });
+            setupEventListeners();
+        }
+
+        Then it strikes me, this will not load any items because, the items in the data object needed
+        adding again using the UIController.addListItem(object, type) method (can rewrite the code, to always
+        load data from the object, than direct inputting), as a fix Add the below function to main controller
+
+        var ctrlRetrieveItem = function() {
+            var allItems, incItems, expItems;
+            allItems = budgetCtrl.getFromLocal();
+            incItems = allItems.inc;
+            expItems = allItems.exp;
+            // Retrieve 'inc' items, add to UI call addListItem(obj, type)
+            incItems.forEach(function(item) {
+                UICtrl.addListItem(item, 'inc');
+            });
+            // Retrieve 'exp' items, add to UI
+            expItems.forEach(function (item) {
+                UICtrl.addListItem(item, 'exp');
+            });
+        };
+        Then called this function in init().
+
+        then comes the Problem 2; the inc and exp objects retrieved from local storage are just data
+        in JSON format, to get the prototype property in exp objects, it needs to be added again as
+        Expense object.
+
+        SO in order to do that
+        */
+
+
+
+
+
+
+// The Local storage addition part
+
+/*
+    1. Add item to local storage.
+
+    copied the data object to local storage..
+    but the in built functions don't get copied.
+    removed the functions..
+    then the budget tags get added but the lists wont come back.
+    2. Delete item from local storage
+    3. Retrieve item from local storage at start
+    Adding a refreshItems function to UI. to call with updateitems
+*/
+
+// The problem with my method of local storage is the objects prototype, methods
+// cannot be saved or retrieved, from the storage
+
+// So I needed to again go through the addition process as an object to reattain the
+// prototype methods
+
+
+
+// For delete from localStorage after deleting the element from
+// main data structure, call the saveToLocal()
+// *****************************************************************
+
+// Function to add back the JSON data from local storage as real objects
+// convertToObject: function() {
+
+// },

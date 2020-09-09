@@ -2,6 +2,9 @@
 // BUDGET CONTROLLER:- For controlling Data
 var budgetController = (function () {
 
+    // variable for local storage
+    var localBudget;
+
     // Data storing medium, object with descriptions, values and id
     // Constructor
     var Expense = function(id, description, value) {
@@ -37,24 +40,28 @@ var budgetController = (function () {
         budget: 0,
         // No percent initially:- doesn't exists
         percentage: -1,
-        // to set id based on array length.
-        idGen: function(type) {
-            var currItem = this.allItems[type];
-            if (currItem.length > 0) {
-                // ID = last-obj-ID + 1
-                return currItem[currItem.length - 1].id + 1;
-            }
-            return 0;
-        },
-        updateExpPercentage: function() {
-            // Select all exp items
-            this.allItems.exp.forEach(function(item) {
-                // Call its 'expPercentage' function
-                item.expPercentage();
-            });
-        }
     };
 
+    // Function to generate ID based on array length.
+    var idGen = function (type) {
+        var currItem = data.allItems[type];
+        if (currItem.length > 0) {
+            // ID = last-obj-ID + 1
+            return currItem[currItem.length - 1].id + 1;
+        }
+        return 0;
+    };
+
+    // To update expense percentages
+    var updateExpPercentage = function() {
+        // Select all exp items
+        data.allItems.exp.forEach(function (item) {
+            // Call its 'expPercentage' function
+            item.expPercentage();
+        });
+    };
+
+    // To calculate total
     var calculateTotal = function (type) {
         var sum = 0;
         data.allItems[type].forEach(function(current) {
@@ -64,6 +71,20 @@ var budgetController = (function () {
         data.totals[type] = sum;
     };
 
+
+    // **********************  Local Storage *************************
+    // Check for local storage(helper fun.)
+    function checkForLocal() {
+        if (localStorage.getItem('localBudget') === null) {
+            // If no item named 'localBudget' setup the data object.
+            localBudget = data;
+        } else {
+            localBudget = JSON.parse(localStorage.getItem('localBudget'));
+        }
+        // return localBudget;
+    }
+    // *****************************************************************
+
     // Create a public module, so that other modules can access and add data in.
     return {
         // To add anew data: type(inc/exp),
@@ -71,7 +92,7 @@ var budgetController = (function () {
             var newItem, ID;
 
             // Generate id
-            ID = data.idGen(type);
+            ID = idGen(type);
 
             // create a new object for every entry with the constructor.
             if (type === 'inc') {
@@ -126,10 +147,24 @@ var budgetController = (function () {
 
         dynamicPercentageCalc: function() {
             // call the updatePercentage method in data object
-            data.updateExpPercentage();
+            updateExpPercentage();
             // Now the percentage data of each object updated.
             // return the objects
             return data.allItems.exp
+        },
+
+        // **********************  Local Storage *************************
+        // Save to localStorage
+        saveToLocal: function() {
+            // save the current data object
+            localBudget = data;
+            localStorage.setItem('localBudget', JSON.stringify(localBudget));
+        },
+
+        // Retrieve from localStorage
+        getFromLocal: function() {
+            checkForLocal();
+            return localBudget.allItems;
         },
 
         // For testing only
@@ -394,6 +429,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 7. Dynamic exp percentages
         UICtrl.dynamicPercentage(budgetCtrl.dynamicPercentageCalc());
+
+        // 8. Save to local storage
+        budgetCtrl.saveToLocal();
     };
 
     // Add input content when clicked
@@ -448,16 +486,38 @@ var controller = (function(budgetCtrl, UICtrl) {
         }
     };
 
+
+    // Function to add back the JSON data from local storage as real objects
+    // To retrieve items back to UI
+    var ctrlRetrieveItem = function() {
+        var allItems, incItems, expItems, newItem;
+        allItems = budgetCtrl.getFromLocal();
+        incItems = allItems.inc;
+        expItems = allItems.exp;
+        // Retrieve 'inc' items, add to UI call addListItem(obj, type)
+        incItems.forEach(function (item) {
+            newItem = budgetCtrl.addItem('inc', item.description, item.value);
+            UICtrl.addListItem(newItem, 'inc');
+        });
+        // Retrieve 'exp' items, add to UI
+        expItems.forEach(function (item) {
+            newItem = budgetCtrl.addItem('exp', item.description, item.value);
+            UICtrl.addListItem(item, 'exp');
+        });
+    };
+
     // create a public 'init'(initialization) function to call event-listeners
     return {
         init: function() {
+            ctrlRetrieveItem();
+            updateBudget();
             UICtrl.displayMonth();
-            UICtrl.displayBudget({
-                budget: 0,
-                totalInc: 0,
-                totalExp: 0,
-                percentage: -1
-            });
+            // UICtrl.displayBudget({
+            //     budget: 0,
+            //     totalInc: 0,
+            //     totalExp: 0,
+            //     percentage: -1
+            // });
             setupEventListeners();
         }
     };
