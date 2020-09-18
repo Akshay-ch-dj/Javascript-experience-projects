@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Tik Tak Toe! Interface</title>
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="TicTacToe.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 id="head1" class="display-4">Welcome to Tik Tak Toe!</h1>
+      <hr class="my-4">
+      <a id="b" class="btn btn-primary btn-lg" href="#" role="button">Restart!</a>
+
+      <div class="player-data">
+        <h3 class="player-1">Player 1: <span class="player-sign">X</span></h3>
+        <h3 class="player-2">Player 2: <span class="player-sign">O</span></h3>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="board" class="container-fluid row text-center main">
+    <div class="col-md-4 player1">
+      <p>Player 1's turn</p>
+    </div>
+    <div class="col-md-4">
+      <table border="1">
+        <tr class="top">
+          <td id="one"></td>
+          <td id="two"></td>
+          <td id="three"></td>
+        </tr>
+        <tr class="middle">
+          <td id="four"></td>
+          <td id="five"></td>
+          <td id="six"></td>
+        </tr>
+        <tr class="bottom">
+          <td id="seven"></td>
+          <td id="eight"></td>
+          <td id="nine"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4 player2">
+      <p>Player 2's turn</p>
+    </div>
+  </div>
+
+</body>
+<!-- JS local -->
+<script src="TicTacToe.js"></script>
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</html>

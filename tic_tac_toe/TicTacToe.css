@@ -1,0 +1,38 @@
+/* Hai */
+#head1{
+  text-align: center;
+}
+.jumbotron{
+  text-align: center;
+  background-color: #d9d4d2;
+}
+body{
+  background-color: #c29380;
+}
+td{
+  border: 5px solid black;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 50px;
+}
+
+table{
+  margin: 1px auto;
+  margin-bottom: 125px;
+  margin-top: 50px;
+}
+
+.player-data{
+  display: flex;
+  justify-content: space-between;
+}
+
+p{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.player-sign{
+  color: rgb(0, 108, 248);
+}
