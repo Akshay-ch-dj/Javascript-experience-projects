@@ -30,14 +30,17 @@ var board = (function() {
     },
 
     clear: function(){
-      var cells = document.querySelectorAll('td');
+      var cells = document.querySelectorAll("td");
       console.log(cellValues);
       console.log(cells);
-      cells.forEach(function(item){
+      cells.forEach(function (item) {
         item.textContent = "";
-      })
+      });
       console.log(cellValues);
       document.getElementById("head1").textContent = `Welcome to Tik Tak Toe!`;
+      // both player turns hidden
+      document.getElementById("player-1").style.visibility = "hidden";
+      document.getElementById("player-2").style.visibility = "hidden";
       gamePlay = true;
     }
   }
@@ -60,9 +63,16 @@ var gamePlayers = (function() {
         if (player === 1) {
           cell.textContent = player1_mark;
           player = 2;
+          // Show the player 2 turn text ie hide the player 1 visible player 2
+          document.getElementById('player-1').style.visibility = 'hidden';
+          document.getElementById('player-2').style.visibility = 'visible';
+
         } else if (player === 2) {
           cell.textContent = player2_mark;
           player = 1;
+
+          document.getElementById("player-1").style.visibility = "visible";
+          document.getElementById("player-2").style.visibility = "hidden";
         }
       }
     },
@@ -71,6 +81,12 @@ var gamePlayers = (function() {
     winner: function() {
       var winner = player === 1? 2 : 1
       document.getElementById("head1").textContent = `Player ${winner} wins`;
+      gamePlay = false;
+    },
+
+    // Display Draw
+    draw: function() {
+      document.getElementById("head1").textContent = "It's a Draw!";
       gamePlay = false;
     }
   };
@@ -99,6 +115,21 @@ var mainGame = (function(game, board) {
     }
   }
 
+  // Check if draw function(check after winner check)
+  var checkDraw = function() {
+    var cells, draw;
+    cells = document.querySelectorAll("td");
+
+    draw = true;
+    cells.forEach(function (item) {
+      // turn off draw if any cell contain blank space
+      if (item.textContent === ''){
+        draw = false;
+      };
+    });
+    return draw;
+  }
+
   // check for win
   var checkForWin = function() {
       // 147, 258, 369, 159, 357
@@ -123,6 +154,9 @@ var mainGame = (function(game, board) {
       console.log(checkForWin());
       if (checkForWin()) {
         game.winner();
+        console.log(checkDraw());
+      } else if (checkDraw()) {
+        game.draw();
       }
     }
   };
@@ -137,55 +171,3 @@ var mainGame = (function(game, board) {
 })(gamePlayers, board);
 
 mainGame.init();
-
-// Function to add marker to cell
-
-
-// cellGrabber = function(event) {
-//   var itemID;
-
-//   item = event.target
-
-//   // check the item is td
-
-//   // check the player
-
-
-// };
-
-
-// document.querySelector("table").addEventListener("click", cellGrabber);
-
-
-// testFunction('Mallus');
-
-// // It places the passed marker in the clicked table.
-// function marker(item) {
-//   for (var i = 0; i < cells.length; i++) {
-//     cells[i].addEventListener("click", function() {
-//       console.log(cells[i]);
-//       cells[i].textContent = item;
-//     });
-//   }
-// }
-
-// marker("X");
-
-
-// var myList = [cOne, cTwo, cThree, cFour, cFive, cSix, cSeven, cEight, cNine];
-
-// cOne.addEventListener("click", function () {
-//   cOne.textContent = "X";
-//   cOne.style.color = "black";
-// });
-
-// For the refresh button
-// button.addEventListener("click", function() {
-//   for (var i = 0; i < cells.length; i++) {
-//     cells[i].textContent = "";
-//   }
-// });
-
-// cells[1].addEventListener("click", function() {
-//   cells[1].textContent = "X";
-// });
