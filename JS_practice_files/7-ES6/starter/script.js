@@ -210,7 +210,7 @@
 
 // const boxes = document.querySelectorAll('.box');
 
-// // To traverse through the nodelist returned in ES5
+// To traverse through the nodelist returned in ES5
 // var boxesArr5 = Array.prototype.slice.call(boxes);
 
 // // To change all box colors to blue (ES5)
@@ -220,11 +220,174 @@
 
 // // In ES6 - It can be done in a single line of code
 
-// Array.from(boxes).forEach(curr => curr.style.backgroundColor = 'pink');
+// Array.from(boxes).forEach(curr => curr.style.backgroundColor = 'dodgerblue');
 
-// Loops
+
+// console.log('kjds');
+
+// function narcissistic(value) {
+//     let sum = 0;
+//     Array.from(String(value), Number).forEach(num => sum += num ** String(value).length);
+//     return sum === value
+// }
+// console.log(narcissistic(7));
+// console.log(narcissistic(371));
+// console.log(narcissistic(153));
+// console.log(narcissistic(45));
+
+
+// // Loops
 
 // When we need looping through an array, we use `forEach` or `map` method,
 // But the problem with both of them is, we can't `break` from them or use the
 // `continue` statement, for that we need to go back to conventional for loop,
-// But for simple loops it is more code and variables
+// But for simple loops it is more code and variables.
+
+// ie, in the ES5 way,
+// for (var i = 0; i < boxesArr5.length; i++) {
+//     if (boxesArr5[i].className === 'box blue') {
+//         continue;
+//     }
+//     boxesArr5[i].textContent = 'I changed to Blue';
+// }
+
+// In ES6 to overcome this issue a new loop called `for of` loop, introduced
+// const boxesArr6 = Array.from(boxes);
+
+// for (const cur of boxesArr6) {
+//     if (cur.className.includes('blue')) {
+//         continue;
+//     }
+//     cur.textContent = 'I changed to Blue';
+// }
+
+// ES5
+
+// var  ages = [12, 17, 16, 14, 19, 15, 11];
+
+// // To determine the index of the ages which are greater than or equal to 18
+
+// var full = ages.map(function(cur) {
+//     return cur >= 18
+// })
+
+// console.log(full);
+
+// // Which one is full age
+// console.log(full.indexOf(true));
+
+// // to find the exact year
+// console.log(ages[full.indexOf(true)]);
+
+// // In ES6, index, find methods
+
+// console.log(ages.findIndex(cur => cur >= 18));
+// console.log(ages.find(cur => cur >= 18));
+
+
+
+// // The spread operator
+
+// function addFourAges (a, b, c, d) {
+//     return a + b + c + d;
+// }
+
+// var sum1 = addFourAges(18, 21, 34, 23);
+// console.log(sum1);
+
+// // If the numbers are in an array,
+// // ES5
+
+// var ages = [18, 21, 34, 23];
+
+// // 'bind', 'call' and 'apply' methods, need 'this'(here don't any use so 'null')
+// var sum2 = addFourAges.apply(null, ages);
+// console.log(sum2);
+
+// // In ES6, the `spread` operator simplifies it all,
+// const sum3 = addFourAges(...ages);
+// console.log(sum3);
+
+// // A spread operator denoted by `...`(three dots), the operator just expands
+// // the array in to its components.
+// // It got more use cases, eg: for joining arrays.
+
+// // const familySmith = ['John', 'Jane', 'Mark'];
+// const familyMiller = ['Mary', 'Bob', 'Ann'];
+
+// const bigFamily = [...familySmith, ...familyMiller, 'lilly'];
+
+// // As explained the `spread` operator just expands the array and put there, so
+// // it gives the output of two arrays combined.text-content
+// console.log(bigFamily);
+
+// It can be applied not just on an array but also on nodelists.
+
+// const h = document.querySelector('h1');
+// const boxes = document.querySelectorAll('.box');
+
+// const all = [h, ...boxes];
+
+// Array.from(all).forEach(cur => cur.style.color = 'purple');
+
+// Rest parameters
+
+// // ES5
+
+// function isFullage5() {
+//     console.log(arguments);
+//     var argsArray = Array.prototype.slice.call(arguments);
+
+//     argsArray.forEach(function(cur) {
+//         console.log((2020 - cur) >= 18);
+//     })
+// }
+
+// // in ES5, to receive an undefined number of arguments, don't define any
+// // parameters for a function, then just use the `arguments` variable(which is
+// // similar to `this` in which every execution context get access to.)
+
+// isFullage5(1990, 1995, 1996, 2013, 1997);
+// // It returns not exactly an array(does not got an Array, function constructor)
+// // but an object, For to loop through it, use the ES5 hack to convert it to an
+// // array
+
+
+// // ES6, by making use of rest parameters
+
+// function isFullage6(...years) {
+//     years.forEach(cur => console.log((2020 - cur) >= 18));
+// }
+
+// isFullage6(1990, 1995, 1996, 2013, 1997);
+
+// // The difference between the spread operator and the rest parameter is actually
+// // the place where we use it each, `spread` is used in a function call, and
+// // `rest` operator is in a function declaration to accept an arbitrary number
+// // of parameters
+
+// ES5, modifying it by giving a limit, at which age the person will got full
+// age
+
+// function isFullage5(limit) {
+//     var argsArray = Array.prototype.slice.call(arguments, 1);
+
+//     console.log(argsArray); // outs after omitting the first number
+
+//     argsArray.forEach(function (cur) {
+//         console.log((2020 - cur) >= limit);
+//     })
+// }
+
+// // But there is a problem, the `limit` will also be part of the arguments, like
+// isFullage5(21, 1990, 1995, 1996, 2013, 1997);
+
+// // In ES5, the problem is overcome using the same slice method, (they basically
+// // used to cut a piece of an array)
+
+// // In ES6, there is not that much complication to add an extra argument
+// function isFullage6(limit, ...years) {
+//     years.forEach(cur => console.log((2020 - cur) >= limit));
+// }
+
+// isFullage6(17, 1990, 1995, 1996, 2003, 1997);

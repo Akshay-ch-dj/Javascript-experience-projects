@@ -1,0 +1,29 @@
+td {
+  height: 50px;
+  width: 50px;
+  /* border: 2px solid black; */
+}
+
+svg {
+  height: 50px;
+  width: 50px;
+}
+
+circle {
+  cx: 25px;
+  cy: 25px;
+  r: 24px;
+  /* stroke: black;
+  stroke-width: 2px; */
+  fill: grey;
+}
+
+#player1 {
+  background: grey;
+  color: white;
+}
+
+#player2 {
+  background: grey;
+  color: white;
+}
