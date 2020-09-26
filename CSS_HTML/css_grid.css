@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.box1{
+    background-color: orange;
+}
+
+.box2{
+    background-color: skyblue;
+}
+
+.box3{
+    background-color: purple;
+}
+
+main{
+    display: grid;
+    /* Amount of area a column need */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
+}
