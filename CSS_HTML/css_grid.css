@@ -4,22 +4,13 @@
     box-sizing: border-box;
 }
 
-
-.box1{
-    background-color: orange;
-}
-
-.box2{
-    background-color: skyblue;
-}
-
-.box3{
-    background-color: purple;
-}
-
-main{
+.gallery{
     display: grid;
-    /* Amount of area a column need */
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 300px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.gallery img{
+    width: 100%;
 }
