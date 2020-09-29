@@ -10,10 +10,12 @@ body {
   height: 100vh;
   font-family: sans-serif;
   text-align: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(rgba(0, 0, 0, 0.575)));
+  background: linear-gradient(180deg, white, rgba(0, 0, 0, 0.575));
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-align: center;
   text-transform: uppercase;
   color: #c31;
@@ -70,7 +72,9 @@ h1 {
   position: relative;
   width: 300px;
   height: 300px;
-  margin: 5px 10px;
+  margin: 5px 20px;
+  -webkit-box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.2);
 }
 
 .img-deco .card::before, .img-deco .card::after {

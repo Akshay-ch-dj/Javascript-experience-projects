@@ -447,4 +447,4 @@ One can change the `font-size`, color or any possible property..to customize it.
     style="display: block; margin-right: 10px; width: 500px" />
 
     There is beautiful practical, image hover effect that is done with this pseudo elements, go checkout,
-    the html and css files with the notes for it.
+    the html and css files with the notes for it or this [codepen link](https://codepen.io/akshaych/full/poymoRd) by me.
