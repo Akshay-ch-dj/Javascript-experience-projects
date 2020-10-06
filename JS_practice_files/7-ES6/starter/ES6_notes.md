@@ -370,6 +370,116 @@
 
             isFullage6(17, 1990, 1995, 1996, 2003, 1997);
             ```
+    * ### Default Parameter
+        * To Preset one or more parameters of a function to default(if needed a default value)
+        * The ES5 way of adding default parameter.
+        * Here we only specify the first two arguments required, js assigned undefined to the other two values.
+        * But if added a default for the last name and nationality, it can be solved, in ES5 it can be added
+          using if-else statements or turnery operators,
+            ```javascript
+            function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
 
+                lastName === undefined ? lastName = 'Smith' : lastName = lastName;
+                nationality = nationality === undefined ? 'Indian' : nationality;
 
-13.
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.yearOfBirth = yearOfBirth;
+                this.nationality = nationality;
+            }
+
+            var john = new SmithPerson('John', 1990);
+
+            console.log(john);
+            ```
+
+        * In ES6,
+
+            ```javascript
+            function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.yearOfBirth = yearOfBirth;
+                this.nationality = nationality;
+            }
+            ```
+
+13. ## Maps in ES6
+    Maps are new kind of data structures introduced in ES6. A map is a key: value data structure in
+    (which is of course an object)
+    * The difference is, one can use anything(numbers, strings, boolean or even functions and numbers)\
+    in place of keys.(in objects, it is limited to strings).
+    ```javascript
+    // Creating a map:
+
+      const question = new Map();
+
+      // Setting up values
+      // 0 position
+      question.set('question', 'What is the official name of the latest major javascript version?');
+
+      question.set(1, 'ES5');
+      question.set(2, 'ES6');
+      question.set(3, 'ES 2015');
+      question.set(4, 'ES 2017');
+
+      question.set('correct', 3);
+
+      question.set(true, 'Correct answer:D');
+      question.set(false, "Wrong, please try again!");
+
+      console.log(question);
+
+      // To get values from it.
+      console.log(question.get('question'));
+
+      // to get length of the map
+      console.log(question.size);
+
+      // Delete data from map
+      question.delete(4);
+      // here the element with key 4, (4 => 'ES 2017') gets deleted.
+      // if deletion done on a non-existent element, nothing happens
+      question.delete(4);
+
+      // Check if data is there with "has".
+      if (question.has(4)) {
+          // question.delete(4);
+          console.log("has worked");
+      }
+
+      // To clear
+      question.clear();
+      ```
+    * Maps are iterable, one can iterate through the maps and change its values.\
+    forEach works similar to other iterables, ie has access to current element, key and the entire map.
+    ```javascript
+    question.forEach((value, key) => console.log(`${key} and ${value}`));
+    ```
+    * Using the new `for of` method,
+    ```javascript
+    // Using destructuring and with the help of .entries()
+    for (let [key,value] of question.entries()) {
+        console.log(`${key} and ${value}`);
+    }
+    ```
+    * Instead of printing all elements from the map, lets try to print all 4 answers
+    ```javascript
+    // Using destructuring and with the help of .entries()
+    for (let [key, value] of question.entries()) {
+        if (typeof(key) === 'number') {
+            console.log(`Answer ${key}: ${value}`);
+        }
+    }
+
+    // Prompt the user to write the correct answer
+    const ans = parseInt(prompt('Write the correct answer'));
+
+    // Check for the correct answer, if the expression is correct it will extract the 'true' key value
+    question.get(ans === question.get('correct'));
+    ```
+    * maps are now better than object to create hash maps, use any data type as keys, maps are iterable\
+    easily loop through them and to manipulate data with them, get the size of a map using the `size` property.
+    ```javascript
+    console.log(question.size)
+    ```
