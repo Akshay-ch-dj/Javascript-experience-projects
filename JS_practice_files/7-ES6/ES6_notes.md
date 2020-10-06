@@ -483,3 +483,85 @@
     ```javascript
     console.log(question.size)
     ```
+
+12. ## CLASSES IN ES6
+    ---
+    * classes just not adds any more functionality in javascript, they are syntactic sugars, which
+    helps to write more easy and understandable code. It just makes easier to implement inheritance,
+    and to create objects based on blue prints,
+
+    * In ES5, these blueprints are simply the function constructors, ie, creating the same person function
+    constructor,
+    ```javascript
+    var Person5 = function(name, yearOfBirth, job) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    }
+
+    Person5.prototype.calculateAge = function() {
+        var age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
+    }
+
+    var john5 = new Person5('John', 1995, 'teacher');
+    john5.calculateAge();   // Gives 25
+    ```
+    * Using ES6 classes, nicely structured, Easier to write (syntactic sugar)
+    ```javascript
+    class Person6 {
+        // All classes need a constructor method
+        constructor (name, yearOfBirth, job) {
+            this.name = name;
+            this.yearOfBirth = yearOfBirth;
+            this.job = job;
+        }
+
+        // prototype just added inside the class
+        calculateAge() {
+            let age = new Date().getFullYear() - this.yearOfBirth;
+            console.log(age);
+        }
+    }
+
+    const john6 = new Person6('John', 1995, 'teacher');
+    john6.calculateAge();
+    ```
+    * This all just looks like javascript is mimicking python, So many programmers criticizing `classes`,
+    because they hides the object oriented nature of inheritance in javascript.
+    * Another important thing to add with the classes are static methods, ie methods that are attached to the
+    classes, but not inherited by the class instances(objects that are created through the class.)
+    ```javascript
+    // Add this to the classes
+    class Person6 {
+        // All classes need a constructor method
+        constructor (name, yearOfBirth, job) {
+            this.name = name;
+            this.yearOfBirth = yearOfBirth;
+            this.job = job;
+        }
+
+        // prototype just added inside the class
+        calculateAge() {
+            let age = new Date().getFullYear() - this.yearOfBirth;
+            console.log(age);
+        }
+
+        static greeting() {
+            console.log('Hey there!');
+        }
+    }
+
+    const john6 = new Person6('John', 1995, 'teacher');
+    john6.calculateAge();
+
+    // only way to call the static function.
+    Person6.greeting();
+    ```
+     * It can only be used as helper functions, it is basically a method attached to the class definitions,
+     which is basically a function, that is under the hood an object, so a static methods are just methods in an
+     object wrapped in some syntactic sugar. Not really a useful one.
+     * The class definitions are not hoisted, so it need to implement a class and only latter in the code, can start using it.
+     * Its only add methods to classes directly not properties, (inheriting properties through object instances is not a best practice.)
+     
+13. ### Implementing Inheritance from one class to another.

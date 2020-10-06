@@ -513,3 +513,44 @@
 // // easily loop through them and to manipulate data with them, get the size of a map using the `size` property
 // console.log(question.size)
 // Also it is easy to add and remove data from maps
+
+// CLASSES IN ES6
+
+// var Person5 = function(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+// }
+
+// Person5.prototype.calculateAge = function() {
+//     var age = new Date().getFullYear() - this.yearOfBirth;
+//     console.log(age);
+// }
+
+// var john5 = new Person5('John', 1995, 'teacher');
+// john5.calculateAge();
+
+// ES6, nicely structured, Easier to write syntactic sugar
+class Person6 {
+    // All classes need a constructor method
+    constructor (name, yearOfBirth, job) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    }
+
+    // prototype just added inside the class
+    calculateAge() {
+        let age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
+    }
+
+    static greeting() {
+        console.log('Hey there!');
+    }
+}
+
+const john6 = new Person6('John', 1995, 'teacher');
+john6.calculateAge();
+
+Person6.greeting();
