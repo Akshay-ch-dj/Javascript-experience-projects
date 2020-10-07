@@ -563,5 +563,86 @@
      object wrapped in some syntactic sugar. Not really a useful one.
      * The class definitions are not hoisted, so it need to implement a class and only latter in the code, can start using it.
      * Its only add methods to classes directly not properties, (inheriting properties through object instances is not a best practice.)
-     
+
 13. ### Implementing Inheritance from one class to another.
+
+    <img src="./inheritance.png" alt="paragraph-plain" style="display: block; margin-right: 10px; width: 600px"/>
+
+    - Generic class person for all persons,
+    - Specific sub class for an athlete, an athlete is also a person but contains some more specific attributes and methods
+    - Athlete class now inherit from person.
+    - In ES5, without the syntactic sugars,
+    ```javascript
+    var Person5 = function(name, yearOfBirth, gender) {
+        // Just a default value
+        this.isHuman = true;
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.gender = gender;
+    }
+
+    Person5.prototype.calculateAge = function() {
+        var age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
+    }
+
+    // The person5  function constructor, will be the superclass here
+    // The subclass will be the athlete class
+
+    var Athlete5 = function (name, yearOfBirth, gender, olympicGames, medals) {
+        // Just calls the parentclass or superclasss
+        Person5.call(this);
+        this.olympicGames = olympicGames;
+        this.medals = medals;
+    }
+    ```
+    - There need to call the superclass fun. constructor with the `this` keyword,
+    - cz (remember with the `new` operator, it creates a new instance of the class and assign the `this` keyword to it, thereby inheriting all the parent properties to the instance created, also prototype methods)
+    - To inherit all the properties of superclass(Person5) to the Athlete5 class, use the call method to call the superclass, the `this` sets the current class as a child.
+    - To check this
+    ```javascript
+    // Creating an instance
+    var Usain = new Athlete5();
+    console.log(Usain.isHuman); // Gives true
+    ```
+    ### Throwback to the call, apply, bind trios
+    ```javascript
+    var sampleObj = {num:2};
+
+    var justAdd = function(a, b) {
+
+        return this.num + a + b;
+    };
+
+    // But the there is no "num" assigned to `this` function
+    // To assign, use the `call` method
+    var answer;
+    answer = justAdd.call(sampleObj, 3, 5);
+    console.log(answer);  // Gives 10
+
+    // Here, the `justAdd` is called with the sample object (set to `this`), so `this.num = 3`
+
+    // To use the apply method,
+    var argArr = [3, 5];
+    answer = justAdd.apply(sampleObj, argArr);
+
+    console.log(answer);  // gives same answer 10
+    // apply just uses an array of arguments.
+
+    // To use the bind method
+    answer = justAdd.bind(sampleObj, 3, 5);
+
+    console.log(answer); // The answer now doesn't returns a value, but a function
+
+    // To examine it
+    console.dir(answer);
+    // It is now a function with name `bound justAdd` and has "[[BoundThis]]: Object - num:2 ,[[BoundArgs]]: Array(1), 0: [3,5]"
+
+    // It needed to pass arguments as single (not as an array)
+    console.log(answer()); // Gives 10
+
+    // But the answer now is a function, one can pass the arguments directly
+    answer = justAdd.bind(sampleObj);
+    console.log(answer(3, 5));
+
+    ```
