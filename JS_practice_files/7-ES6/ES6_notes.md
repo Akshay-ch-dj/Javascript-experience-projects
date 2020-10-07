@@ -602,8 +602,8 @@
     - To check this
     ```javascript
     // Creating an instance
-    var Usain = new Athlete5();
-    console.log(Usain.isHuman); // Gives true
+    var usain = new Athlete5();
+    console.log(usain.isHuman); // Gives true
     ```
     ### Throwback to the call, apply, bind trios
     ```javascript
@@ -613,16 +613,16 @@
 
         return this.num + a + b;
     };
-
-    // But the there is no "num" assigned to `this` function
-    // To assign, use the `call` method
+    ```
+    - But the there is no "num" assigned to `this` function, To assign, use the `call` method
+    ```javascript
     var answer;
     answer = justAdd.call(sampleObj, 3, 5);
     console.log(answer);  // Gives 10
-
-    // Here, the `justAdd` is called with the sample object (set to `this`), so `this.num = 3`
-
-    // To use the apply method,
+    ```
+    - Here, the `justAdd` is called with the sample object (set to `this`), so `this.num = 3`\
+    To use the apply method,
+    ```javascript
     var argArr = [3, 5];
     answer = justAdd.apply(sampleObj, argArr);
 
@@ -644,5 +644,77 @@
     // But the answer now is a function, one can pass the arguments directly
     answer = justAdd.bind(sampleObj);
     console.log(answer(3, 5));
-
     ```
+    - Now back to inheritance -- Above, done the opposite thing with `call` method,ie called the Person5 fun. constructor with current one(ie the `this`), and used no arguments.
+    - But with arguments as normal,
+    ```javascript
+    var Athlete5 = function (name, yearOfBirth, gender, olympicGames, medals) {
+        // Just calls the parentclass or superclasss
+        Person5.call(this, name, yearOfBirth, gender);
+        this.olympicGames = olympicGames;
+        this.medals = medals;
+    }
+    ```
+    - Checking
+    ```javascript
+    var usain = new Athlete5("Usain Bolt", 1982, "Male", 4, 18);
+
+    console.log(usain.isHuman);  //true
+    console.log(usain.yearOfBirth); //1982
+    console.log(usain.name); // Usain Bolt
+    console.log(usain.olympicGames); // 4
+    console.log(usain.medals); // 18
+    ```
+    - To create the correct prototype chain(manually setting), in other words to inherit prototype from the parent use `Object.create`
+    ```javascript
+    Athlete5.prototype = Object.create(Person5.prototype);
+    // Now the prototype chains are connected,
+
+    var usain = new Athlete5("Usain Bolt", 1982, "Male", 4, 18);
+
+    // Testing
+    usain.calculateAge(); // Returns 19
+    ```
+
+    - With ES6, which introduces the so called classes, the whole thing is wrapped up in syntactic sugar,
+    ```javascript
+    class Person6 {
+        // All classes need a constructor method
+        constructor (name, yearOfBirth, job) {
+            this.name = name;
+            this.yearOfBirth = yearOfBirth;
+            this.job = job;
+        }
+
+        // prototype just added inside the class
+        calculateAge() {
+            let age = new Date().getFullYear() - this.yearOfBirth;
+            console.log(age);
+        }
+    }
+
+    // ES6 got classes (not in the same meaning as classes in other languages), with `extends` keyword,
+    // the subclass "extends" from the super class.
+
+    class Athlete6 extends Person6 {
+        constructor(name, yearOfBirth, job, olympicGames, medals) {
+            // No need to manually call the super class, everything happens behind the scenes
+            super(name, yearOfBirth, job);
+            this.olympicGames = olympicGames;
+            this.medals = medals;
+        }
+
+        wonMedal() {
+            this.medals++;
+            console.log(this.medals);
+        }
+    }
+
+    const johnAthlete6 = new Athlete6('John', 1985, 'swimmer', 3, 10);
+
+    johnAthlete6.wonMedal(); // 11
+    johnAthlete6.calculateAge(); // 35
+    ```
+    - The ES6 way is more easier to read, the optimum thing to do is understand all these with ES5,
+    Do it in the way of ES6.
+    - conclusion: the inheritance actually is prototype inheritance in classes.
