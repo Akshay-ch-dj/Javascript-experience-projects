@@ -94,7 +94,7 @@ header {
 
 .task-list-header h2 {
    display: flex;
-   justify-content: center; 
+   justify-content: center;
 }
 
 .clear-completed-btn {
