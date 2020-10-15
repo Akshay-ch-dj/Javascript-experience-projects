@@ -102,8 +102,7 @@
 const getIDs = new Promise((resolve, reject) => {
     setTimeout(() => {
         //1. After 1.5 promise successful, result passed
-        // resolve([523, 883, 432, 974]);
-        reject("ERROR");
+        resolve("[523, 883, 432, 974]");
     }, 1500)
 });
 
@@ -122,11 +121,27 @@ const getIDs = new Promise((resolve, reject) => {
 // On the counter side the `catch` method allows one to add handler, when the promise gets rejected, error happens,
 // can chain this together
 
-getIDs
-.then(IDs => {
-    // logging the result array to console
-    console.log(IDs);
-})
+// 2. Function to receive an id and returns a promise
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout( id => {
+            const recipe = {
+                title: 'Chicken Curry',
+                publisher: 'Akshay'
+            };
+            resolve(`${id}: ${recipe.title}`);
+        }, 1500, recID);
+    });
+};
+
+
+// getIDs
+// .then(IDs => {
+//     // logging the result array to console
+//     console.log(IDs);
+//     // consuming the 2nd promise, by calling the function
+//     getRecipe(IDs[2]).then()
+// })
 // .catch(error => {
 //     // the reject error handling
 //     console.log(error);
@@ -135,4 +150,52 @@ getIDs
 // but to visualize it, use a `reject` call with the array, or an "ERROR" message, if there is a reject call and no `catch`
 // methods implemented, then it gets an error,
 // Uncaught (in promise) ERROR
+
+// getIDs
+// .then(IDs => {
+//     // logging the result array to console
+//     console.log(IDs);
+//     // get the promise and return it,
+//     return getRecipe(IDs[2]);
+// })
+// // this chained then handles the result of the returned promise
+// .then(recipe => {
+//     console.log(recipe);
+// })
+// .catch(error => {
+//     // the reject error handling
+//     console.log(error);
+// })
+
+const getRelated = publisher => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
+            const recipe = {
+                title: 'Italian Pizza',
+                publisher: pub
+            };
+            resolve(recipe);
+        }, 1500, publisher)
+    });
+};
+
+getIDs
+.then(IDs => {
+    // logging the result array to console
+    console.log(IDs);
+    // get the promise and return it,
+    return getRecipe(IDs[2]);
+})
+// this chained then handles the result of the returned promise
+.then(recipe => {
+    console.log(recipe);
+    return getRelated('Akshay')
+})
+.then(recipe => {
+    console.log(recipe);
+})
+.catch(error => {
+    // the reject error handling
+    console.log(error);
+})
 

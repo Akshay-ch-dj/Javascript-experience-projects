@@ -298,4 +298,123 @@ methods implemented, then it gets an error,
 ```javascript
 Uncaught (in promise) ERROR
 ```
+* Adding another two promises, to make it similar to the first example,
+```javascript
+// 2. Function to receive an id and returns a promise
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout( id => {
+            const recipe = {
+                title: 'Chicken Curry',
+                publisher: 'Akshay'
+            };
+            resolve(`${id}: ${recipe.title}`);
+        }, 1500, recID);
+    });
+};
+```
+* To consume this promise
+```javascript
+getIDs
+.then(IDs => {
+    // logging the result array to console
+    console.log(IDs);
+    // consuming the 2nd promise, by calling the function
+    getRecipe(IDs[2]).then()
+})
+```
+* But it wouldn't solve the problem of **Callback Hell**.
+* So in promise there is a beautiful process called ***chaining***. one can return a promise from\
+then method, and then simply add the next them method after it, the final result now,
 
+```javascript
+const getIDs = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        //1. After 1.5 promise successful, result passed
+        resolve([523, 883, 432, 974]);
+    }, 1500)
+});
+
+// 2. Function to receive an id and returns a promise
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout( id => {
+            const recipe = {
+                title: 'Chicken Curry',
+                publisher: 'Akshay'
+            };
+            resolve(`${id}: ${recipe.title}`);
+        }, 1500, recID);
+    });
+};
+
+getIDs
+.then(IDs => {
+    // logging the result array to console
+    console.log(IDs);
+    // get the promise and return it,
+    return getRecipe(IDs[2]);
+})
+// this chained then handles the result of the returned promise
+.then(recipe => {
+    console.log(recipe);
+})
+.catch(error => {
+    // the reject error handling
+    console.log(error);
+})
+```
+* Result
+```javascript
+// With 1.5s delay
+[523, 883, 432, 974]
+// After another 1.5s delay
+2: Chicken Curry
+```
+* Now the code is nice and separated into different functions,
+* Lets add the final function, to fetch a recipe related to the author of the
+first recipe.
+
+```javascript
+const getRelated = publisher => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
+            const recipe = {
+                title: 'Italian Pizza',
+                publisher: pub
+            };
+            resolve(recipe);
+        }, 1500, publisher)
+    });
+};
+
+getIDs
+.then(IDs => {
+    console.log(IDs);
+    return getRecipe(IDs[2]);
+})
+.then(recipe => {
+    console.log(recipe);
+    return getRelated('Akshay')
+})
+.then(recipe => {
+    console.log(recipe);
+})
+.catch(error => {
+    console.log(error);
+})
+```
+* So, it is completed now and giving the following results
+```javascript
+// With 1.5s delay
+[523, 883, 432, 974]
+// After another 1.5s delay
+2: Chicken Curry
+// another 1.5s passing..
+{title: "Italian Pizza", publisher: "Akshay"}
+```
+* It is more code than the traditional way, but it is more structured and manageable, with the `chain`ed then and the final `catch` for error..
+* `Promise` is one of the hardest part of js to understand at first, what really matters is how we consume promises,
+and not how to produce it, cz production is implemented within in some libraries, it only need to bother how to consume them..
+
+---
