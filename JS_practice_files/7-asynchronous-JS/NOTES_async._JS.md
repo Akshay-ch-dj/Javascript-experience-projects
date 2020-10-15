@@ -1,7 +1,7 @@
 # Asynchronous Javascript
 ---
 
-### Writing a sample fu. in present syn. style javascript
+### Writing a sample function in present synchronous style javascript
 ```javascript
 const first = () => {
     console.log('Hey There');
@@ -138,3 +138,164 @@ the event loop takes that one and pushes it to the stack, where the new executio
 Thats it...it is what the event loop does, then the log function runs, then all pops of the stack and all the execution completed.
 If there is some more requests waiting, such as AJAX requests or requests from the DOM events, now the execution context is free and it is there time.. the event loops
 This example is a simulation of the real world cases happening such as an AJAX request to external API, etc..
+
+
+## Asynchronous Javascript - Traditional Way (Old Way)
+---
+Creating a fake recipe reader, gonna fake some AJAX calls, as it is loading data from an external web server,\
+using setTimeouts,\
+First it gets some id's, then the recipes..
+
+```javascript
+function getRecipe() {
+    // 1. To simulate the AJAX calls
+    setTimeout(() => {
+        // the fetched recipe id's
+        const recipeID = [523, 883, 432, 974];
+        console.log(recipeID);
+
+        // 2. new-timer to fetch data from a single id
+        setTimeout(id => {
+            // For simulating a remote server
+            const recipe = {
+                title: 'Chicken Curry',
+                publisher: 'Akshay'
+            };
+            console.log(`${id}: ${recipe.title}`);
+
+            // 3. Adding a third level of timeout
+            setTimeout(publisher => {
+                // block scoped
+                const recipe = {
+                    title: 'Italian Pizza',
+                    publisher: publisher
+                };
+                console.log(recipe);
+            }, 1500, recipe.publisher)
+
+        }, 2000, recipeID[2])
+
+    }, 1500)
+}
+
+getRecipe();
+```
+
+- The data(in the recipeID) appears after 1.5 seconds, like coming from a server.\
+then it needs to fetch one of the id detailed data..
+- The value needed to be passed to the callback function as third argument, here the id(432) get\
+passed to `setTimeout()` function.
+- Now after 2s logged data(id and title) appears on the screen...with 1.5s delay/
+```javascript
+// delat: 1.5s
+(4) [523, 883, 432, 974]
+// after 2s
+432: Chicken Curry
+```
+- To get things more complex lets add a third level, such as one need to get another recipe from the same publisher
+so, we pass the publisher as the `argument` to the callback function.
+- it gets displayed after 1.5 seconds. now the first recipe and the related recipe gets displayed
+```javascript
+// delat: 1.5s
+(4) [523, 883, 432, 974]
+// after 2s
+432: Chicken Curry
+// after 1.5s
+{title: "Italian Pizza", publisher: "Akshay"}
+```
+
+This now is like some chained AJAX calls getting some data from a server, if  there is more and more chaining like\
+10 levels inside one another, then all the callbacks appears one another creating a so called, **Callback Hell**..
+
+The left triangle we see on the code (i.e. looping after looping)..It gets a lot messy and unmanageable.
+
+Therefore in ES6, something called **Promise**s introduced..\
+with promises, the callback hell can be avoided, and have a nicer and cleaner syntax with all functionality,\
+Lets have a look into that..
+
+## **Promises** in ES6 JavaScript.
+---
+
+- ### What is a promise in JS ?
+- *Simply it can say a promise is an Object(like all other things in js), that keeps track about whether a
+certain event has happened already or not.*
+- If the event did happened, then the promise determines what happens after that (events are asyn. events\
+like data from an AJAX call, timer finishing)
+- Promise-- implements the <u>concept of a future value that we're expecting,</u> its like we are saying get that data from the background for me, then the promise promises that and we can go back and handle that in the future.
+
+When dealing with time sensitive code now, a promise can have different states\
+* Before the event has happened, the promise is *pending*, after it has happened, the promise is now *settled or resolved*..
+<img src="./images/promise-1.png" alt="events" style="display: block; margin-right: 10px; width: 400px"/>
+
+* If the promise was successful, i.e. the result is available, then the promise gets *fulfilled*, but if it is an error, then the promise is *rejected*, these two situations happens and need to be handled in the code.
+<img src="./images/promise-2.png" alt="events" style="display: block; margin-right: 10px; width: 400px"/>
+
+In other terms(practical terms), one can produce and consume promises,
+* When producing: - we create a new promise and sent a result using that promise.
+* When consuming: - we can use callback functions for fulfillment and rejections of promises.
+
+Now we can create some promises by recreating the example in previous section,
+```javascript
+const getIDs = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        //1. After 1.5 promise successful, result passed
+        resolve([523, 883, 432, 974]);
+    }, 1500)
+});
+```
+
+Use the new keyword as usual to create a new promise,
+- Executer(The arrow fn. inside) is a function which is immediately called once the promise is created..
+- Assign the promise to a variable, so as to recreate the prv. example. This first promise is responsible for getting the ID's as like in the first timer,
+- The Executer fn. takes in two arguments,which are the callback functions- `resolve` and `reject`, as the executer function
+is used to inform the promise the event handling successful or not, if successful --> **resolve**, else if there is no
+results --> **reject** gets called.
+- (Again, faking the AJAX call with setTimeout functions.), the timer is set to 1.5s after the callback function gets called.
+- Similarly return some fake data with the id as before, for that now call the resolve function, remember resolve is
+called when the event gets successful, so adding a `resolve` for the event as it successful.
+- `resolve` takes an argument, which is for the result of the promise and this is how to return the result from a promise
+if it was successful(here we need the array of ids)
+
+The timer is impossible to fail(it always finishes), but in real world all requests don't come back with results,
+as in case it don't need to implement the reject case. so as it always marks as fulfilled and the result get resolved.\
+Now the simple promise is produced and stored in the `getIDs` variable.
+
+As a next step, we can look at how to consume this promise.
+
+- To do that one can use these two methods on all promises, which are the `then` and `catch` methods.(all of the promise
+objects inherit these methods)
+
+The `then` method allows one to add an event-handler for the case fulfilled condition, i.e. it determines what to do
+with the result.
+- The argument passed to the callback function(the arrow function), will be the result of the successful promise,(here
+in our case, the ids array.)
+```javascript
+getIDs.then(IDs => {
+    // logging the result array to console
+    console.log(IDs);
+});
+```
+```javascript
+// Now with delay of 1.5s, array gets logged in as same
+(4) [523, 883, 432, 974]
+```
+
+On the counter side the `catch` method allows one to add handler, when the promise gets rejected, error happens,\
+Can chain this together
+```javascript
+getIDs
+.then(IDs => {
+    // logging the result array to console
+    console.log(IDs);
+})
+.catch(error => {
+    // the reject error handling
+    console.log(error);
+})
+```
+- but to visualize it, use a `reject` call with the array, or an "ERROR" message, if there is a reject call and no `catch`
+methods implemented, then it gets an error,
+```javascript
+Uncaught (in promise) ERROR
+```
+
