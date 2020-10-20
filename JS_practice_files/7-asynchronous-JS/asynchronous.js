@@ -99,12 +99,12 @@
 // To do that one can use these two methods on all promises, which are the `then` and `catch` methods.(all of the promise
 // objects inherit these methods)
 
-const getIDs = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        //1. After 1.5 promise successful, result passed
-        resolve("[523, 883, 432, 974]");
-    }, 1500)
-});
+// const getIDs = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         //1. After 1.5 promise successful, result passed
+//         resolve("[523, 883, 432, 974]");
+//     }, 1500)
+// });
 
 // The `then` method allows one to add an event-handler for the case fulfilled condition, i.e. it determines what to do
 // with the result.
@@ -122,17 +122,17 @@ const getIDs = new Promise((resolve, reject) => {
 // can chain this together
 
 // 2. Function to receive an id and returns a promise
-const getRecipe = recID => {
-    return new Promise((resolve, reject) => {
-        setTimeout( id => {
-            const recipe = {
-                title: 'Chicken Curry',
-                publisher: 'Akshay'
-            };
-            resolve(`${id}: ${recipe.title}`);
-        }, 1500, recID);
-    });
-};
+// const getRecipe = recID => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout( id => {
+//             const recipe = {
+//                 title: 'Chicken Curry',
+//                 publisher: 'Akshay'
+//             };
+//             resolve(`${id}: ${recipe.title}`);
+//         }, 1500, recID);
+//     });
+// };
 
 
 // getIDs
@@ -167,6 +167,62 @@ const getRecipe = recID => {
 //     console.log(error);
 // })
 
+// const getRelated = publisher => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(pub => {
+//             const recipe = {
+//                 title: 'Italian Pizza',
+//                 publisher: pub
+//             };
+//             resolve(recipe);
+//         }, 1500, publisher)
+//     });
+// };
+
+// getIDs
+// .then(IDs => {
+//     // logging the result array to console
+//     console.log(IDs);
+//     // get the promise and return it,
+//     return getRecipe(IDs[2]);
+// })
+// // this chained then handles the result of the returned promise
+// .then(recipe => {
+//     console.log(recipe);
+//     return getRelated('Akshay')
+// })
+// .then(recipe => {
+//     console.log(recipe);
+// })
+// .catch(error => {
+//     // the reject error handling
+//     console.log(error);
+// })
+
+
+// ES 2017 - ASYNC/AWAIT to consume promises more effectively
+
+// Its just change the way we consume the promises (as with then() and catch() earlier)
+
+const getIDs = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        //1. After 1.5 promise successful, result passed
+        resolve("[523, 883, 432, 974]");
+    }, 1500)
+});
+
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout( id => {
+            const recipe = {
+                title: 'Chicken Curry',
+                publisher: 'Akshay'
+            };
+            resolve(`${id}: ${recipe.title}`);
+        }, 1500, recID);
+    });
+};
+
 const getRelated = publisher => {
     return new Promise((resolve, reject) => {
         setTimeout(pub => {
@@ -179,23 +235,97 @@ const getRelated = publisher => {
     });
 };
 
-getIDs
-.then(IDs => {
-    // logging the result array to console
-    console.log(IDs);
-    // get the promise and return it,
-    return getRecipe(IDs[2]);
-})
-// this chained then handles the result of the returned promise
-.then(recipe => {
-    console.log(recipe);
-    return getRelated('Akshay')
-})
-.then(recipe => {
-    console.log(recipe);
-})
-.catch(error => {
-    // the reject error handling
-    console.log(error);
-})
+// Changing the way to consume the promises with Async/await
 
+// This is a new kind of function, this one keeps running in the background, then return a promise
+// Inside one async function, there can have one or more await expressions, to consume the promises.
+// async function getRecipesAW() {
+//     // The first promise is assigned to IDs with an await
+//     const IDs = await getIDs;
+//     console.log(IDs);
+// }
+// getRecipesAW();
+
+// // after 1.5s
+// [523, 883, 432, 974]
+
+// await stops the code from executing until the promise get fulfilled, then only it gets assigned
+// to the const. await keeps the function running asynchronously in the background.
+
+// If the promise gets rejected an error will be thrown, if it needs to handle that more code
+// needed to be added in the async function.(below.)
+
+// Consuming the other two promises
+// async function getRecipesAW() {
+//     // The first promise is assigned to IDs with an await
+//     const IDs = await getIDs;
+//     console.log(IDs);
+
+//     const recipe = await getRecipe(IDs[2]);
+//     console.log(recipe);
+
+//     const related = await getRelated('Akshay');
+//     console.log(related);
+// }
+// getRecipesAW();
+
+// after 1.5s
+// [523, 883, 432, 974]
+// after 1.5s
+// 2: Chicken Curry
+// another 1.5s
+// {title: "Italian Pizza", publisher: "Akshay"}
+// The syntax gets lot more simpler now, simply waits(awaits) till each of the promises gets resolved,
+// It allows consume promises without the callback hells in a more readable way.
+// remember the async/await only comes as a pair. i.e. the await can only be used inside the async
+// function.
+
+// What about returning a value from an async function, lets try
+async function getRecipesAW() {
+    const IDs = await getIDs;
+    console.log(IDs);
+    const recipe = await getRecipe(IDs[2]);
+    console.log(recipe);
+    const related = await getRelated('Akshay');
+    console.log(related);
+
+    return recipe;
+}
+const rec = getRecipesAW();
+console.log(rec);
+
+// But it didn't works, it only shows
+// Promise {<pending>}
+
+// Why it didn't work, its simply cz the function, `getRecipesAW()`, runs asyn. in the background\
+// When it is called it is still running in background, (it runs synchronously)
+
+// so if we really need to log that giving a set timeout will do  like/
+function logRes() {
+    setTimeout(() => {
+        console.log(rec);
+    }, 5000)
+};
+
+logRes();
+// Promise {<pending>}
+// after 1.5s
+// [523, 883, 432, 974]
+// after 1.5s
+// 2: Chicken Curry
+// another 1.5s
+// {title: "Italian Pizza", publisher: "Akshay"}
+
+// after a total 5sec from start
+// Promise {<fulfilled>: "2: Chicken Curry"}
+
+// But this is hack there are simpler and implemented ways to do the same,
+// The fact is the async function always automatically returns a promise, when
+// a return is done within the async function, then promise gets resolved
+// (new promise -> resolve(recipe) thing) automatically,
+// ie, one can simply use the then() method as with a promise traditionally,
+getRecipesAW().then(result => console.log(`${result} is the best ever thing`));
+
+// the exacting thing about async/await is that it looks like a synchronous code but works
+// asynchronously behind the scenes.
+// "Synchronous code that works in an asynchronous way"
