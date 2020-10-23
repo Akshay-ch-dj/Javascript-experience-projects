@@ -1,3 +1,4 @@
+'use strict'
 // console.log('hello world');
 
 // let firstName = 'Johnas';
@@ -103,7 +104,7 @@
 // var firstName = 'Akshay';
 // var age = 25;
 
-// age >= 18 ? console.log(firstName + ' drinks beer.') 
+// age >= 18 ? console.log(firstName + ' drinks beer.')
 // : console.log(firstName + ' drinks juice.');
 
 // var drink = age >= 18 ? 'beer' : 'juice';
@@ -185,7 +186,7 @@
 //             drawTeam = 'Mike\'s and Mathew\'s'
 //         } else {
 //             drawTeam = 'Johne\'s and Mathew\'s'
-//         } 
+//         }
 //         return (`${drawTeam} teams are in draw`)
 //     }
 // }
@@ -205,7 +206,7 @@
 // }
 
 // yearsUntilRetairment(1995, 'Akshay')
- 
+
 // function statements and expressions
 
 
@@ -225,7 +226,7 @@
 
 // console.log(whatDoYouDo('noJob', 'Akshay'));
 
-// // Expressions always produce a value other than declarations(usual function 
+// // Expressions always produce a value other than declarations(usual function
 // // declarations)
 
 // //  Arrays
@@ -241,9 +242,9 @@
 
 // names[1] = 'Ben';
 
-// names[5] = 'Mary';  // Got two empty cells then "mary" 
+// names[5] = 'Mary';  // Got two empty cells then "mary"
 // console.log(names);
- 
+
 // // Can hold different data types
 
 // var john = ['John', 'Smith', 1990, 'teacher', false]
@@ -270,11 +271,11 @@
 
 // // Different restaurant bills $124, $48 and $268.
 
-// // Tip calculator: likes to tip 20% of the bill when the bill is less than 
-// // $50, 15% when the bill is between $50 and $200, and 10% if the bill is 
+// // Tip calculator: likes to tip 20% of the bill when the bill is less than
+// // $50, 15% when the bill is between $50 and $200, and 10% if the bill is
 // // more than $200.
 
-// // in the end needs an array with all the three tips and another one with 
+// // in the end needs an array with all the three tips and another one with
 // // all the final paid amounts(bill + tip).
 
 // function roundToOne(num) {
@@ -288,7 +289,7 @@
 //         return roundToOne(0.15 * bill);
 //     } else if (bill > 200) {
 //         return roundToOne(0.1 * bill);
-//     }   
+//     }
 // }
 
 // function billDisplay(bill1, bill2, bill3) {
@@ -383,17 +384,17 @@
 // function displayBMI(person1, person2) {
 //     if (person1.BMI > person2.BMI) {
 //         var bmiChampion = {
-//             winner: person1.fullName, 
+//             winner: person1.fullName,
 //             BMI: person1.BMI
 //         };
 //     } else if (person1.BMI < person2.BMI) {
 //         var bmiChampion = {
-//             winner: person2.fullName, 
+//             winner: person2.fullName,
 //             BMI: person2.BMI
 //         };
 //     } else {
 //         var bmiChampion = {
-//             winner: `Both ${person1.fullName} and ${person2.fullName} BMI 
+//             winner: `Both ${person1.fullName} and ${person2.fullName} BMI
 //             are same.`,
 //             BMI: person1.BMI
 //         };
@@ -404,7 +405,7 @@
 
 // displayBMI(mark, john);
 
-// // Loops 
+// // Loops
 
 // for (var i = 0; i < 10; i++) {
 //     console.log(i);
@@ -442,13 +443,13 @@
 // //  billList = [124, 48, 268, 180, 42];
 // // 20% when bill is less than $50, 15% => 50 <= bill < 200, 10% bill >= 200
 // // use objects and loops
-// // object with array for bill value, method to calc. tip, iterate and calc 
-// // the tip 
-// // o/p. create a new array containing all tips, array containing final paid 
-// // amounts (bill + tip). 
+// // object with array for bill value, method to calc. tip, iterate and calc
+// // the tip
+// // o/p. create a new array containing all tips, array containing final paid
+// // amounts (bill + tip).
 
 // // Extra: -  Marks family also gone for a trip, 4 different restaurants,
-// // bills, $- 77, 375, 110, 45 
+// // bills, $- 77, 375, 110, 45
 // // Marks way of tip, 20% => bill < 100,  10% => 100 - 300, 25% - bill > 300
 // //  use a function to calculate tha avg. of given array of tips
 // //  Calculate the average tip for each family.
@@ -475,7 +476,7 @@
 
 //     }
 
-// } 
+// }
 
 // var mark = {
 //     name: 'Mark Kaduvakkunnel',
@@ -497,7 +498,7 @@
 
 //     }
 
-// } 
+// }
 
 // john.calcTip();
 // mark.calcTip();
@@ -523,7 +524,7 @@
 
 // displayBills(families);
 
-// console.log((averageBill(john.tipList) > averageBill(mark.tipList)? john.name 
+// console.log((averageBill(john.tipList) > averageBill(mark.tipList)? john.name
 // : mark.name) + ' spent more more average tip ' );
 
 
@@ -668,7 +669,7 @@ Mark and John are trying to compare their BMI (Body Mass Index), which is calcul
 1. Store Mark's and John's mass and height in variables
 2. Calculate both their BMIs
 3. Create a boolean variable containing information about whether Mark has a higher BMI than John.
-4. Print a string to the console containing the variable from step 3. (Something like "Is Mark's BMI higher than John's? true"). 
+4. Print a string to the console containing the variable from step 3. (Something like "Is Mark's BMI higher than John's? true").
 
 GOOD LUCK 😀
 */
@@ -888,13 +889,13 @@ console.log(ageJohn, ageMike, ageJane);
 function yearsUntilRetirement(year, firstName) {
     var age = calculateAge(year);
     var retirement = 65 - age;
-    
+
     if (retirement > 0) {
         console.log(firstName + ' retires in ' + retirement + ' years.');
     } else {
         console.log(firstName + ' is already retired.')
     }
-    
+
 }
 
 yearsUntilRetirement(1990, 'John');
@@ -1199,12 +1200,12 @@ var john = {
     calcTips: function() {
         this.tips = [];
         this.finalValues = [];
-                
+
         for (var i = 0; i < this.bills.length; i++) {
             // Determine percentage based on tipping rules
             var percentage;
             var bill = this.bills[i];
-            
+
             if (bill < 50) {
                 percentage = .2;
             } else if (bill >= 50 && bill < 200) {
@@ -1212,7 +1213,7 @@ var john = {
             } else {
                 percentage = .1;
             }
-            
+
             // Add results to the corresponing arrays
             this.tips[i] = bill * percentage;
             this.finalValues[i] = bill + bill * percentage;
@@ -1226,12 +1227,12 @@ var mark = {
     calcTips: function() {
         this.tips = [];
         this.finalValues = [];
-                
+
         for (var i = 0; i < this.bills.length; i++) {
             // Determine percentage based on tipping rules
             var percentage;
             var bill = this.bills[i];
-            
+
             if (bill < 100) {
                 percentage = .2;
             } else if (bill >= 100 && bill < 300) {
@@ -1239,7 +1240,7 @@ var mark = {
             } else {
                 percentage = .25;
             }
-            
+
             // Add results to the corresponing arrays
             this.tips[i] = bill * percentage;
             this.finalValues[i] = bill + bill * percentage;
@@ -1269,3 +1270,68 @@ if (john.average > mark.average) {
     console.log(mark.fullName + '\'s family pays higher tips, with an average of $' + mark.average);
 }
 */
+
+
+// New coding challenge in the course version 2
+/*
+Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new gymnastics discipline, which works differently.
+Each team competes 3 times, and then the average of the 3 scores is calculated (so one average score per team).
+A team ONLY wins if it has at least DOUBLE the average score of the other team. Otherwise, no team wins!
+1. Create an arrow function 'calcAverage' to calculate the average of 3 scores
+2. Use the function to calculate the average for both teams
+3. Create a function 'checkWinner' that takes the average score of each team as parameters ('avgDolphins' and 'avgKoalas'), and then logs the winner to the console, together with the victory points, according to the rule above. Example: "Koalas win (30 vs. 13)".
+4. Use the 'checkWinner' function to determine the winner for both DATA 1 and DATA 2.
+5. Ignore draws this time.
+TEST DATA 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
+TEST DATA 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
+HINT: To calculate average of 3 values, add them all together and divide by 3
+HINT: To check if number A is at least double number B, check for A >= 2 * B. Apply this to the team's average scores 😉
+GOOD LUCK 😀
+*/
+
+// DEBUGGING CODING CHALLENGE
+
+// Given an array of forecasted maximum temperatures, the thermometer displays a string with these temperatures.
+// Example: [17, 21, 23] will print "... 17ºC in 1 days ... 21ºC in 2 days ... 23ºC in 3 days ..."
+// Create a function 'printForecast' which takes in an array 'arr' and logs a string like the above to the console.
+// Use the problem-solving framework: Understand the problem and break it up into sub-problems!
+// TEST DATA 1: [17, 21, 23]
+// TEST DATA 2: [12, 5, -5, 0, 4];
+
+
+// What is the problem?
+// - make a function to take an array and log its values to the console in a specific format.
+
+// Breaking down the problem.
+// 1. Need to loop through the array (a for loop will do).
+// 2. Take each data and log in the ºC format also with the number of days iterating.
+// 3. Need to concatenate the string in each loop.
+
+// The pseudo function
+/*
+function forecastTemp(TempArray)
+    initial string = '';
+    for each item in array
+        (concatenate to the init string)
+
+        return final string
+*/
+
+// Result
+// function forecastTemp(tempArray) {
+//     let tempStr = '';
+//     tempArray.forEach((temp, index) => {
+//         tempStr += `... ${temp}ºC in ${index + 1} days `
+//     })
+
+//     return tempStr
+// }
+
+// console.log(forecastTemp([17, 21, 23]));
+// console.log(forecastTemp([12, 5, -5, 0, 4]));
+
+// One liner
+const forecastTemp = tempArray => "... " + tempArray.map((temp, index) => `${temp}ºC in ${index + 1} days`).join(' ... ');
+
+console.log(forecastTemp([17, 21, 23]));
+console.log(forecastTemp([12, 5, -5, 0, 4]));

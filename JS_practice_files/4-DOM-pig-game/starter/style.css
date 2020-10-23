@@ -3,291 +3,412 @@
 **********************************************/
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 body {
-    /* linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)),  */
-    background-image: url('https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/back2.jpg?raw=true');
-    background-size: cover;
-    background-position: center;
-    font-family: Lato;
-    font-weight: 300;
-    position: relative;
-    height: 100vh;
-    color: #555;
-    overflow: hidden;
+  /* linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)),  */
+  background-image: url("https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/back2.jpg?raw=true");
+  background-size: cover;
+  background-position: center;
+  font-family: Lato;
+  font-weight: 300;
+  position: relative;
+  height: 100vh;
+  color: #555;
+  overflow: hidden;
 }
 
 .wrapper {
-    width: 1000px;
-    /* width: 75%; */
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    background-color: #fadcac;
-    box-shadow: 2px 5px 50px rgba(0, 0, 0, 0.39);
-    overflow: hidden;
+  width: 1000px;
+  /* width: 75%; */
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: #fadcac;
+  box-shadow: 2px 5px 50px rgba(0, 0, 0, 0.39);
+  overflow: hidden;
 }
 
 .player-0-panel,
 .player-1-panel {
-    width: 50%;
-    float: left;
-    height: 600px;
-    padding: 100px;
+  width: 50%;
+  float: left;
+  height: 600px;
+  padding: 100px;
 }
-
-
 
 /**********************************************
 *** PLAYERS
 **********************************************/
 
 .player-name {
-    font-size: 1.8rem;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    position: relative;
+  font-size: 1.8rem;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .player-score {
-    text-align: center;
-    font-size: 7.5rem;
-    font-weight: 100;
-    color: #000000;
-    margin-bottom: 130px;
+  text-align: center;
+  font-size: 7.5rem;
+  font-weight: 100;
+  color: #000000;
+  margin-bottom: 130px;
 }
 
-.active { background-color: #f3c67d; }
-.active .player-name { font-weight: 1000; }
+.active {
+  background-color: #f3c67d;
+}
+.active .player-name {
+  font-weight: 1000;
+}
 
 .active .player-name::after {
-    content: "\2022";
-    font-size: 1.9rem;
-    position: absolute;
-    color: #ff0000;
-    top: -7px;
-    right: 10px;
-    
+  content: "\2022";
+  font-size: 1.9rem;
+  position: absolute;
+  color: #ff0000;
+  top: -7px;
+  right: 10px;
 }
 
 .player-current-box {
-    background-color: #158467;
-    color: #fff;
-    width: 40%;
-    margin: 0 auto;
-    padding: 12px;
-    text-align: center;
-    box-shadow: 2px 5px 40px rgba(0, 0, 0, 0.377);
+  background-color: #158467;
+  color: #fff;
+  width: 40%;
+  margin: 0 auto;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 2px 5px 40px rgba(0, 0, 0, 0.377);
 }
 
 .player-current-label {
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    font-size: 1.05ewm;
-    font-weight: 400;
-    color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 1.05ewm;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
 }
 
 .player-current-score {
-    font-size: 30px;
-    color: #fadcac;
+  font-size: 30px;
+  color: #fadcac;
 }
 
 button {
-    position: absolute;
-    width: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #555;
-    background: none;
-    border: none;
-    font-family: Lato;
-    font-size: 20px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: 300;
-    transition: background-color 0.3s, color 0.3s;
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #555;
+  background: none;
+  border: none;
+  font-family: Lato;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 300;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover { font-weight: 900; }
-button:hover i { margin-right: 20px; }
+button:hover {
+  font-weight: 900;
+}
+button:hover i {
+  margin-right: 20px;
+}
 
 button:focus {
-    outline: none;
+  outline: none;
 }
 
 i {
-    color: #158467;
-    display: inline-block;
-    margin-right: 15px;
-    font-size: 1.9rem;
-    line-height: 1;
-    vertical-align: text-top;
-    margin-top: -4px;
-    transition: margin 0.3s;
+  color: #158467;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 1.9rem;
+  line-height: 1;
+  vertical-align: text-top;
+  margin-top: -4px;
+  transition: margin 0.3s;
 }
 
-.ion-ios-plus-outline{
-    color: #009fcf;
+.ion-ios-plus-outline {
+  color: #009fcf;
 }
 
-
-.btn-new { 
-    top: 45px;
-    font-weight: 400;
-    color: #841522;
-    font-size: 1.4rem;
-    text-shadow: 2px, 2px, teal;
+.btn-new {
+  top: 45px;
+  font-weight: 400;
+  color: #841522;
+  font-size: 1.4rem;
+  text-shadow: 2px, 2px, teal;
 }
 
-.target-score{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 14%;
-    background: linear-gradient(to right, #fadcac, #ddc399);
-    padding: 10px;
-    border-radius: 8px;
-     box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.863);
+.target-score {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14%;
+  background: linear-gradient(to right, #fadcac, #ddc399);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.863);
 }
 
-.target-score input{
-    background: none;
-    border-style: none;
-    border: none;
-    width: 180px;
-    border-bottom: 2px solid #009fcf;
-    text-align: center;
-    font-family: Lato;
-    font-size: 1.1rem;
-    color: #158467;;
-    text-transform: uppercase;
-    cursor: text;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s;
-    opacity: 0.6;
+.target-score input {
+  background: none;
+  border-style: none;
+  border: none;
+  width: 180px;
+  border-bottom: 2px solid #009fcf;
+  text-align: center;
+  font-family: Lato;
+  font-size: 1.1rem;
+  color: #158467;
+  text-transform: uppercase;
+  cursor: text;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+  opacity: 0.6;
 }
 
-.target-score input:focus{
-    outline: none;
-    opacity: 1;
-    font-size: 1.3rem;
+.target-score input:focus {
+  outline: none;
+  opacity: 1;
+  font-size: 1.3rem;
 }
 
-.target-show{
-    text-align: center;
-    font-family: Lato;
-    font-size: 0.9rem;
-    font-weight: 400;
+.target-show {
+  text-align: center;
+  font-family: Lato;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
-.btn-roll { 
-    top: 403px;
-    font-weight: 400;
-    font-size: 1.4rem;
-    background: #f6f5f5;
-    padding: 8px;
-    border-radius: 4px;
+.btn-roll {
+  top: 403px;
+  font-weight: 400;
+  font-size: 1.4rem;
+  background: #f6f5f5;
+  padding: 8px;
+  border-radius: 4px;
 }
-.btn-hold { 
-    top: 467px;
-    font-weight: 400;
-    font-size: 1.4rem;
-    background: #f6f5f5ef;
-    padding: 5px;
-    border-radius: 3px;
-}
-
-.dice-container1{
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    /* margin: auto; */
-    top: 178px;
-    left: 58%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btn-hold {
+  top: 467px;
+  font-weight: 400;
+  font-size: 1.4rem;
+  background: #f6f5f5ef;
+  padding: 5px;
+  border-radius: 3px;
 }
 
-.dice-container2{
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    /* margin: auto; */
-    top: 178px;
-    left: 42%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.dice-container1 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  /* margin: auto; */
+  top: 178px;
+  left: 58%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dice1, .dice2 {
-    position: relative;
-    height: 100px;
-    box-shadow: 0px 0px 2px 4px rgba(255, 255, 255, 0.863);
+.dice-container2 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  /* margin: auto; */
+  top: 178px;
+  left: 42%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.animate1{
-    animation: roll1 0.5s ease-out;
-    box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.384), -10px 0px 15px 10px rgba(0, 0, 0, 0.384),
-                0px 0px 4px 5px rgb(255, 255, 255), 0px 0px 4px 5px rgb(255, 255, 255);
+.dice1,
+.dice2 {
+  position: relative;
+  height: 100px;
+  box-shadow: 0px 0px 2px 4px rgba(255, 255, 255, 0.863);
 }
 
-.animate2{
-    animation: roll2 0.5s ease-out;
-    box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.384), -10px 0px 15px 10px rgba(0, 0, 0, 0.384), 
-                0px 0px 4px 5px rgb(255, 255, 255), 0px 0px 4px 5px rgb(255, 255, 255);
+.animate1 {
+  animation: roll1 0.5s ease-out;
+  box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.384),
+    -10px 0px 15px 10px rgba(0, 0, 0, 0.384), 0px 0px 4px 5px rgb(255, 255, 255),
+    0px 0px 4px 5px rgb(255, 255, 255);
+}
+
+.animate2 {
+  animation: roll2 0.5s ease-out;
+  box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.384),
+    -10px 0px 15px 10px rgba(0, 0, 0, 0.384), 0px 0px 4px 5px rgb(255, 255, 255),
+    0px 0px 4px 5px rgb(255, 255, 255);
 }
 
 @keyframes roll1 {
-    0% { left: 0px; right: 5px; transform: rotate(20deg); opacity: 0.1; }
-    10% { left: 5px; right: 0px; transform: rotate(-20deg); opacity: 0.3; } 
-    20% { left: 0px; right: 10px; transform: rotate(-40deg); opacity: 0.4; }
-    30% { left: 10px; right: 0px; transform: rotate(40deg); opacity: 0.7; }
-    40% {left: 0px; right: 20px; transform: rotate(-40deg); opacity: 0.8; }
-    50% { left: 20px; right: 0px; transform: rotate(120deg); opacity: 0.5; }
-    60% {left: 0px; right: 20px; transform: rotate(-120deg); opacity: 0.9; }
-    70% { left: 10px; right: 0px; transform: rotate(40deg); opacity: 0.5; }
-    80% { left: 0px; right: 10px; transform: rotate(-40deg); opacity: 0.7; }
-    90% {left: 5px; right: 0px; transform: rotate(20deg); opacity: 0.8; }
-    100% {left: 0px; right: 5px; transform: rotate(-20deg); opacity: 1; }
+  0% {
+    left: 0px;
+    right: 5px;
+    transform: rotate(20deg);
+    opacity: 0.1;
+  }
+  10% {
+    left: 5px;
+    right: 0px;
+    transform: rotate(-20deg);
+    opacity: 0.3;
+  }
+  20% {
+    left: 0px;
+    right: 10px;
+    transform: rotate(-40deg);
+    opacity: 0.4;
+  }
+  30% {
+    left: 10px;
+    right: 0px;
+    transform: rotate(40deg);
+    opacity: 0.7;
+  }
+  40% {
+    left: 0px;
+    right: 20px;
+    transform: rotate(-40deg);
+    opacity: 0.8;
+  }
+  50% {
+    left: 20px;
+    right: 0px;
+    transform: rotate(120deg);
+    opacity: 0.5;
+  }
+  60% {
+    left: 0px;
+    right: 20px;
+    transform: rotate(-120deg);
+    opacity: 0.9;
+  }
+  70% {
+    left: 10px;
+    right: 0px;
+    transform: rotate(40deg);
+    opacity: 0.5;
+  }
+  80% {
+    left: 0px;
+    right: 10px;
+    transform: rotate(-40deg);
+    opacity: 0.7;
+  }
+  90% {
+    left: 5px;
+    right: 0px;
+    transform: rotate(20deg);
+    opacity: 0.8;
+  }
+  100% {
+    left: 0px;
+    right: 5px;
+    transform: rotate(-20deg);
+    opacity: 1;
+  }
 }
 
 @keyframes roll2 {
-     0% { left: 5px; right: 0px; transform: rotate(-20deg); opacity: 0.1; }
-    10% { left: 0px; right: 5px; transform: rotate(20deg); opacity: 0.3; }
-    20% { left: 10px; right: 0px; transform: rotate(-40deg); opacity: 0.7; }
-    30% { left: 0px; right: 10px; transform: rotate(40deg); opacity: 0.4; }
-    40% {left: 10px; right: 0px; transform: rotate(-120deg); opacity: 0.8; }
-    50% { left: 10px; right: 0px; transform: rotate(120deg); opacity: 0.5; }
-    60% {left: 0px; right: 10px; transform: rotate(-40deg); opacity: 0.9; }
-    70% { left: 0px; right: 5px; transform: rotate(40deg); opacity: 0.5; }
-    80% { left: 5px; right: 0px; transform: rotate(-20deg); opacity: 0.7; }
-    90% {left: 0px; right: 5px; transform: rotate(20deg); opacity: 0.8; }
-    100% {left: 5px; right: 0px; transform: rotate(-10deg); opacity: 1; }
+  0% {
+    left: 5px;
+    right: 0px;
+    transform: rotate(-20deg);
+    opacity: 0.1;
+  }
+  10% {
+    left: 0px;
+    right: 5px;
+    transform: rotate(20deg);
+    opacity: 0.3;
+  }
+  20% {
+    left: 10px;
+    right: 0px;
+    transform: rotate(-40deg);
+    opacity: 0.7;
+  }
+  30% {
+    left: 0px;
+    right: 10px;
+    transform: rotate(40deg);
+    opacity: 0.4;
+  }
+  40% {
+    left: 10px;
+    right: 0px;
+    transform: rotate(-120deg);
+    opacity: 0.8;
+  }
+  50% {
+    left: 10px;
+    right: 0px;
+    transform: rotate(120deg);
+    opacity: 0.5;
+  }
+  60% {
+    left: 0px;
+    right: 10px;
+    transform: rotate(-40deg);
+    opacity: 0.9;
+  }
+  70% {
+    left: 0px;
+    right: 5px;
+    transform: rotate(40deg);
+    opacity: 0.5;
+  }
+  80% {
+    left: 5px;
+    right: 0px;
+    transform: rotate(-20deg);
+    opacity: 0.7;
+  }
+  90% {
+    left: 0px;
+    right: 5px;
+    transform: rotate(20deg);
+    opacity: 0.8;
+  }
+  100% {
+    left: 5px;
+    right: 0px;
+    transform: rotate(-10deg);
+    opacity: 1;
+  }
 }
 
-.winner { background-color: #158467; }
-.winner .player-name { font-weight: 800; color: #fadcac; }
+.winner {
+  background-color: #158467;
+}
+.winner .player-name {
+  font-weight: 800;
+  color: #fadcac;
+}
