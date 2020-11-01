@@ -1331,7 +1331,19 @@ function forecastTemp(TempArray)
 // console.log(forecastTemp([12, 5, -5, 0, 4]));
 
 // One liner
-const forecastTemp = tempArray => "... " + tempArray.map((temp, index) => `${temp}ºC in ${index + 1} days`).join(' ... ');
+// const forecastTemp = tempArray => "... " + tempArray.map((temp, index) => `${temp}ºC in ${index + 1} days`).join(' ... ');
 
-console.log(forecastTemp([17, 21, 23]));
-console.log(forecastTemp([12, 5, -5, 0, 4]));
+// console.log(forecastTemp([17, 21, 23]));
+// console.log(forecastTemp([12, 5, -5, 0, 4]));
+
+// const tempArray = [17, 21, 23];
+
+// tempArray.reduce((str, currStr) => str + currStr, '');
+
+// console.log(tempArray.reduce((str, currTemp, index) => str + `... ${currTemp}ºC in ${index + 1} days `, ''));
+
+
+
+// const forecastTemp = tempArray => tempArray.reduce((str, currTemp, index) => str + `... ${currTemp}ºC in ${index + 1} days `, '');
+
+// console.log(forecastTemp([12, 5, -5, 0, 4]));
