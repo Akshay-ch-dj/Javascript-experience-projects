@@ -62,8 +62,8 @@ h1 {
   height: 100px;
   position: absolute;
   top: 95%;
-  left: 15%;
-  transform: translate(-15%, -95%);
+  left: 17%;
+  transform: translate(-17%, -95%);
 }
 
 .mario__img {
@@ -83,13 +83,13 @@ h1 {
   }
 }
 
-.mario--jump-rotate {
-  animation-name: jump-rotate;
+.mario--jump-flip {
+  animation-name: jump-flip;
   animation-duration: 870ms;
   animation-iteration-count: infinite;
 }
 
-@keyframes jump-rotate {
+@keyframes jump-flip {
   20% {
     top: 40%;
     transform: rotate(-30deg);
