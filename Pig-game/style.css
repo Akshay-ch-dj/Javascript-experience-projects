@@ -16,7 +16,7 @@
 
 body {
   /* linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)),  */
-  background-image: url("https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/back2.jpg?raw=true");
+  background-image: url("./images/back2.jpg");
   background-size: cover;
   background-position: center;
   font-family: Lato;

@@ -47,7 +47,7 @@ function resetGame() {
 
     document.querySelector('.dice1').classList.add('animate1');
     document.querySelector('.dice2').classList.add('animate1');
-    
+
     // Set the target
     var tempVal = document.getElementById('target').value;
     targetVal = tempVal >= 10 ? tempVal : 100;
@@ -62,7 +62,7 @@ function playerChange() {
     // Set the round score back to zero again on window/display.
     document.getElementById(`current-0`).textContent = roundScore;
     document.getElementById(`current-1`).textContent = roundScore;
-    // Visually change the appearance to next player, add the active class 
+    // Visually change the appearance to next player, add the active class
     document.querySelector(`.player-0-panel`).classList.toggle('active');
     document.querySelector(`.player-1-panel`).classList.toggle('active');
 
@@ -85,7 +85,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     document.querySelector('.dice1').classList.toggle('animate2');
     document.querySelector('.dice2').classList.toggle('animate1');
     document.querySelector('.dice2').classList.toggle('animate2');
-    
+
     if(gamePlaying) {
 
         // 1. When ROLL DICE is clicked, random number(b/w 1-6) generated.
@@ -99,8 +99,8 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         diceDOM1.style.display = 'block';
         diceDOM2.style.display = 'block';
         // The dice images are named accordingly, change the src attribute to change the img
-        diceDOM1.src = `https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/dice-${dice1}.png?raw=true`;
-        diceDOM2.src = `https://github.com/Akshay-ch-dj/Javascript-experience-projects/blob/master/JS_practice_files/4-DOM-pig-game/starter/dice-${dice2}.png?raw=true`;
+        diceDOM1.src = `images/dice-${dice1}.png`;
+        diceDOM2.src = `images/dice-${dice2}.png`;
 
         // 3. Update the roundScore if the number is not 1
         if (dice1 !== 1 && dice2 !== 1) {
@@ -143,7 +143,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
             document.querySelector(`.player-${activePlayer}-panel`).classList.remove('active');
             gamePlaying = false;
         } else {
-            // If not Change the player 
+            // If not Change the player
             playerChange();
         }
 
@@ -159,8 +159,8 @@ document.querySelector('.btn-new').addEventListener('click', resetGame);
 
 1. A player looses his entire Score when he rolls two 6 in a row, after that, its the next
 players turn. (separate variable to save prv. dice roll)
-2. Add an input field to the HTML where players can set the winning score, to change the predefined 
+2. Add an input field to the HTML where players can set the winning score, to change the predefined
 score of 100. (Hint: use the 'value' property in js)
-3. Add another dice to the game, there are two dices now. The player looses his current score when 
-one of them is a 1. 
+3. Add another dice to the game, there are two dices now. The player looses his current score when
+one of them is a 1.
 */
