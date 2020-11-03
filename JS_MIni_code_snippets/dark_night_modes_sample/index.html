@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark mode sample</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar container row">
+            <div class="logo">
+                <a href="#">AC.dev</a>
+            </div>
+                <div class="ham-button">
+                    <button class="btn nav-toggle hamburger hamburger--slider" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            <nav class="nav">
+                <ul class="nav__menu nav-options">
+                    <li class="nav__item"><a href="#" class="nav__link nav__link--active">Home</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">About Us</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Sign In</a></li>
+                    <li class="nav__item"><a href="#" class="btn btn--link">Sign Up</a></li>
+                    <li class="nav__item">
+                        <select id="theme-select" name="select">
+                            <option value="light" selected>Light Mode&nbsp</option>
+                            <option value="dark">Dark Mode&nbsp</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="main-content container">
+                <h1>Hi!</h1>
+                <h2>This is a simple way to implement color themes on your page. </h2>
+                <p>Thanks for watching ! </p>
+                <a href="#" class="btn btn--main"> See other work </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>
