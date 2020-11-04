@@ -77,15 +77,13 @@ const UI = (() => {
                 DOMElement.mario.classList.add('mario--jump');
             }, 10);
         },
-        DOMElements: () => {
-            return DOMElement;
-        }
+        DOMElements: DOMElement
     }
 })();
 
 const controller = ((UI) => {
     // setup event listeners fun.active
-    const DOM = UI.DOMElements();
+    const DOM = UI.DOMElements;
     const setupEventListeners = () => {
         // For the check button
         DOM.checkButton.addEventListener('click', checkForMatch);
