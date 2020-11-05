@@ -5,14 +5,9 @@ GAME RULES:
 - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
 - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLOBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
+- The first player to reach 100 points or the point sets on GLOBAL score wins the game
 
 */
-
-// Game play variable
-let gamePlaying = null;
-
-
 // UI controller
 const UI = (() => {
     const DOM = {
@@ -53,8 +48,6 @@ const UI = (() => {
             resetPlayer(1);
             DOM.plArea(0).classList.add('active');
             DOM.dice.style.display = 'none';
-            // hackery
-            DOM.dice.classList.add('animate');
         },
         playerUIChange: function(player) {
             DOM.plArea(player).classList.add('active');
@@ -111,7 +104,7 @@ const gameControl = ((UI) => {
         roundScore = 0;
         // active player, 0-first, 1-second
         activePlayer = 0;
-        // / Set the target
+        // Set the target
         const target = DOM.scoreTarget.value;
         targetVal = target >= 10 ? target : 100;
         DOM.showTarget.textContent = `${targetVal}`;
