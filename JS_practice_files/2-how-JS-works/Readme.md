@@ -138,7 +138,7 @@ Program that executes JS codes, most popular one now is googles V8 engine- that 
 
     After the Global execution context finishes, Execution of functions and waiting for callbacks started. **One execution context created per function call**, containing all the info. necessary to run that function.
 
-* #### Whats inside execution context
+* ### Whats inside execution context
 
   1. **Variable Environment**
      * declarations (`let`, `const` and `var` declarations)
@@ -155,3 +155,93 @@ Program that executes JS codes, most popular one now is googles V8 engine- that 
     The contents of the execution context (VE, Scope Chain, `this`), all generated in the creation phase right before execution.
 
     *note*: Execution context belong to **Arrow function** do not get their own arguments object nor the `this` keyword, they get it from their closest regular function parent.
+
+    For the code example,
+
+    The global execution context for this code contain, the name first and second function declarations, and also the 'x'. note, that some values are 'unknown' yet.\
+    In first() function ex. context, a is set to 1 and b - unknown\
+    The second() fun. ex. context, c = 2 and arguments also caught cz it is a regular function
+
+    ![ex-context-code](images/ex-context-code.png)
+
+* ### Call Stack
+
+  ---
+
+  It keeps track where is the program execution now, it is a stack of execution contexts, the ex. context in the top of the stack is the one ie. currently running.
+
+  1. The first thing happens is the creation of **Global execution context** (for every program ie even a single log statement), then it is put to the **call stack**, now it is in the top and the one to be executed..
+  2. The execution of global ex. context happens, when it meets function `first()` call, it creates an execution context for that function now it is in top and starts to execute.
+  3. In the `first()` function, variable `a` abd `b` are defined on the variable environment of current ex. context, when const `b` is acquired, it meets the `second ()` fun. and creates an ex. context for it, with the arguments, it is in top and runs..while the execution of the `first()` situated below the stack, is now paused. Remember *Javascript by far can do only single thread operations*.
+  4. Now the `second()` fn. runs, it is closed when `return` occur, then back to first at last the global context.. then it stays here until the program eventually get closed, ie for a browser closing a web page, completing the program execution.
+
+    ![call-stack](images/call-stack-basic.png)
+
+  With out the call stack the execution cannot know where to go back or what to execute after, call stack is the map/thing that guides the JS engine.
+
+## Scoping and Scope in Javascript: concepts
+
+  ---
+
+  ***Scoping***:- Scoping simply answers the question, where one can access a certain variable or function.
+
+  In JS each function creates a scope, and JS got lexical scoping.
+
+  ***Lexical Scoping***: - Its about the range of accessibility or how a variable is going to be fetched in JS, or the scoping is controlled by placement of functions and blocks in the code (remember in python, there is LEGB rule (Local -> Enclosed -> Global -> Built in)),\
+  simply functions inside a function got access to the variables of parent function.
+
+  ***Scope***:- Scope is a space/environment in which the variables it defined are accessible, there is *global scope*, *function scope* and *block scope*.
+
+  ***scope of a variable***: - Region of our code where a certain variable can be accessed.
+
+  (generally for all the word above it is referred 'scope', use the brain to change it accordingly with what it actually is.)
+
+  In ES5, only way to create a new scope is to write a new function, but in ES6 blocks also creates scopes..(`let`, `const` are block scoped, means they only live in the block they defined and not outside, ie, `if` statements `for` loops etc..remember functions are defined inside block..{},)
+
+  What is the difference between a scope and a variable environment?
+
+  For a function is concerned, its scope and variable environment are same, or can say the scope points to the variable env. of that function.
+
+### The three types of scopes
+
+  ---
+
+  They are **Global scope**, **Function Scope** and **Block Scope (ES6)**
+
+  ![types of scope](images/types-of-scope.png)
+
+### Scope Chain in execution context object
+
+  ![scope chain](images/scope-chain.png)
+
+  it simply look for a variable in the local scope first, If it is not there just moves up to look, in the parent scope - to see if it is defined there/not, it is the scope chain, if it doesn't find that variable in any scope -> throws an error and the execution stops.
+
+  They are not copied, they look up until they find the required variable, it doesn't work the other way around, i.e. parent functions never got access to the child variables and objects.
+
+  ![scope chain](images/scope-block-scope.png)
+
+  look out the code in the if statement is block scoped, ie the `const decade` only exist in that if block only but for the `var millennial` variable it is function scoped and available anywhere inside the first function.
+
+  Also both the second() function and the if block are children of the first function (one not within other) so they can't access each others variables.
+  ![cats separated by glass wall](https://i.pinimg.com/originals/67/7a/50/677a50580f924bec7f7ee55bea6db77c.jpg)
+
+  In the creation phase each execution-object gets exact scope chain (ie all the var. and objects the curr. execution context got access to).\
+  It links the scope with already created variable environment object
+
+#### Scope Chain vs Call stack
+
+  Here are three functions, the `first()` one is called first, then it calls the `second()`, then `third()`, look at the call stack -> execution context -> variable environment inside.
+
+  ![scope chain and call stack](images/example-call-stack.png)
+
+  Now to building the scope for each,
+
+  ![scope chain and call stack](images/example-scope-chain.png)
+
+  As shown, the first function scope contains `first()` VE + Global VE (cz. of scope chain)\
+  Order at which the fun are called (ie in the call stack) is not equal to the order which the function are written lexically.
+
+  Similarly, the `second()` scope gets all the VE's of parents, (or can say its scope points to all the VEs of its parents)\
+  Look the `third()` function call from the `second()` worked only because they are connected by global scope or the `third` fun. is defined in the VE. of the global scope, which the `second` has access cz of scope chain.
+
+  When it runs the third() fun. it needs variables a, b, c and d, d is in the local scope no probs there, for a it moves up and get it from the global context. But for b and c , the scope chain of third() doesn't got it, so it will produce a `reference error`.
