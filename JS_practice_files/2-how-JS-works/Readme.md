@@ -3,6 +3,8 @@
 
 ---
 
+:: images from jonas udemy course :+1:
+
 ## Javascript Engine
 
 ---
@@ -99,4 +101,57 @@ Program that executes JS codes, most popular one now is googles V8 engine- that 
 
 ---
 
-We got the code after all the compilation, now it needs to be executed in the call stack.\
+* ### Execution Context
+
+    ---
+
+    We got the code after all the compilation, now it needs to be executed in the call stack.\
+    For the top level code a global execution context is created. That is basically the code which are not inside any function.
+
+    (Functions should be executed only when they are called.), for example the following snippet the name declaration is a top level code.
+
+    ```javascript
+    const name = "Akshay"; // Execution happens at top level
+
+    const first = () => {  // declared in top level
+        let a = 1;
+        const b = second();
+        a = a + b
+        return a;
+    };
+
+    function second() {  // declared in top level
+        var c = 2;
+        return c;
+    }
+    ```
+
+    Next there is two function (note that one is declaration and one is expression), they are declared already before execution, but only executed when they are called.
+
+    > Execution context:- Environment in which a piece of Javascript is executed. Stores all the necessary information for some code to be executed.
+
+    The info. contains local variables, arguments passed to a fun., in all large codes there is only one level of global execution context, which is default for the codes that is not inside any function (top-level).
+
+    ![execution-context](images/execution-context.png)
+
+    Execution: - The CPU processes the compiled machine code received.
+
+    After the Global execution context finishes, Execution of functions and waiting for callbacks started. **One execution context created per function call**, containing all the info. necessary to run that function.
+
+* #### Whats inside execution context
+
+  1. **Variable Environment**
+     * declarations (`let`, `const` and `var` declarations)
+     * functions
+     * arguments objects (arguments passed to object)
+
+  2. **Scope Chain**
+     * Scope chain consist of references to variables that are located outside of the current function.
+     * It is stored in execution context.
+
+  3. **`this` keyword**
+     * The 'this' refers to the object itself in JS.
+
+    The contents of the execution context (VE, Scope Chain, `this`), all generated in the creation phase right before execution.
+
+    *note*: Execution context belong to **Arrow function** do not get their own arguments object nor the `this` keyword, they get it from their closest regular function parent.
