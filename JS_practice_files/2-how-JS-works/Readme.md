@@ -3,7 +3,7 @@
 
 ---
 
-:: images from jonas udemy course :+1:
+:: from Jonas Schmedtmann's [udemy course](https://www.udemy.com/course/the-complete-javascript-course/) :+1:
 
 ## Javascript Engine
 
@@ -245,3 +245,14 @@ Program that executes JS codes, most popular one now is googles V8 engine- that 
   Look the `third()` function call from the `second()` worked only because they are connected by global scope or the `third` fun. is defined in the VE. of the global scope, which the `second` has access cz of scope chain.
 
   When it runs the third() fun. it needs variables a, b, c and d, d is in the local scope no probs there, for a it moves up and get it from the global context. But for b and c , the scope chain of third() doesn't got it, so it will produce a `reference error`.
+
+#### summary
+
+* Scoping asks the question where do variables live?
+* In JS, there are 3 types of scope, the global scope, scopes defined by functions and scopes defined by blocks.
+* Only `let` and `const` variables are block-scoped. variables declared with var end up in the closest function scope.
+* JS there is lexical scoping, where the variables are defined matters when accessing them.
+* Because of the **scope chain**, every scope always has access to all the variables from all its outer scopes.
+* When a variable not in the current scope, the engine looks up in the scope chain until it finds the variable it's looking for. This is called **variable lookup**.
+* The scope chain in a certain scope is equal to adding together all the variable environments of all the parent scopes.
+* The scope chain has nothing to do with the order in which functions were called. It does not affect the scope chain at all!
