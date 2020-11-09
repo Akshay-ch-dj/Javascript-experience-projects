@@ -1,7 +1,7 @@
 # Custom Data Structures and Reusable Code Snippets in JavaScript
 ---
 1. ## Queue Array
-   This is a custom `Array`, which is done to mimic the `queue` data structure present in low level languages like `C`.\
+   This is a custom `Array`, which is done to mimic the `queue` data structure, that is used mainly in the low level languages like `C`.\
    It can be used to create **FILO**(First In Last Out) queues, that are simply fixed size array but when new elements get added the last one gets popped out,
    * It got two arguments the *size* and the *default value* to fill.
    * The default value is optional and can be a number, string, boolean or an Array.
