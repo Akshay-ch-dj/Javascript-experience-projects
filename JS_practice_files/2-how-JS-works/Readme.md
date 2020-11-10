@@ -271,7 +271,7 @@ So as already known, the execution context contain 3 main things, Variable envir
 
 Hoisting works differently for different variables, ie like..
 
-<!-- img: hoisting variables -->
+![hoisting variables](./images/hoisting.png)
 
 * One can use function declarations before they are actually declared in the code, they are stored in the global variable environment object even before the code starts executing.
 * Remember functions are block scoped only when using the `'strict'` mode.
@@ -286,7 +286,7 @@ One should expect an error or the actual value, but this behavior is weird, ans 
 
 Temporal dead zone is simply the area before the actual variable declaration, so it cannot be used there.
 
-<!-- img: temporal dead zone -->
+![temporal dead zone](./images/TDZ.png)
 
 * If one tries to access the variable at TDZ, gets a `ReferenceError`.
 * But if one tries to access a variable ie never defined in the code, there is a different `ReferenceError`, JS engine knoows the both the cases cz of hoisting.
