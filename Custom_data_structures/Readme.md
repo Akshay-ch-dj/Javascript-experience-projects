@@ -1,6 +1,9 @@
 # Custom Data Structures and Reusable Code Snippets in JavaScript
+
 ---
+
 1. ## Queue Array
+
    This is a custom `Array`, which is done to mimic the `queue` data structure, that is used mainly in the low level languages like `C`.\
    It can be used to create **FILO**(First In Last Out) queues, that are simply fixed size array but when new elements get added the last one gets popped out,
    * It got two arguments the *size* and the *default value* to fill.
@@ -10,6 +13,7 @@
    * Throw errors when defined element array size is large or if elements other than the type defined are specified as default.
 
     THE CODE
+
     ```javascript
       class QueueArray {
           constructor(size, def_element) {
@@ -57,3 +61,16 @@
     ```
 
     * As of now, it got two prototype methods, `enter()` is used to enter new values to the QueueArray and `sortQueue` is used to sort elements inside the array
+
+## Contributors ✨
+
+([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/akozdev"><br /><sub><b>Aleksander Kozłowski</b></sub></a><br /><a href="#question" title="Answering Questions">💬</a><a href="#" title="Code">💻</a></td>
+  </tr>
+</table>
