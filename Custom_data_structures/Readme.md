@@ -71,6 +71,6 @@
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/akozdev"><br /><sub><b>Aleksander Kozłowski</b></sub></a><br /><a href="#question" title="Answering Questions">💬</a><a href="#" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/akozdev"><img src="https://avatars0.githubusercontent.com/u/51536161?s=460&u=d8161d8e6fe6a466232b62f3caaef37eab068eea&v=4" width="100px;" alt=""/><br /><sub><b>Aleksander Kozłowski</b></sub></a><br /><a href="#question" title="Answering Questions">💬</a><a href="#" title="Code">💻</a></td>
   </tr>
 </table>

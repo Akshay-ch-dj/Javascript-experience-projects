@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // The UI controller
 const UI = (() => {
@@ -11,7 +11,7 @@ const UI = (() => {
         againButton: document.querySelector('.again'),
         number: document.querySelector('.number'),
         mario: document.querySelector('.mario')
-    }
+    };
 
     let score = 20;
 
@@ -26,7 +26,7 @@ const UI = (() => {
         if (highScores.length > 5) highScores.pop();
 
         return highScores[0];
-    }
+    };
 
     return {
         changeMessage: (text) => {
@@ -78,7 +78,7 @@ const UI = (() => {
             }, 10);
         },
         DOMElements: DOMElement
-    }
+    };
 })();
 
 const controller = ((UI) => {
@@ -89,14 +89,14 @@ const controller = ((UI) => {
         DOM.checkButton.addEventListener('click', checkForMatch);
         // For again button
         DOM.againButton.addEventListener('click', resetGame);
-    }
+    };
 
     let randNum = 0;
 
     // Generate random number between 1 and 20 (2 to 19)
     const generateRandNum = () => {
         randNum = Math.floor(Math.random() * 18) + 2;
-    }
+    };
 
     const checkForMatch = () => {
         UI.marioJump();
@@ -118,13 +118,13 @@ const controller = ((UI) => {
         }
         // clear the input field
         UI.clearInput();
-    }
+    };
 
     // reset game
     const resetGame = () => {
         generateRandNum();
         UI.resetUI();
-    }
+    };
 
     return {
         init: () => {
@@ -132,7 +132,7 @@ const controller = ((UI) => {
             resetGame();
             setupEventListeners();
         }
-    }
+    };
 })(UI);
 
 controller.init();

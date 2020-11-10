@@ -256,3 +256,46 @@ Program that executes JS codes, most popular one now is googles V8 engine- that 
 * When a variable not in the current scope, the engine looks up in the scope chain until it finds the variable it's looking for. This is called **variable lookup**.
 * The scope chain in a certain scope is equal to adding together all the variable environments of all the parent scopes.
 * The scope chain has nothing to do with the order in which functions were called. It does not affect the scope chain at all!
+
+look at the practice script in the [`script.js`](./script.js)
+
+## Hoisting in JS
+
+---
+
+So as already known, the execution context contain 3 main things, Variable environment, Scope chain and this keyword.
+
+**Hoisting**: - Makes some types of variables accessible/usable in the code before they are actually declared. *"Variables lifted to the top of their scope"*.
+
+*Behind the scenes*: - Before execution, code is scanned for variable declarations, and for each variable, a new property is created in the variable environment object.(happens in the creation phase of ex. context).
+
+Hoisting works differently for different variables, ie like..
+
+<!-- img: hoisting variables -->
+
+* One can use function declarations before they are actually declared in the code, they are stored in the global variable environment object even before the code starts executing.
+* Remember functions are block scoped only when using the `'strict'` mode.
+* Unlike functions the hoisting of `var` variables occurs differently, if we tried to acquire the value of a `var` variable before its actual declaration, we don't get the declared value but `undefined`.\
+One should expect an error or the actual value, but this behavior is weird, ans so it is a common source of bugs in JS, so in modern JS we don't use `var`.
+* `let` and `const` are technically hoisted, but their value is set to uninitialized, there is no value to work with, and these guys are placed in TDZ(Temporal Dead Zone). we cant access them before its declared that gives an error, also `let` and `const` are block scoped.
+* The "function expressions" and "arrow functions" behave similar to the variable expressions so the `var` and `let/const` matters.
+
+### Temporal Dead Zone
+
+---
+
+Temporal dead zone is simply the area before the actual variable declaration, so it cannot be used there.
+
+<!-- img: temporal dead zone -->
+
+* If one tries to access the variable at TDZ, gets a `ReferenceError`.
+* But if one tries to access a variable ie never defined in the code, there is a different `ReferenceError`, JS engine knoows the both the cases cz of hoisting.
+* After the line which the variable is defined the TDZ is removed.
+* why TDZ? - Makes it easier to avoid and catch errors: accessing variables before declaration is bad practice and should be avoided.
+* TDZ also helps the `const` variables as they intended, one cannot reassign `const` variables, so it make no sense to put it as `undefined` first then redefine it later.
+
+Why Hoisting exists?
+
+* The primary aim when creating hoisting functionality was to use functions before actual declaration,(essential for some programming techniques such as mutual recursion)
+* It works for `var` declarations because it is the only way to implement hoisting at that time, so the `var` hoisting is a byproduct of `function` hoisting.(JS never intended to become as huge as it is today)
+* So as a workaround the `let` and `const` now used.

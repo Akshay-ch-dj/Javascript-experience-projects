@@ -1,3 +1,5 @@
+'use strict';
+
 /*
 GAME RULES:
 
@@ -30,7 +32,7 @@ const UI = (() => {
         scoreTarget: document.getElementById('target'),
         // target score show txt
         showTarget: document.getElementById('target-text'),
-    }
+    };
 
     const resetPlayer = (player) => {
         // Player scores to zero
@@ -40,7 +42,7 @@ const UI = (() => {
         DOM.plName(player).textContent = `Player ${player + 1}`;
         // remove winner and active classes
         DOM.plArea(player).classList.remove('winner', 'active');
-    }
+    };
 
     return {
         resetUI: function() {
@@ -69,7 +71,7 @@ const UI = (() => {
             DOM.plArea(player).classList.remove('active');
         },
         DOMElements: DOM
-    }
+    };
 
 })();
 
@@ -81,11 +83,11 @@ const gameControl = ((UI) => {
     /************* Event Listeners **********************/
     const setupEventListeners = () => {
         DOM.btnRoll.addEventListener('click', diceRoll);
-        DOM.btnHold.addEventListener('click', holdGame)
+        DOM.btnHold.addEventListener('click', holdGame);
         DOM.btnNew.addEventListener('click', resetGame);
-    }
+    };
 
-    var scores, roundScore, activePlayer, gamePlaying, targetVal;
+    let scores, roundScore, activePlayer, gamePlaying, targetVal;
 
     /************* Functions **********************/
 
@@ -94,8 +96,8 @@ const gameControl = ((UI) => {
         activePlayer = activePlayer === 1 ? 0 : 1;
         // roundScore back to zero,
         roundScore = 0;
-        UI.playerUIChange(activePlayer)
-    }
+        UI.playerUIChange(activePlayer);
+    };
 
     const resetGame = () => {
         gamePlaying = true;
@@ -110,7 +112,7 @@ const gameControl = ((UI) => {
         DOM.showTarget.textContent = `${targetVal}`;
 
         UI.resetUI();
-    }
+    };
 
     const diceRoll = () => {
         UI.rollDice();
@@ -155,7 +157,7 @@ const gameControl = ((UI) => {
             resetGame();
             setupEventListeners();
         }
-    }
+    };
 
 })(UI);
 

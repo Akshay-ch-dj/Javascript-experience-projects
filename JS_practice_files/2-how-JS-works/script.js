@@ -1,3 +1,24 @@
+'use strict';
+
+// JShint settings default
+// https://github.com/jshint/jshint/blob/4c2d091b7e50ce2681ee48a104578bb969c189ae/examples/.jshintrc#L79
+
+//
+/*
+jsHint settings in VSCode
+"jshint.options": {
+    // to set document, window, etc.. as global and use in browser mode, there is also node mode.
+    "browser": true,
+    // Use the 'use strict' globally
+    "globalstrict": true,
+    // developer on, othervise console.log..etc will show some error
+    "devel": true,
+    // use ES6
+    "esversion": 6
+ }
+
+*/
+
 ///////////////////////////////////////
 // // Lecture: Hoisting
 
@@ -41,7 +62,7 @@
 //     second();
 //     function second() {
 //         var z = ' and nested';
-//         console.log(x + y + z); 
+//         console.log(x + y + z);
 //     }
 // }
 
@@ -121,9 +142,7 @@ function first() {
 }
 */
 
-
-
-// Example to show the differece between execution stack and scope chain
+// Example to show the difference between execution stack and scope chain
 
 /*
 var a = 'Hello!';
@@ -150,11 +169,33 @@ function third() {
 ///////////////////////////////////////
 // Lecture: The this keyword
 
+// Scoping practice
 
+// function calcAge(birthYear) {
+//     const age = 2037 - birthYear;
 
+//     function printAge() {
+//         const output = `You are ${firstName} age ${age}, born in ${birthYear}`;
+//         console.log(output);
 
+//         if(birthYear >= 1981 && birthYear <= 1996) {
+//             var millennial = true;
+//             const firstName = 'Steven';
+//             const str = `Oh, and you're a millennial, ${firstName}`;
+//             console.log(str);
 
+//             // function add(a, b) {
+//             //     return a + b;
+//             // }
+//         }
 
+//         // console.log(str);
+//         // console.log(millennial);
+//     }
+//     printAge();
 
+//     return age;
+// }
 
-
+// const firstName = 'Jonas';
+// calcAge(1991);
