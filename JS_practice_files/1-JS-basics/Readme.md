@@ -20,3 +20,5 @@ console.table("");
 * After finishing click on the red dot again to stop the debugging at that line.
 * The debugger is really useful for the problems that causing with the loops, set breakpoints at certain positions of points in the loop.
 * To call the **debugger right from the code**, use the `debugger;`,then it opens the debugger at this point,
+
+Look in the [script.js](./script.js) for more basic JS operations with comments.

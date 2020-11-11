@@ -294,8 +294,39 @@ Temporal dead zone is simply the area before the actual variable declaration, so
 * why TDZ? - Makes it easier to avoid and catch errors: accessing variables before declaration is bad practice and should be avoided.
 * TDZ also helps the `const` variables as they intended, one cannot reassign `const` variables, so it make no sense to put it as `undefined` first then redefine it later.
 
-Why Hoisting exists?
+### Why Hoisting exists
 
 * The primary aim when creating hoisting functionality was to use functions before actual declaration,(essential for some programming techniques such as mutual recursion)
 * It works for `var` declarations because it is the only way to implement hoisting at that time, so the `var` hoisting is a byproduct of `function` hoisting.(JS never intended to become as huge as it is today)
 * So as a workaround the `let` and `const` now used.
+
+### Best practices
+
+* Always use `const` to declare variables, if it needs to change then use `let`.
+* Always declare your functions first, then use it after, (All type of functions).
+
+*note*: - The variables defined using `var` in the global `window` object are assigned as properties of the `window` object. (log the `window` to see that in console).
+
+## The this Keyword
+
+---
+
+`this` keyword is a special variable that is created for every execution context(every function). Takes the value of (or points to the) the 'owner' of the function in which the `this` keyword is used.
+
+`this` is NOT static. It depends on how the function is called, and its value is only assigned when the function is actually called.
+
+Ok, lets first find the ways in which a fun. can be called and how the `this` gonna affect..
+
+1. **Method** -- here the `this` = \<Object that is calling the method\>.
+
+   ![this-method-example](./images/method-this-example.png)
+
+2. **Simple function** call -- `this` = undefined (only in strict mode, otherwise the `window` object.).
+3. **Arrow function** -- `this` = \<`this` of surrounding function (***lexical this***)\> (simply arrow functions don't own a `this` they borrow it from the nearest parent.).
+4. **Event listener** -- this = \<DOM element that the handler is attached to\>.
+
+also, `this` does NOT point to the function itself, and NOT to the variable environment.
+
+There are other ways to call the function and reassign the this keyword, using `new`, `call`, `apply` and `bind`. (will explore later or here is a [small guide]().)
+
+look the [script file](./script.js) for practices codes with comments

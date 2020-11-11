@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 // console.log('hello world');
 
 // let firstName = 'Johnas';
