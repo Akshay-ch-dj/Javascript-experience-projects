@@ -1,49 +1,49 @@
 'use strict';
 // object
 class QueueArray {
-    constructor(size, def_element) {
-        this.queueArray = new Array(size);
-        this.queueArray.fill(undefined);
+  constructor(size, defElement) {
+    this.queueArray = new Array(size);
+    this.queueArray.fill(undefined);
 
-        if (Array.isArray(def_element)) {
-            if (def_element.length <= size) {
-                for (let i = 0; i < size; i++) {
-                    this.queueArray[i] = def_element[i];
-                }
-            } else {
-                throw "Error: defined array size is large";
-            }
-        } else if (typeof(def_element) === 'string' ||
-                   typeof(def_element) === 'number' ||
-                   typeof(def_element) === 'boolean') {
-            this.queueArray.fill(def_element);
-        } else if (def_element) {
-            throw "Error: default element type not accepted";
+    if (Array.isArray(defElement)) {
+      if (defElement.length <= size) {
+        for (let i = 0; i < size; i++) {
+          this.queueArray[i] = defElement[i];
         }
-
-        Object.seal(this.queueArray);
-        console.log(this.queueArray);
+      } else {
+        throw 'Error: defined array size is large';
+      }
+    } else if (typeof(defElement) === 'string' ||
+                typeof(defElement) === 'number' ||
+                typeof(defElement) === 'boolean') {
+      this.queueArray.fill(defElement);
+    } else if (defElement) {
+      throw 'Error: default element type not accepted';
     }
 
+    Object.seal(this.queueArray);
+    console.log(this.queueArray);
+  }
 
-    // prototype
-    enter(element) {
-        // the whole thing shifts right that kicks out the last element
-        for (let i = this.queueArray.length-1; i >= 1; i--) {
-            this.queueArray[i] = this.queueArray[i-1];
-        }
-        // the element is added in first position
-        this.queueArray[0] = element;
-    }
 
-    sortQueue(order) {
-        if (order === 'descending') {
-            this.queueArray.sort((a, b) => b - a);
-            console.log(this.queueArray);
-        } else if (order === 'ascending') {
-            this.queueArray.sort((a, b) => a - b);
-        }
+  // prototype
+  enter(element) {
+    // the whole thing shifts right that kicks out the last element
+    for (let i = this.queueArray.length-1; i >= 1; i--) {
+      this.queueArray[i] = this.queueArray[i-1];
     }
+    // the element is added in first position
+    this.queueArray[0] = element;
+  }
+
+  sortQueue(order) {
+    if (order === 'descending') {
+      this.queueArray.sort((a, b) => b - a);
+      console.log(this.queueArray);
+    } else if (order === 'ascending') {
+      this.queueArray.sort((a, b) => a - b);
+    }
+  }
 }
 
 const reg = new QueueArray(5);
@@ -56,25 +56,27 @@ reg.sortQueue('ascending');
 console.log(reg);
 
 
-// As an extension to this data structure, I've thought of a Sorted Q array, (also to get practice with JS OOP)
+// As an extension to this data structure, I've thought of a Sorted Q array,
+// (also to get practice with JS OOP)
 // Custom obj, can be name SQueueArray.
 // 1. It is a QueueArray with values sorted(only for numbers..)
-// 2. It accepts an additional argument 'order' that represents the sorting order(ascending or descending)
+// 2. It accepts an additional argument 'order' that represents the sorting
+// order(ascending or descending)
 // 3. The aim is to store top higher or lower elements always.
 
 class SQueueArray extends QueueArray {
-    constructor(size, def_element, order) {
-        super(size, def_element);
-        this.order = order;
+  constructor(size, defElement, order) {
+    super(size, defElement);
+    this.order = order;
 
-        // Sort the array based on the order given
-        if (order === 'ascending') {
-            this.queueArray.sort((a, b) => b - a);
-            console.log(this.queueArray);
-        } else if (order === 'descending') {
-            this.queueArray.sort((a, b) => a - b);
-        }
+    // Sort the array based on the order given
+    if (order === 'ascending') {
+      this.queueArray.sort((a, b) => b - a);
+      console.log(this.queueArray);
+    } else if (order === 'descending') {
+      this.queueArray.sort((a, b) => a - b);
     }
+  }
 }
 
 const sreg = new SQueueArray(5, 4, 'ascending');
@@ -87,8 +89,8 @@ sreg.enter(1);
 
 console.log(sreg);
 
-const sample = [3,5,6,2,7];
+const sample = [3, 5, 6, 2, 7];
 
-sample.sort((a,b) => b - a);
+sample.sort((a, b) => b - a);
 
 console.log(sample);
