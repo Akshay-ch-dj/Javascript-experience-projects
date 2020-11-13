@@ -121,10 +121,8 @@ jsHint settings in VSCode
 // mike.calculateAge = john.calculateAge;
 // mike.calculateAge();
 
-
 // /////////////////////////////////////
 // Lecture: Scoping
-
 
 // First scoping example
 
@@ -165,7 +163,6 @@ function third() {
 }
 */
 
-
 // /////////////////////////////////////
 // Lecture: The this keyword
 
@@ -200,7 +197,6 @@ function third() {
 
 // const firstName = 'Jonas';
 // calcAge(1991);
-
 
 // Hoisting in practice
 
@@ -277,7 +273,6 @@ function third() {
 // const f = jonas.calcAge;
 // f();
 
-
 // Configure ESlint
 /*
 - install ESlint VScode extension
@@ -292,3 +287,123 @@ globally using `npm install eslint -g` (look for the path in which it is
 - https://javascript.info/coding-style
 
 */
+
+// Regular function VS Arrow function
+
+/*
+
+// var firstName = 'Matilda';
+
+// The window object
+console.log(this);
+
+// The object doesn't creates its own scope (block scope, its just the way an
+// object is defined with those "{}")
+const akshay = {
+  firstName: 'Akshay',
+  calcAge: function() {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+
+  greet: () => {
+    // Also the window object, cz arrow takes it lexically.
+    console.log(this);
+    console.log(`Hey ${this.firstName}`);
+  },
+};
+
+akshay.greet();
+
+*/
+// if there is a var function in the main window with the same firstName(up)
+// var creates properties in the window object.
+
+// The Error can be avoided using, regular functions
+
+/*  */
+/*
+const akshay = {
+  firstName: 'Akshay',
+  year: 1991,
+  calcAge: function() {
+    console.log(this);
+    console.log(2037 - this.year);
+
+    const self = this;
+    const isMillenial = function() {
+      // console.log(this);
+      console.log(self); // Use this self instead of `this`.
+      // console.log(this.year >= 1981 && this.year <= 1996);
+      console.log(self.year >= 1981 && self.year <= 1996);
+    };
+
+    // This is a regular function call, 'this' keyword sets undefined.
+    isMillenial();
+    // using a bind() method.
+    // isMillenial.bind(this.calcAge)();
+  },
+
+  greet: function() {
+    // Also the window object, cz arrow takes it lexically.
+    console.log(this);
+    console.log(`Hey ${this.firstName}`);
+  },
+};
+
+// akshay.greet();
+akshay.calcAge();
+ */
+
+// Function inside a method, look at the isMillenial function, which is a
+// normal function, in a regular function call - `this` is undefined
+// Can use a self variable outside thats set to `this`, or by using a bind
+// function with the call.
+
+// But if it is an arrow function, it inherits the `this` from parent.
+
+/*
+const jonas = {
+  firstName: 'jonas',
+  year: 1991,
+  calcAge: function() {
+    console.log(2037 - this.year);
+
+    const isMillenial = function() {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    // This is a regular function call, 'this' keyword sets undefined.
+    // isMillenial();
+    // using a bind() method.
+    // isMillenial.bind(this)();
+  },
+};
+
+jonas.calcAge();
+
+*/
+
+
+// Arguments keyword only available for regular function.
+
+/*
+const addExpr = function(a, b) {
+  console.log(arguments);
+  return a + b;
+};
+
+addExpr(2, 4);
+
+// But the arrow function not get this arguments value, instead it uses rest
+// parameters
+
+const addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+
+addArrow(2, 4, 6);
+*/
+
+// Modern JS use rest parametrs

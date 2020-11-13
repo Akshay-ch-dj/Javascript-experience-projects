@@ -1,8 +1,11 @@
 # ES6 JavaScript Changes
+
 ---
 
-1. ### `var` replace with `const` and `let`.
+1. ## `var` replace with `const` and `let`.
+
    * `var` is function scoped but, `let` & `const` are block scoped, (block is a block of code wrapped between parenthesis, eg: if, for, while loops..)
+
    * ```javascript
      let i = 45;
      for (let i = 0; i < 5; i++) {
@@ -13,8 +16,11 @@
      // 4
      // 45
      ```
-3. ### Blocks and IIFEs
-   * In ES6 the block scoped variables, give a new way of defining IIFEs
+
+2. ## Blocks and IIFEs
+
+   * In ES6 the block scoped variables, give a new way of defining IIFEs.
+
       ```javascript
       {
           let a = 56;
@@ -25,8 +31,10 @@
       console.log(c);  // 3
       ```
 
-4. ### Strings in ES6
+3. ## Strings in ES6
+
     * Strings can be written in ES^ using the new "*template literals*",
+
       ```javascript
       let firstName = 'John';
       let lastName = 'Marques';
@@ -44,7 +52,9 @@
       console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}.
       Today, he is ${calcAge(yearOfBirth)} years old.`)
       ```
+
     * `startsWith` method,
+
         ```javascript
         const name = `${firstName} ${lastName}`;
         console.log(name.startsWith('J'));
@@ -53,15 +63,19 @@
         // in between the string, There is `includes()`
         console.log(name.includes(' ')); // checks if there is any space
         ```
+
     * To repeat strings, `repeat`
+
         ```javascript
         console.log(`${firstName} `.repeat(3));
 
         // Gives 'John John John'
         ```
 
-5. ### Arrow Functions
+4. ### Arrow Functions
+
     * Using map function to calculate present age,
+
         ```javascript
         const years = [1990, 1965, 1982, 1937];
 
@@ -85,7 +99,9 @@
             return `Age element ${index + 1}: ${age}.`
         });
         ```
+
     * Arrow Functions: Lexical 'this' keyword. Arrow functions share the surrounding `this` keyword [*"They use the `this` keyword of the function they are written in"*], to understand this in ES5,
+
         ```javascript
          var box5 = {
          color: 'green',
@@ -101,9 +117,11 @@
          }
          box5.clickMe(); // "This is the box number undefined and it is undefined"
         ```
+
     * The above result happens("values not read") because, `this` keyword actually points to the object only in a method call, in an inner function(or any other function) call, `this` points to global object (*"For a browser it is the window object"*).
     * A common practice to overcome this behavior is to assign the `this` keyword to a temporary variable in the method first then use the variable in the nested functions.
     * With ES6,
+
         ```javascript
         // ES6
 
@@ -123,7 +141,9 @@
 
         // The ${''} is used as a hack to line brake, can use the "+" sign [`something` + `another`] also for the line brakes without extra spaces on large strings.
         ```
+
     * But if the method on its own is replaced with arrow functions,
+
         ```javascript
         clickMe: () => {
         // button with class="green"
@@ -135,8 +155,10 @@
             });
         }
         ```
+
         It gives the same "undefined" error because, The `this` keyword passed to the arrow function at first is from the surrounding *global context*.
     * Function constructor with ES6, First trying the same with ES5,
+
         ```javascript
         function Person(name) {
             this.name = name;
@@ -154,8 +176,10 @@
         var friends = ['Bob','Jhon', 'Marks', 'Sweet'];
         new Person('Jane').myFriends5(friends);
         ```
+
         Here also the name is not defined cz, of the same reason, the main prototype function have access to the 'this' keyword, but the function inside the map function doesn't, it gets the global `this`.
     * In ES5, there is also a common workaround (This issues are well known ones), ie, to use the `bind()` method to make a copy with the `this` variable set to `this` of the main `prototype`.
+
         ```javascript
         Person.prototype.myFriends5 =
         function (friends) {
@@ -164,7 +188,9 @@
             }.bind(this));
         }
         ```
+
     * In ES6, using arrow function, don't need this workaround,
+
         ```javascript
           Person.prototype.myFriends6 =
           function (friends) {
@@ -173,9 +199,13 @@
               });
           }
         ```
+
         Notice, here also, if the main function is assigned as arrow function, `this` will not works as normal `this`....
-7. ### Destructuring.
+
+5. ## Destructuring.
+
     * Convenient way to extract data from objects or an array, for ES5 it is like,
+
         ```javascript
         var john = ['John', 25];
         var name = john[0];
@@ -203,7 +233,9 @@
         console.log(a);  // John
         console.log(b);  // Smith
         ```
+
         Practical application of destructuring, To return multiple values from a function
+
         ```javascript
         function calcAgeRetirement(year) {
             const age = new Date().getFullYear() - year;
@@ -214,8 +246,11 @@
         console.log(age); // 26
         console.log(retirement); // 39
         ```
-8. ### Arrays in ES6
+
+6. ## Arrays in ES6
+
     * ES6 introduced new array methods for simplifying things like,
+
         ```javascript
         const boxes = document.querySelectorAll('.box');
 
@@ -227,12 +262,17 @@
         curr.style.backgroundColor = 'dodgerblue';
         });
         ```
+
     * In ES6, It can be done in a single line of code
+
         ```javascript
         Array.from(boxes).forEach(curr => curr.style.backgroundColor = 'dodgerblue');
         ```
-9. ### Loops in ES6
+
+7. ## Loops in ES6
+
     * When we need looping through an array, we use `forEach` or `map` method, But the problem with both of them is, we can't `break` from them or use the `continue` statement, for that we need to go back to conventional `for` loop, But for simple loops it is more code and variables, in the above code if need to change the text on the boxes that the color changed
+
         ```javascript
         for (var i = 0; i < boxesArr5.length; i++) {
           // check for the class with name "box blue"
@@ -242,7 +282,9 @@
           boxesArr5[i].textContent = 'I changed to Blue';
         }
         ```
+
     * Therefore in In ES6 to overcome this issue a new way of writing loops called `for of` loop, introduced,
+
         ```javascript
           const boxesArr6 = Array.from(boxes);
 
@@ -253,8 +295,11 @@
               cur.textContent = 'I changed to Blue';
           }
         ```
-10. ### `find` and `findIndex` methods
+
+8. ## `find` and `findIndex` methods
+
     * ES6 introduces some more helping functions to the JS, to find the index or find the the odd one out.
+
         ```javascript
         // ES5
 
@@ -279,8 +324,11 @@
         console.log(ages.findIndex(cur => cur >= 18));
         console.log(ages.find(cur => cur >= 18));
         ```
-11. ### Spread Operator
+
+9. ## Spread Operator
+
     * A spread operator denoted by `...`(three dots), the operator just expands the array in to its components. For ES5, it need more efforts like,
+
         ```javascript
         function addFourAges (a, b, c, d) {
             return a + b + c + d;
@@ -298,15 +346,19 @@
         const sum3 = addFourAges(...ages);
         console.log(sum3);
         ```
+
         It got more use cases, eg: for joining arrays.
+
         ```javascript
         const familySmith = ['John', 'Jane', 'Mark'];
         const familyMiller = ['Mary', 'Bob', 'Ann'];
 
         const bigFamily = [...familySmith, ...familyMiller, 'lilly'];
         ```
+
         The `spread` operator just expands the array and put there, so in above example it gives the output of two arrays combined.text-content
     * It can be applied not just on an array but also on nodelists(what the querySelectorAll returns.)
+
         ```javascript
         const h = document.querySelector('h1');
         const boxes = document.querySelectorAll('.box');
@@ -315,100 +367,118 @@
 
         Array.from(all).forEach(cur => cur.style.color = 'purple');
         ```
-12. ## Function Parameters
-    * ### Rest Parameters
-        * Allow us to pass an arbitrary number of arguments into a function,
-        (like *args in python)
-        * They uses the same `...`(three dots) representation, but the concept is exactly opposite, ie the spread operator takes an array and transforms into its values, while the rest parameter receives single values and converts it to an array.(when we call a function with multiple parameters)
-        * For ES5,
-            ```javascript
-            function isFullage5() {
-                console.log(arguments);
-                var argsArray = Array.prototype.slice.call(arguments);
 
-                argsArray.forEach(function(cur) {
-                    console.log((2020 - cur) >= 18);
-                })
-            }
+10. ## Function Parameters
 
-            isFullage5(1990, 1995, 1996, 2013, 1997);
-            ```
-            in ES5, to receive an undefined number of arguments, don't define any parameters for a function, then just use the `arguments` variable(which is similar to `this` in which every execution context get access to.)
+    ### Rest Parameters
 
-            It returns not exactly an array(does not got an Array - function constructor) but an object, For to loop through it, use the ES5 hack to convert it to an array.
-        * In ES6, by making use of rest parameters
-            ```javascript
-            function isFullage6(...years) {
-                years.forEach(cur => console.log((2020 - cur) >= 18));
-            }
+    * Allow us to pass an arbitrary number of arguments into a function,
+    (like *args in python)
+    * They uses the same `...`(three dots) representation, but the concept is exactly opposite, ie the spread operator takes an array and transforms into its values, while the rest parameter receives single values and converts it to an array.(when we call a function with multiple parameters)
+    * For ES5,
 
-            isFullage6(1990, 1995, 1996, 2013, 1997);
-            ```
-            The difference between the spread operator and the rest parameter is actually the place where we use it each, `spread` is used in a function call, and `rest` operator is in a function declaration to accept an arbitrary number of parameters.
-        * To accept an extra parameter, if we need to modify the function also to accept a limit, in place of the hardcoded age.
+    ```javascript
+    function isFullage5() {
+        console.log(arguments);
+        var argsArray = Array.prototype.slice.call(arguments);
 
-            Again in ES5 the tricks needed
-            ```javascript
-            function isFullage5(limit) {
-              var argsArray = Array.prototype.slice.call(arguments, 1);
+        argsArray.forEach(function(cur) {
+            console.log((2020 - cur) >= 18);
+        })
+    }
 
-              console.log(argsArray); // outs after kicking off the first number
+    isFullage5(1990, 1995, 1996, 2013, 1997);
+    ```
 
-              argsArray.forEach(function (cur) {
-                  console.log((2020 - cur) >= limit);
-              })
-            }
+    in ES5, to receive an undefined number of arguments, don't define any parameters for a function, then just use the `arguments` variable(which is similar to `this` in which every execution context get access to.)
 
-            isFullage5(21, 1990, 1995, 1996, 2013, 1997);
-            ```
-            In ES5, the problem is overcome using the same slice method, (they basically used to cut a piece of an array)
-        * In ES6, there is not that much complication to add an extra argument,
-            ```javascript
-            function isFullage6(limit, ...years) {
-                years.forEach(cur => console.log((2020 - cur) >= limit));
-            }
+    It returns not exactly an array(does not got an Array - function constructor) but an object, For to loop through it, use the ES5 hack to convert it to an array.
 
-            isFullage6(17, 1990, 1995, 1996, 2003, 1997);
-            ```
-    * ### Default Parameter
-        * To Preset one or more parameters of a function to default(if needed a default value)
-        * The ES5 way of adding default parameter.
-        * Here we only specify the first two arguments required, js assigned undefined to the other two values.
-        * But if added a default for the last name and nationality, it can be solved, in ES5 it can be added
-          using if-else statements or turnery operators,
-            ```javascript
-            function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+    * In ES6, by making use of rest parameters
 
-                lastName === undefined ? lastName = 'Smith' : lastName = lastName;
-                nationality = nationality === undefined ? 'Indian' : nationality;
+    ```javascript
+    function isFullage6(...years) {
+        years.forEach(cur => console.log((2020 - cur) >= 18));
+    }
 
-                this.firstName = firstName;
-                this.lastName = lastName;
-                this.yearOfBirth = yearOfBirth;
-                this.nationality = nationality;
-            }
+    isFullage6(1990, 1995, 1996, 2013, 1997);
+    ```
 
-            var john = new SmithPerson('John', 1990);
+    The difference between the spread operator and the rest parameter is actually the place where we use it each, `spread` is used in a function call, and `rest` operator is in a function declaration to accept an arbitrary number of parameters.
 
-            console.log(john);
-            ```
+    * To accept an extra parameter, if we need to modify the function also to accept a limit, in place of the hardcoded age.
 
-        * In ES6,
+    Again in ES5 the tricks needed
 
-            ```javascript
-            function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
-                this.firstName = firstName;
-                this.lastName = lastName;
-                this.yearOfBirth = yearOfBirth;
-                this.nationality = nationality;
-            }
-            ```
+    ```javascript
+    function isFullage5(limit) {
+    var argsArray = Array.prototype.slice.call(arguments, 1);
 
-13. ## Maps in ES6
+    console.log(argsArray); // outs after kicking off the first number
+
+    argsArray.forEach(function (cur) {
+        console.log((2020 - cur) >= limit);
+    })
+    }
+
+    isFullage5(21, 1990, 1995, 1996, 2013, 1997);
+    ```
+
+      In ES5, the problem is overcome using the same slice method, (they basically used to cut a piece of an array)
+
+    * In ES6, there is not that much complication to add an extra argument,
+
+      ```javascript
+      function isFullage6(limit, ...years) {
+          years.forEach(cur => console.log((2020 - cur) >= limit));
+      }
+
+      isFullage6(17, 1990, 1995, 1996, 2003, 1997);
+      ```
+
+    ### Default Parameter
+
+    * To Preset one or more parameters of a function to default(if needed a default value)
+    * The ES5 way of adding default parameter.
+    * Here we only specify the first two arguments required, js assigned undefined to the other two values.
+    * But if added a default for the last name and nationality, it can be solved, in ES5 it can be added
+      using if-else statements or turnery operators,
+
+      ```javascript
+      function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+
+          lastName === undefined ? lastName = 'Smith' : lastName = lastName;
+          nationality = nationality === undefined ? 'Indian' : nationality;
+
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.yearOfBirth = yearOfBirth;
+          this.nationality = nationality;
+      }
+
+      var john = new SmithPerson('John', 1990);
+
+      console.log(john);
+      ```
+
+    * In ES6,
+
+      ```javascript
+      function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'American') {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.yearOfBirth = yearOfBirth;
+          this.nationality = nationality;
+      }
+      ```
+
+11. ## Maps in ES6
+
     Maps are new kind of data structures introduced in ES6. A map is a key: value data structure in
     (which is of course an object)
     * The difference is, one can use anything(numbers, strings, boolean or even functions and numbers)\
     in place of keys.(in objects, it is limited to strings).
+
     ```javascript
     // Creating a map:
 
@@ -451,19 +521,25 @@
       // To clear
       question.clear();
       ```
+
     * Maps are iterable, one can iterate through the maps and change its values.\
     forEach works similar to other iterables, ie has access to current element, key and the entire map.
+
     ```javascript
     question.forEach((value, key) => console.log(`${key} and ${value}`));
     ```
+
     * Using the new `for of` method,
+
     ```javascript
     // Using destructuring and with the help of .entries()
     for (let [key,value] of question.entries()) {
         console.log(`${key} and ${value}`);
     }
     ```
+
     * Instead of printing all elements from the map, lets try to print all 4 answers
+
     ```javascript
     // Using destructuring and with the help of .entries()
     for (let [key, value] of question.entries()) {
@@ -478,20 +554,25 @@
     // Check for the correct answer, if the expression is correct it will extract the 'true' key value
     question.get(ans === question.get('correct'));
     ```
+
     * maps are now better than object to create hash maps, use any data type as keys, maps are iterable\
     easily loop through them and to manipulate data with them, get the size of a map using the `size` property.
+
     ```javascript
     console.log(question.size)
     ```
 
 12. ## CLASSES IN ES6
+
     ---
+
     * classes just not adds any more functionality in javascript, they are syntactic sugars, which
     helps to write more easy and understandable code. It just makes easier to implement inheritance,
     and to create objects based on blue prints,
 
     * In ES5, these blueprints are simply the function constructors, ie, creating the same person function
     constructor,
+
     ```javascript
     var Person5 = function(name, yearOfBirth, job) {
         this.name = name;
@@ -507,7 +588,9 @@
     var john5 = new Person5('John', 1995, 'teacher');
     john5.calculateAge();   // Gives 25
     ```
+
     * Using ES6 classes, nicely structured, Easier to write (syntactic sugar)
+
     ```javascript
     class Person6 {
         // All classes need a constructor method
@@ -527,10 +610,12 @@
     const john6 = new Person6('John', 1995, 'teacher');
     john6.calculateAge();
     ```
+
     * This all just looks like javascript is mimicking python, So many programmers criticizing `classes`,
     because they hides the object oriented nature of inheritance in javascript.
     * Another important thing to add with the classes are static methods, ie methods that are attached to the
     classes, but not inherited by the class instances(objects that are created through the class.)
+
     ```javascript
     // Add this to the classes
     class Person6 {
@@ -557,7 +642,9 @@
 
     // only way to call the static function.
     Person6.greeting();
+
     ```
+
      * It can only be used as helper functions, it is basically a method attached to the class definitions,
      which is basically a function, that is under the hood an object, so a static methods are just methods in an
      object wrapped in some syntactic sugar. Not really a useful one.
@@ -566,12 +653,13 @@
 
 13. ### Implementing Inheritance from one class to another.
 
-    <img src="./inheritance.png" alt="paragraph-plain" style="display: block; margin-right: 10px; width: 600px"/>
+    ![paragraph-plain](./inheritance.png)
 
-    - Generic class person for all persons,
-    - Specific sub class for an athlete, an athlete is also a person but contains some more specific attributes and methods
-    - Athlete class now inherit from person.
-    - In ES5, without the syntactic sugars,
+    * Generic class person for all persons,
+    * Specific sub class for an athlete, an athlete is also a person but contains some more specific attributes and methods
+    * Athlete class now inherit from person.
+    * In ES5, without the syntactic sugars,
+
     ```javascript
     var Person5 = function(name, yearOfBirth, gender) {
         // Just a default value
@@ -596,125 +684,179 @@
         this.medals = medals;
     }
     ```
-    - There need to call the superclass fun. constructor with the `this` keyword,
-    - cz (remember with the `new` operator, it creates a new instance of the class and assign the `this` keyword to it, thereby inheriting all the parent properties to the instance created, also prototype methods)
-    - To inherit all the properties of superclass(Person5) to the Athlete5 class, use the call method to call the superclass, the `this` sets the current class as a child.
-    - To check this
+
+    * There need to call the superclass fun. constructor with the `this` keyword,
+    * cz (remember with the `new` operator, it creates a new instance of the class and assign the `this` keyword to it, thereby inheriting all the parent properties to the instance created, also prototype methods)
+    * To inherit all the properties of superclass(Person5) to the Athlete5 class, use the call method to call the superclass, the `this` sets the current class as a child.
+    * To check this
+
     ```javascript
     // Creating an instance
     var usain = new Athlete5();
     console.log(usain.isHuman); // Gives true
     ```
-    ### Throwback to the call, apply, bind trios
-    ```javascript
-    var sampleObj = {num:2};
 
-    var justAdd = function(a, b) {
+### Throwback to the call, apply, bind trios
 
-        return this.num + a + b;
-    };
-    ```
-    - But the there is no "num" assigned to `this` function, To assign, use the `call` method
-    ```javascript
-    var answer;
-    answer = justAdd.call(sampleObj, 3, 5);
-    console.log(answer);  // Gives 10
-    ```
-    - Here, the `justAdd` is called with the sample object (set to `this`), so `this.num = 3`\
-    To use the apply method,
-    ```javascript
-    var argArr = [3, 5];
-    answer = justAdd.apply(sampleObj, argArr);
+  ```javascript
+  var sampleObj = {num:2};
 
-    console.log(answer);  // gives same answer 10
-    // apply just uses an array of arguments.
+  var justAdd = function(a, b) {
 
-    // To use the bind method
-    answer = justAdd.bind(sampleObj, 3, 5);
+      return this.num + a + b;
+  };
+  ```
 
-    console.log(answer); // The answer now doesn't returns a value, but a function
+* But the there is no "num" assigned to `this` function, To assign, use the `call` method
 
-    // To examine it
-    console.dir(answer);
-    // It is now a function with name `bound justAdd` and has "[[BoundThis]]: Object - num:2 ,[[BoundArgs]]: Array(1), 0: [3,5]"
+  ```javascript
+  var answer;
+  answer = justAdd.call(sampleObj, 3, 5);
+  console.log(answer);  // Gives 10
+  ```
 
-    // It needed to pass arguments as single (not as an array)
-    console.log(answer()); // Gives 10
+* Here, the `justAdd` is called with the sample object (set to `this`), so `this.num = 3`\
+  To use the apply method,
 
-    // But the answer now is a function, one can pass the arguments directly
-    answer = justAdd.bind(sampleObj);
-    console.log(answer(3, 5));
-    ```
-    - Now back to inheritance -- Above, done the opposite thing with `call` method,ie called the Person5 fun. constructor with current one(ie the `this`), and used no arguments.
-    - But with arguments as normal,
-    ```javascript
-    var Athlete5 = function (name, yearOfBirth, gender, olympicGames, medals) {
-        // Just calls the parentclass or superclasss
-        Person5.call(this, name, yearOfBirth, gender);
-        this.olympicGames = olympicGames;
-        this.medals = medals;
-    }
-    ```
-    - Checking
-    ```javascript
-    var usain = new Athlete5("Usain Bolt", 1982, "Male", 4, 18);
+  ```javascript
+  var argArr = [3, 5];
+  answer = justAdd.apply(sampleObj, argArr);
 
-    console.log(usain.isHuman);  //true
-    console.log(usain.yearOfBirth); //1982
-    console.log(usain.name); // Usain Bolt
-    console.log(usain.olympicGames); // 4
-    console.log(usain.medals); // 18
-    ```
-    - To create the correct prototype chain(manually setting), in other words to inherit prototype from the parent use `Object.create`
-    ```javascript
-    Athlete5.prototype = Object.create(Person5.prototype);
-    // Now the prototype chains are connected,
+  console.log(answer);  // gives same answer 10
+  // apply just uses an array of arguments.
 
-    var usain = new Athlete5("Usain Bolt", 1982, "Male", 4, 18);
+  // To use the bind method
+  answer = justAdd.bind(sampleObj, 3, 5);
 
-    // Testing
-    usain.calculateAge(); // Returns 19
-    ```
+  console.log(answer); // The answer now doesn't returns a value, but a function
 
-    - With ES6, which introduces the so called classes, the whole thing is wrapped up in syntactic sugar,
-    ```javascript
-    class Person6 {
-        // All classes need a constructor method
-        constructor (name, yearOfBirth, job) {
-            this.name = name;
-            this.yearOfBirth = yearOfBirth;
-            this.job = job;
-        }
+  // To examine it
+  console.dir(answer);
+  // It is now a function with name `bound justAdd` and has "[[BoundThis]]: Object - num:2 ,[[BoundArgs]]: Array(1), 0: [3,5]"
 
-        // prototype just added inside the class
-        calculateAge() {
-            let age = new Date().getFullYear() - this.yearOfBirth;
-            console.log(age);
-        }
-    }
+  // It needed to pass arguments as single (not as an array)
+  console.log(answer()); // Gives 10
 
-    // ES6 got classes (not in the same meaning as classes in other languages), with `extends` keyword,
-    // the subclass "extends" from the super class.
+  // But the answer now is a function, one can pass the arguments directly
+  answer = justAdd.bind(sampleObj);
+  console.log(answer(3, 5));
+  ```
 
-    class Athlete6 extends Person6 {
-        constructor(name, yearOfBirth, job, olympicGames, medals) {
-            // No need to manually call the super class, everything happens behind the scenes
-            super(name, yearOfBirth, job);
-            this.olympicGames = olympicGames;
-            this.medals = medals;
-        }
+* Now back to inheritance -- Above, done the opposite thing with `call` method,ie called the Person5 fun. constructor with current one(ie the `this`), and used no arguments.
+* But with arguments as normal,
 
-        wonMedal() {
-            this.medals++;
-            console.log(this.medals);
-        }
-    }
+  ```javascript
+  var Athlete5 = function (name, yearOfBirth, gender, olympicGames, medals) {
+      // Just calls the parentclass or superclasss
+      Person5.call(this, name, yearOfBirth, gender);
+      this.olympicGames = olympicGames;
+      this.medals = medals;
+  }
+  ```
 
-    const johnAthlete6 = new Athlete6('John', 1985, 'swimmer', 3, 10);
+* Checking
 
-    johnAthlete6.wonMedal(); // 11
-    johnAthlete6.calculateAge(); // 35
-    ```
-    - The ES6 way is more easier to read, the optimum thing to do is understand all these with ES5,
-    Do it in the way of ES6.
-    - conclusion: the inheritance actually is prototype inheritance in classes.
+  ```javascript
+  var usain = new Athlete5("Usain Bolt", 1982, "Male", 4, 18);
+
+  console.log(usain.isHuman);  //true
+  console.log(usain.yearOfBirth); //1982
+  console.log(usain.name); // Usain Bolt
+  console.log(usain.olympicGames); // 4
+  console.log(usain.medals); // 18
+  ```
+
+* To create the correct prototype chain(manually setting), in other words to inherit prototype from the parent use `Object.create`
+
+  ```javascript
+  Athlete5.prototype = Object.create(Person5.prototype);
+  // Now the prototype chains are connected,
+
+  var usain = new Athlete5("Usain Bolt", 1982, "Male", 4, 18);
+
+  // Testing
+  usain.calculateAge(); // Returns 19
+  ```
+
+* With ES6, which introduces the so called classes, the whole thing is wrapped up in syntactic sugar,
+
+  ```javascript
+  class Person6 {
+      // All classes need a constructor method
+      constructor (name, yearOfBirth, job) {
+          this.name = name;
+          this.yearOfBirth = yearOfBirth;
+          this.job = job;
+      }
+
+      // prototype just added inside the class
+      calculateAge() {
+          let age = new Date().getFullYear() - this.yearOfBirth;
+          console.log(age);
+      }
+  }
+
+  // ES6 got classes (not in the same meaning as classes in other languages), with `extends` keyword,
+  // the subclass "extends" from the super class.
+
+  class Athlete6 extends Person6 {
+      constructor(name, yearOfBirth, job, olympicGames, medals) {
+          // No need to manually call the super class, everything happens behind the scenes
+          super(name, yearOfBirth, job);
+          this.olympicGames = olympicGames;
+          this.medals = medals;
+      }
+
+      wonMedal() {
+          this.medals++;
+          console.log(this.medals);
+      }
+  }
+
+  const johnAthlete6 = new Athlete6('John', 1985, 'swimmer', 3, 10);
+
+  johnAthlete6.wonMedal(); // 11
+  johnAthlete6.calculateAge(); // 35
+  ```
+
+  * The ES6 way is more easier to read, the optimum thing to do is understand all these with ES5,
+  Do it in the way of ES6.
+  * conclusion: the inheritance actually is prototype inheritance in classes.
+
+### When you should not use Arrow Functions
+
+---
+
+1. In Object Methods.
+
+   ```javascript
+   var cat = {
+      lives: 9,
+      jumps: () => {
+       this.lives--;
+      }
+   }
+   ```
+
+   When you call cat.jumps, the number of lives does not decrease. It is because this is not bound to anything, and will inherit the value of this from its parent scope.
+
+2. Callback functions with dynamic context
+   If you need your context to be dynamic, arrow functions are not the right choice. Take a look at this event handler below:
+
+   ```javascript
+   var button = document.getElementById('press');
+   button.addEventListener('click', () => {
+     this.classList.toggle('on');
+   });
+   ```
+
+   If we click the button, we would get a TypeError. It is because this is not bound to the button, but instead bound to its parent scope.
+
+3. When it makes your code less readable
+   It is worth taking into consideration the variety of syntax we covered earlier. With regular functions, people know what to expect. With arrow functions, it may be hard to decipher what you are looking at straightaway.
+
+### When you should use them
+
+   Arrow functions shine best with anything that requires this to be bound to the context, and not the function itself.
+
+   Despite the fact that they are anonymous, I also like using them with methods such as map and reduce, because I think it makes my code more readable. To me, the pros outweigh the cons.

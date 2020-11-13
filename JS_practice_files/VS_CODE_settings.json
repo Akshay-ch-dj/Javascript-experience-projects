@@ -1,0 +1,177 @@
+{
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "files.autoSave": "onFocusChange",
+    "[git-commit]": {
+        "editor.rulers": [
+            {
+                "column": 50,
+                "color": "#cecb293f"
+            }
+        ]
+    },
+    "[python]": {
+        "editor.rulers": [
+            79,
+            120
+        ],
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+
+    "editor.rulers": [
+        {
+            "column": 79,
+            "color": "#50595f5b"
+        },
+        {
+            "column": 100,
+            "color": "#2f7db154"
+        },
+        {
+            "column": 120,
+            "color": "#ff3f0521"
+        },
+    ],
+    "editor.fontSize": 15,
+
+    "files.associations": {
+        "*.html": "html",
+        // The Django template
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+
+    "window.zoomLevel": 0,
+    "liveServer.settings.donotVerifyTags": true,
+    "editor.minimap.enabled": true,
+    "editor.minimap.maxColumn": 85,
+    "editor.renameOnType": true,
+    "editor.minimap.renderCharacters": false,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "workbench.startupEditor": "newUntitledFile",
+    "python.venvFolders": [
+        "Ab-local"
+    ],
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8CategorySeverity.F": "Warning",
+    "python.experiments.optOutFrom": [
+
+    ],
+    "workbench.colorTheme": "Community Material Theme Darker High Contrast",
+    "workbench.iconTheme": "eq-material-theme-icons",
+
+
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code'",
+
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    //following will be in italic (=FlottFlott)
+                    "comment",
+                    "entity.name.type.class", //class names
+                    "keyword", //import, export, return…
+                    "constant", //String, Number, Boolean…, this, super
+                    "storage.modifier", //static keyword
+                    "storage.type.class.js", //class keyword
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": [
+                    //following will be excluded from italics (VSCode has some defaults for italics)
+                    "invalid",
+                    "keyword.operator",
+                    "constant.numeric.css",
+                    "keyword.other.unit.px.css",
+                    "constant.numeric.decimal.js",
+                    "constant.numeric.json"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+
+    // TODO highlight
+
+    "todohighlight.isEnable": true,
+    "todohighlight.isCaseSensitive": true,
+    "todohighlight.keywords": [
+
+        {
+            "text": "NOTE:",
+            "color": "#ff0000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "HACK:",
+            "color": "#000",
+            "isWholeLine": false,
+        },
+        {
+            "text": "PHOTO",
+            "color": "#333",
+            "backgroundColor": "#3498db"
+        },
+        {
+            "text": "FIXME",
+            "color": "#333",
+            "backgroundColor": "#e67e22"
+        },
+        {
+            "text": "BUG",
+            "color": "#333",
+            "backgroundColor": "#e74c3c"
+        },
+        {
+            "text": "TODO",
+            "color": "#333",
+            "backgroundColor": "#2ecc71"
+        },
+        {
+            "text": "QUESTION",
+            "color": "#333",
+            "backgroundColor": "rgb(238, 234, 10)"
+        },
+        {
+            "text": "ANSWER",
+            "color": "#333",
+            "backgroundColor": "rgb(23, 182, 3)"
+        },
+        {
+            "text": "CODE",
+            "color": "#fff",
+            "backgroundColor": " rgb(119, 67, 0)"
+        },
+
+    ],
+    "cSpell.enableFiletypes": [
+        "django-html",
+        "django-txt"
+    ],
+    "C_Cpp.updateChannel": "Insiders",
+    "python.dataScience.alwaysTrustNotebooks": true,
+    "jshint.options": {
+        "browser": true,
+        "globalstrict": true,
+        "devel": true,
+        "esversion": 6
+    },
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2
+
+}

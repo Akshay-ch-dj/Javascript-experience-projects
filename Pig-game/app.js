@@ -160,7 +160,7 @@ const gameControl = ((UI) => {
   };
 
   return {
-    init: () => {
+    init: function() {
       resetGame();
       setupEventListeners();
     },

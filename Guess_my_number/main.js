@@ -29,17 +29,17 @@ const UI = (() => {
   };
 
   return {
-    changeMessage: (text) => {
+    changeMessage: function(text) {
       DOMElement.message.textContent = text;
     },
-    reduceScore: () => {
+    reduceScore: function() {
       score--;
       DOMElement.score.textContent = score;
     },
-    checkHighScore: () => {
+    checkHighScore: function() {
       DOMElement.highScore.textContent = getHighScore();
     },
-    displayNum: (num) => {
+    displayNum: function(num) {
       DOMElement.number.textContent = num;
     },
     resetUI: function() {
@@ -68,10 +68,10 @@ const UI = (() => {
       this.checkHighScore();
       DOMElement.checkButton.disabled = true;
     },
-    clearInput: () => {
+    clearInput: function() {
       DOMElement.guessedNum.value = '';
     },
-    marioJump: () => {
+    marioJump: function() {
       DOMElement.mario.classList.remove('mario--jump');
       setTimeout(() => {
         DOMElement.mario.classList.add('mario--jump');
@@ -127,7 +127,7 @@ const controller = ((UI) => {
   };
 
   return {
-    init: () => {
+    init: function() {
       // reset game at start and call event listeners
       resetGame();
       setupEventListeners();
