@@ -407,3 +407,194 @@ addArrow(2, 4, 6);
 */
 
 // Modern JS use rest parametrs
+
+
+// Primitives VS objects
+
+/*
+const me = {
+  name: 'Akshay',
+  age: 30,
+};
+
+// Created a copy of the object
+const friend = me;
+
+// Changed the copy
+friend.age = 27;
+
+console.log('Friend:', friend);
+
+// Now the original object also changed
+console.log('ME:', me);
+*/
+
+/*
+// What if there really needs to copy an object?
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+// To copy an object
+
+const jessicaCopy = Object.assign({}, jessica);
+jessicaCopy.lastName = 'Manu';
+
+console.log(jessicaCopy);
+console.log(jessica);
+
+// But there is a problem with this approach, that is it only creates a shallow
+// copy of the object, ie only the first level copy, so the inner objects get
+// assigned to the old address
+
+const jessicaNested = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  children: ['pappu', 'soori'],
+};
+
+// Created a shallow copy
+const jessicaCopy2 = Object.assign({}, jessicaNested);
+console.log(jessicaCopy2);
+
+// changed the nested object(an array)
+jessicaCopy2.children.push('kuttappayi');
+
+// changed the top level
+jessicaCopy2.lastName = 'Fernandas';
+
+// Both levels changed
+console.log(jessicaCopy2);
+
+// But here also the inner array changed (that we didn't made)
+console.log(jessicaNested);
+
+*/
+
+// To make a deep clone of object we use an external library
+
+// 1. No straight method exist as an object contains, methods, properties,
+
+/*
+Using object.create
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  children: ['Martin', 'Stevan'],
+};
+
+const jessicaFullcpy = Object.create(jessica);
+console.log(jessicaFullcpy);
+
+
+jessicaFullcpy.children.push('Maria');
+jessicaFullcpy.lastName = 'Fernandez';
+
+console.log(jessicaFullcpy);
+console.log(jessica);
+
+That also creates a shallow copy.
+*/
+
+// 1. Using JSON.parse(JSON.stringify(object))
+
+// Don't copies Date objects, functions/methods, undefined, regExp or Infinity
+// within the target object.
+
+// It is slower to that it involves two conversions.
+
+/*
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  children: ['Martin', 'Stevan'],
+};
+
+const jessicaFullcpy2 = JSON.parse(JSON.stringify(jessica));
+
+// Before
+console.log(jessica);
+console.log(jessicaFullcpy2);
+
+
+jessicaFullcpy2.children.push('Maria');
+jessicaFullcpy2.lastName = 'Fernandez';
+
+// After
+console.log(jessicaFullcpy2);
+console.log(jessica);
+*/
+
+// 2. A solution from stackoverflow using recursion
+
+/*
+function clone(obj) {
+  let copy;
+
+  // Handle the 3 simple types, and null or undefined
+  if (null == obj || 'object' != typeof obj) return obj;
+
+  // Handle Date
+  if (obj instanceof Date) {
+    copy = new Date();
+    copy.setTime(obj.getTime());
+    return copy;
+  }
+
+  // Handle Array
+  if (obj instanceof Array) {
+    copy = [];
+    for (let i = 0, len = obj.length; i < len; i++) {
+      copy[i] = clone(obj[i]);
+    }
+    return copy;
+  }
+
+  // Handle Object
+  if (obj instanceof Object) {
+    copy = {};
+    for (const attr in obj) {
+      if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+    }
+    return copy;
+  }
+
+  throw new Error('Unable to copy obj! Its type isn\'t supported.');
+}
+
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  children: ['Martin', 'Stevan'],
+};
+
+const jessicaFullcpy3 = clone(jessica);
+
+// Before
+console.log(jessica);
+console.log(jessicaFullcpy3);
+
+
+jessicaFullcpy3.children.push('Maria');
+jessicaFullcpy3.lastName = 'Fernandez';
+
+// After
+console.log(jessicaFullcpy3);
+console.log(jessica);
+
+*/
+
+const str = 'Jonas';
+const jonasCharacters = ['J', 'o', 'n', 'a', 's'];
+console.log([...str]);
+console.log(jonasCharacters);
+console.log([...str] === jonasCharacters);

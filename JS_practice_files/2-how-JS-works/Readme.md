@@ -330,3 +330,73 @@ also, `this` does NOT point to the function itself, and NOT to the variable envi
 There are other ways to call the function and reassign the this keyword, using `new`, `call`, `apply` and `bind`. (will explore later or here is a [small guide]().)
 
 look the [script file](./script.js) for practices codes with comments
+
+## Primitives objects and the JS engine
+
+---
+
+Look at this code snippets,
+
+```javascript
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);  // 31
+console.log(oldAge);  // 30
+```
+
+```javascript
+// An object
+const me = {
+  name: 'Akshay',
+  age: 30,
+};
+
+// Created a copy of the object
+const friend = me;
+
+// Changed the copy
+friend.age = 27;
+
+console.log('Friend:', friend);  // Friend: {name: "Akshay", age: 27}
+
+// Now the original object also changed
+console.log('ME:', me);  // ME: {name: "Akshay", age: 27}
+```
+
+Why it happens, before finding that lets dive in to some basics, in JS there are 2 types of
+datatypes, There are some **Primitives** like number, string, Boolean...etc, everything left are **Objects.**
+
+![primitives_vs_objects](./images/primitives_objects.png)
+
+They are stored in memory differently, so they called primitive types(primitives) and reference types(objects).
+All the objects are stored in the HEAP,\
+While the primitives/primitive types stored in call stack(in the execution context they are declared.)
+
+In the First function, js will create a unique identifier with the variable name, then a piece of memory will be allocated, finally the value will be stored in the memory.(happens in the call stack)
+
+![primitive-example1](./images/primitive_example1.png)
+
+Now we can say age variable points to the memory address(*0001*), when we say age is 30, it is actually the value at the memory location is 30.\
+When we assign `let oldAge = age;`, The oldage now also points to the same memory location.\
+But then, we change the age like `age = 31`, **Now the value at the address will not get changed**(That makes no sense at all), the memory location is basically immutable(it can only be freed after the execution).
+
+Instead **it creates a new address and stores the new value there**(*0002*), now the age points to the new value,
+
+![primitive-example2](./images/primitive_example2.png)
+
+With **Reference values**, it is different, that produces the weird behavior,
+
+When a new object is created, it is stored in the HEAP, with a memory address (*here: D30F*), but the variable me doesn't directly points to this location, instead to a new address(0003) in the call stack, that then points to the original location (*D30F*).
+
+![reference-example1](./images/objects_example1.png)
+
+It works in this way cz, the object may be too large to be stored in the stack. so it is stored in HEAP and call stack keeps a reference to it.
+
+When a new variable is created with same object, `const friend = me`, now the friend identifier also points to the same location as me (0003, that then points to the object itself).
+
+So, when changing a property in the object, `friend.age = 27`, it finds the object in the heap and changes its property, thereby changing the original object.
+
+![reference-example2](./images/objects_example2.png)
+
+One important implication of this is, whenever you think you are copying an object (maps, arrays, functions...etc), its only just creating a new variable that points to the exact same object.
