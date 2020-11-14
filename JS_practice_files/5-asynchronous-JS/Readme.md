@@ -495,17 +495,17 @@ async function getRecipesAW() {
 }
 getRecipesAW();
 
-after 1.5s
+// after 1.5s
 [523, 883, 432, 974]
-after 1.5s
+// after 1.5s
 2: Chicken Curry
-another 1.5s
+// another 1.5s
 {title: "Italian Pizza", publisher: "Akshay"}
 ```
 
 The syntax gets lot more simpler now, simply waits(`await`s) till each of the promises gets resolved,\
 It allows consume promises without the callback hells in a more readable way.\
-remember the *async/await* only comes as a pair. i.e. the await can only be used **inside** the async
+remember the `async & await` only comes as a pair. i.e. the await can only be used **inside** the async
 function.
 
 Let's try to return a value from an async function.

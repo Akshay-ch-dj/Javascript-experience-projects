@@ -202,20 +202,29 @@
 
         Notice, here also, if the main function is assigned as arrow function, `this` will not works as normal `this`....
 
-5. ## Destructuring.
+5. ## Destructuring
 
     * Convenient way to extract data from objects or an array, for ES5 it is like,
 
         ```javascript
-        var john = ['John', 25];
+        var john = ['John', 25, true];
         var name = john[0];
         var age = john[1];
+        ```
 
-        // ES6
+    * ES6
 
-        const [name, year] = ['John', 25];
+        ```javascript
+        const [name, year] = ['John', 25, true];
         console.log(name);  // John
         console.log(year);  // 25
+
+        // , skips values
+        const [name,, isMale] = ['John', 25, true];
+
+        // swapping
+        let a = 8, b = 6;
+        [a, b] = [b, a];
 
         // Also with objects
         const obj = {
@@ -234,6 +243,20 @@
         console.log(b);  // Smith
         ```
 
+        In nested objects too,
+
+        ```javascript
+        const LOCAL_FORECAST = {
+          yesterday: { low: 61, high: 75 },
+          today: { low: 64, high: 77 },
+          tomorrow: { low: 68, high: 80 }
+        };
+
+        const { today: {low: lowToday, high: highToday}}  = LOCAL_FORECAST;
+        // It creates two variables lowToday and highToday and grabs the data.
+        console.log(lowToday, highToday);
+        ```
+
         Practical application of destructuring, To return multiple values from a function
 
         ```javascript
@@ -245,6 +268,20 @@
         const [age, retirement] = calcAgeRetirement(1994);
         console.log(age); // 26
         console.log(retirement); // 39
+        ```
+
+    * Destructuring can be done within the argument braces,
+
+        ```javascript
+        const profileUpdate = (profileData) => {
+          const { name, age, nationality, location } = profileData;
+          // do something with these variables
+        }
+
+        // Can be done like
+        const profileUpdate = ({ name, age, nationality, location }) => {
+          /* do something with these fields */
+        }
         ```
 
 6. ## Arrays in ES6
@@ -345,6 +382,10 @@
         // In ES6, the `spread` operator simplifies it all,
         const sum3 = addFourAges(...ages);
         console.log(sum3);
+
+        // Can use other functions easily, as Math.max requires
+        // comma separated values than arrays.
+        const MAX_AGE = Math.max(...arr); // returns 34
         ```
 
         It got more use cases, eg: for joining arrays.
@@ -402,7 +443,20 @@
     }
 
     isFullage6(1990, 1995, 1996, 2013, 1997);
+
+    // Another example to find sum of all arguments
+    const sum = (...args) => args.reduce((a, b) => a + b, 0);
+
+    sum(1, 2, 3, 4);  // gives 10
     ```
+
+    * collect the rest of the elements into a separate array. The result is similar to `Array.prototype.slice()`, as shown below:
+
+      ```javascript
+      const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+      console.log(a, b); // 1, 2
+      console.log(arr); // [3, 4, 5, 7]
+      ```
 
     The difference between the spread operator and the rest parameter is actually the place where we use it each, `spread` is used in a function call, and `rest` operator is in a function declaration to accept an arbitrary number of parameters.
 
@@ -645,11 +699,36 @@
 
     ```
 
-     * It can only be used as helper functions, it is basically a method attached to the class definitions,
+     * It can only be used as helper functions, it is basically a method attached to the class definitions,\
      which is basically a function, that is under the hood an object, so a static methods are just methods in an
      object wrapped in some syntactic sugar. Not really a useful one.
      * The class definitions are not hoisted, so it need to implement a class and only latter in the code, can start using it.
      * Its only add methods to classes directly not properties, (inheriting properties through object instances is not a best practice.)
+     * A basic implementation of ES6 classes with `setter` and `getter` functions,\
+       Getter functions are meant to simply return (get) the value of an object's private variable to the user without the user directly accessing the private variable. Setter functions are meant to modify (set) the value of an object's private variable based on the value passed into the setter function.
+
+       ```javascript
+       class Book {
+         constructor(author) {
+           this._author = author;
+         }
+         // getter
+         get writer() {
+           return this._author;
+         }
+         // setter
+         set writer(updatedAuthor) {
+           this._author = updatedAuthor;
+         }
+       }
+       const novel = new Book('anonymous');
+       console.log(novel.writer);  // anonymous
+       novel.writer = 'newAuthor';
+       console.log(novel.writer);  // newAuthor
+       ```
+
+     * Notice the syntax used to invoke the getter and setter. They do not even look like functions. Getters and setters are important because they hide internal implementation details.
+     * Note: It is convention to precede the name of a private variable with an underscore (_). However, the practice itself does not make a variable private.
 
 13. ### Implementing Inheritance from one class to another.
 
