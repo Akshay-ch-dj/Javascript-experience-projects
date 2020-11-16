@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 // // Function Constructor
 
 // var john = {
@@ -79,15 +80,16 @@ An object is created using a function constructor.
 // // The method is not anymore in the constructor but one can use it, cz it is
 // // in the prototype property of the function constructor.
 
-// // This is a more common practice to attach functions to prototype, but one can
+// // This is a more common practice to attach functions to prototype, but one
+// can
 // // also add properties too to the prototype(not really common.)
 
 // Person.prototype.lastName = 'Smith';
 
 // console.log(john.lastName);
 
-// // Object.create : - Here we will first define an object that will work as the
-// // Prototype, then create a new object based on the prototype.
+// Object.create : - Here we will first define an object that will work as the
+// Prototype, then create a new object based on the prototype.
 
 // var personProto = {
 //     calcAge: function() {
@@ -108,20 +110,20 @@ An object is created using a function constructor.
 //     job: { value: 'designer'}
 // });
 
-// // Object.create :- creates objects that inherits directly from the one passed
-// // but with fun. constructor, the object inherits from the constructors prototype
-// // property,
+// Object.create :- creates objects that inherits directly from the one passed
+// but with fun. constructor, the object inherits from the constructors
+// prototype property,
 
-// // Object.create allows one to inherit complex structures( nested objects, arrays)
-// //  in an easy way.
+// Object.create allows one to inherit complex structures( nested objects,
+// arrays), in an easy way.
 
-// // Primitives vs objects
+// Primitives vs objects
 
-// // The big difference from variables to primitive is that variables containing
-// // primitive holds the data inside the variable itself.
-// // variables associated with objects do not actually contain the objects, but
-// // contains a reference for the place in memory where the objects sits, ie,
-// // the variable just points to that object.
+// The big difference from variables to primitive is that variables containing
+// primitive holds the data inside the variable itself.
+// variables associated with objects do not actually contain the objects, but
+// contains a reference for the place in memory where the objects sits, ie,
+// the variable just points to that object.
 
 
 // // Primitives
@@ -145,9 +147,9 @@ An object is created using a function constructor.
 // console.log(obj1.age);
 // console.log(obj2.age);
 
-// // They both the same, at line 138, no new copy created but only a new reference
-// // which points to the first object., obj1 and obj2 holds reference that points to
-// // the exact same object in memory.
+// They both the same, at line 138, no new copy created but only a new reference
+// which points to the first object., obj1 and obj2 holds reference that
+// points to the exact same object in memory.
 
 // // It is the same thing that happens with functions.
 
@@ -169,12 +171,13 @@ An object is created using a function constructor.
 // console.log(age);
 // console.log(obj.city);
 
-// // The age variable is not changed, a = 30(simple copy created) the a can be
-// // changed as much, cz it is a primitive,
-// // (note:- If one need to actually change the global variable assign age = 30
-// // just with in the function)
-// // For the object, we do not pass any real object to the function but a reference
-// // to the function, [careful about the object amendments in functions.
+// The age variable is not changed, a = 30(simple copy created) the a can be
+// changed as much, cz it is a primitive,
+// (note:- If one need to actually change the global variable assign age = 30
+// just with in the function)
+// For the object, we do not pass any real object to the function but a
+// reference
+// to the function, [careful about the object amendments in functions.
 
 
 // // First class functions
@@ -195,7 +198,7 @@ An object is created using a function constructor.
 //     return arrRes;
 // }
 
-// // fn. functions, Call back functions - fn. passed into function to call later.
+// fn. functions, Call back functions - fn. passed into function to call later.
 // function calcAge(el) {
 //     return 2020 - el;
 // }
@@ -225,7 +228,8 @@ An object is created using a function constructor.
 // function interviewQuestion(job) {
 //     if (job === 'designer') {
 //         return function(name) {
-//             console.log(name + ', can you please explain what UX design is?');
+//             console.log(name + ', can you please explain what UX design \
+// is?');
 //         }
 //     } else if (job === 'teacher') {
 //         return function(name) {
@@ -257,7 +261,8 @@ An object is created using a function constructor.
 
 // function countdown(callback) {
 //     // setTimeout function: to set intervals for execution
-//     // setTimeout(function, 2000) :- wait for two second, then execute the fun.
+//     // setTimeout(function, 2000) :- wait for two second, then
+// execute the fun.
 //     setTimeout(callback(), 2000);
 // }
 
@@ -292,10 +297,10 @@ An object is created using a function constructor.
 //     console.log(score >= 5);
 // })();
 
-// // Using the parenthesis- "(fun..)", it just trick the js parser- it didn't
-// // think as function. (the things inside the '()' cannot be a function.
-// // It should be treated as a expression, not as a fun. declaration. the variable
-// // "score" cannot be accessed from outside, data privacy.
+// Using the parenthesis- "(fun..)", it just trick the js parser- it didn't
+// think as function. (the things inside the '()' cannot be a function.
+// It should be treated as a expression, not as a fun. declaration. the variable
+// "score" cannot be accessed from outside, data privacy.
 
 // // console.log(score); // which is undefined
 
@@ -333,40 +338,41 @@ An object is created using a function constructor.
 
 // retirement(60)(1994);
 
-// // There is probably unnoticed thing happens, ie. var a, and the retirAge
-// // parameter are accessible to the anonymous return function.
-// // By the execution stack workflow, a function gets popped out from the stack
-// // after its execution, with the first call with 'retirement(66)', fun. runs
-// // and returns (here another fun.) value to retireUS, its running completed and
-// // gets kick out from the stack, but somehow the values are available again to
-// // use on the retireUS(inner Function) at the time we call it.
-// //
-// // THIS IS THE CLOSURE.
-// // summary:- An inner function has always access to the variables and
-// // parameters of its outer function, even after the outer function has
-// // returned.
-// // The secret to closure is even after a function returns and its ex. context
-// // get closed, but it didn't get removed from the scope chain.
-// // ie the var. object and the scope chain doesn't gone. its still in memory
-// // and can be accessed.
-// // (the ex. context consists of three main parts.
-// // Variable Object (VO), Scope chain, 'this variable')
-// // When we call retireUS it puts a new execution context on the stack. In the
-// // scope chain, since inner function to the retirement written lexically, it got
-// // gets access to its scope.
-// // Since the variable object of the retirement function is still there, the scope
-// // chain stays intact, ie. it keeps working, so one can access the variables
-// // that are created in the retirement function long after the fun. completes its
-// // execution.(after its execution context is gone).
-// // The current execution context has closed in on the outer variable object(
-// // of retirement), it can use it, thats why its called closure, the scope chain
-// // always stays intact.
-// // We don't create a closure manually, its a setting/feature built in to js,
+// There is probably unnoticed thing happens, ie. var a, and the retirAge
+// parameter are accessible to the anonymous return function.
+// By the execution stack workflow, a function gets popped out from the stack
+// after its execution, with the first call with 'retirement(66)', fun. runs
+// and returns (here another fun.) value to retireUS, its running completed and
+// gets kick out from the stack, but somehow the values are available again to
+// use on the retireUS(inner Function) at the time we call it.
+//
+// THIS IS THE CLOSURE.
+// summary:- An inner function has always access to the variables and
+// parameters of its outer function, even after the outer function has
+// returned.
+// The secret to closure is even after a function returns and its ex. context
+// get closed, but it didn't get removed from the scope chain.
+// ie the var. object and the scope chain doesn't gone. its still in memory
+// and can be accessed.
+// (the ex. context consists of three main parts.
+// Variable Object (VO), Scope chain, 'this variable')
+// When we call retireUS it puts a new execution context on the stack. In the
+// scope chain, since inner function to the retirement written lexically, it got
+// gets access to its scope.
+// Since the variable object of the retirement function is still there, the
+// scope
+// chain stays intact, ie. it keeps working, so one can access the variables
+// that are created in the retirement function long after the fun. completes its
+// execution.(after its execution context is gone).
+// The current execution context has closed in on the outer variable object(
+// of retirement), it can use it, thats why its called closure, the scope chain
+// always stays intact.
+// We don't create a closure manually, its a setting/feature built in to js,
 
-// // SUMMARY: An inner function has always access to the variables and parameters
-// // of its outer function, even after the outer function has returned.
-// //
-// //
+// SUMMARY: An inner function has always access to the variables and parameters
+// of its outer function, even after the outer function has returned.
+//
+//
 
 
 // function retirement(retirAge) {
@@ -393,7 +399,8 @@ An object is created using a function constructor.
 //     return function(name) {
 //         switch (job) {
 //             case 'designer':
-//                 console.log(`${name} can you please explain what UX design is`);
+//                 console.log(`${name} can you please explain what UX design
+// is`);
 //                 break;
 //             case 'teacher':
 //                 console.log(`What subject do ypu teach, ${name}?`);
@@ -414,7 +421,7 @@ Just got these doubts, and some random notes
 Whats my basic understanding till now, Js creates an execution context for
 every function called , that contains 3 things
 
-i) variable object:- that stores all the variable declared, inner functions   
+i) variable object:- that stores all the variable declared, inner functions
 declared in the function(called hoisting) and also the arguments passed.
 
 ii) scope chain:- it is a pointer to the location of variable objects - the fn.
@@ -442,13 +449,13 @@ expecting the call.
 scope will gets pointed to the parent function( ie the retirement() fn here),
 is that is why  it not gets removed..
 
-function retirement(retireAge) {
-    var a = ' years left until retirement.';
-    return function(yearOfBirth) {
-        var age = 2020 - yearOfBirth;
-        console.log((retireAge - age) + a);
-    }
-}
+// function retirement(retireAge) {
+//     var a = ' years left until retirement.';
+//     return function(yearOfBirth) {
+//         var age = 2020 - yearOfBirth;
+//         console.log((retireAge - age) + a);
+//     }
+// }
 
 var retireUS = retirement(66);
 
@@ -549,7 +556,8 @@ scope chain to the 'counter' variable or simply the only one bound by closure.
 
 // // Bind, Call and Apply
 
-// // This methods allows one to call a function and set the this variable manually.
+// This methods allows one to call a function and set the this variable
+// manually.
 
 // var john = {
 //     name: 'John',
@@ -557,11 +565,14 @@ scope chain to the 'counter' variable or simply the only one bound by closure.
 //     job: 'teacher',
 //     presentation: function(style, timeOfDay) {
 //         if (style === 'formal') {
-//             console.log('Good ' + timeOfDay + ', Ladies and gentleman!, I\'m ' + this.name
-//              + ' I\'m a ' + this.job + ', and I\'m ' +  this.age + ' years old.')
+//             console.log('Good ' + timeOfDay + ', Ladies and gentleman!,
+// I\'m ' + this.name
+//              + ' I\'m a ' + this.job + ', and I\'m ' +  this.age + '
+//  years old.')
 //         } else if (style === 'friendly') {
 //             console.log(`Hey! What\'s up?, I\'m ${this.name}, I\'m a
-//             ${this.job}, and I\'m ${this.age} years old. Have a nice ${timeOfDay}.`)
+//             ${this.job}, and I\'m ${this.age} years old. Have a nice
+// ${timeOfDay}.`)
 //         }
 //     }
 // }
@@ -586,10 +597,10 @@ scope chain to the 'counter' variable or simply the only one bound by closure.
 
 // // john.presentation.apply(emily, ['friendly', 'afternoon']);
 
-// // The bind method, set the 'this' variable explicitly, it not instantly calls
-// // the function but instead generate a copy of the function, we can store it
-// // somewhere
-// // useful to create function with preset arguments,
+// The bind method, set the 'this' variable explicitly, it not instantly calls
+// the function but instead generate a copy of the function, we can store it
+// somewhere
+// useful to create function with preset arguments,
 
 // var johnFriendly =
 // john.presentation.bind(john, 'friendly');
@@ -620,7 +631,7 @@ scope chain to the 'counter' variable or simply the only one bound by closure.
 //     return arrRes;
 // }
 
-// // fn. functions, Call back functions - fn. passed into function to call later.
+// fn. functions, Call back functions - fn. passed into function to call later.
 // function calcAge(el) {
 //     return 2020 - el;
 // }
@@ -655,26 +666,31 @@ scope chain to the 'counter' variable or simply the only one bound by closure.
 // }
 
 
-// console.log(countOnline({ Alan: { online: false }, Jeff: { online: true }, Sarah: { online: false } }));
+// console.log(countOnline({ Alan: { online: false }, Jeff: { online: true },
+// Sarah: { online: false } }));
 
 
 // Coding challenge
 
 /* Fun quiz game in the console,
-1. Function constructor called question, to describe a question, it should include,
+1. Function constructor called question, to describe a question,
+// it should include,
 a) question itself
 b) answer from which the player can choose the correct one(in object or array)
 c) correct answer (I would use a number for this)
 2) create a couple of questions using the constructor
 3) store them inside an array
-4) select one random question and log it on the console, with the possible answers (
+4) select one random question and log it on the console, with the possible
+// answers (
     each question should have a number) (as a method in question object)
-5) use the prompt function to ask the user for the correct answer. The user should input
+5) use the prompt function to ask the user for the correct answer. The user
+// should input
     the number of the correct answer such as you displayed it on Task 4.
 6) Check if the answer is correct and print to the console whether the answer is
     correct or not (can use another method for this)
 7) suppose this could be a plugin for other programmers to use in their code. So
-    make sure that all your code is private and doesn't interfere with other programmers
+    make sure that all your code is private and doesn't interfere with other
+    // programmers
     code (IIFE)
 */
 
@@ -730,7 +746,8 @@ c) correct answer (I would use a number for this)
 //     for (var i = 0; i < 3; i++) {
 //         console.log(`${i} : ${questionList[randNo].answerList[i]}\n`);
 //     }
-//     var response = parseInt(prompt('Open your console, enter the key of your answer.'));
+//     var response = parseInt(prompt('Open your console, enter the key of
+// your answer.'));
 //     questionList[randNo].displayCorrect(response);
 // }
 
@@ -785,7 +802,8 @@ c) correct answer (I would use a number for this)
 //         )
 //     );
 
-//     // the return function- only one got access to the constructor and the list
+//     // the return function- only one got access to the constructor
+// and the list
 //     // bounded by closure.
 //     return function () {
 //         // randomly select a question from the list
@@ -796,7 +814,8 @@ c) correct answer (I would use a number for this)
 //             console.log(`${i} : ${questionList[randNo].answerList[i]}\n`);
 //         }
 //         // prompt input converted to integer for checking
-//         var response = parseInt(prompt('Open your console, enter the key of your answer.'));
+//         var response = parseInt(prompt('Open your console, enter the key of
+// your answer.'));
 //         // check the response using inbuilt method(prototype)
 //         questionList[randNo].displayCorrect(response);
 //     }
@@ -811,10 +830,12 @@ Expert or lvl 2 update to the code
 for this call it after displaying the result)
 
 2. After task 1, the game never ends. so include the option to quit the game if
-the user writes 'exit' instead of the answer, in this case don't call the function
+the user writes 'exit' instead of the answer, in this case don't call the
+// function
 from task 8.
 
-3. Track the user's score to make the game more fun! each time an answer is correct
+3. Track the user's score to make the game more fun! each time an answer
+// is correct
 add 1 point to the score (hint: use closure)
 
 4. Display the score in the console.
@@ -886,18 +907,21 @@ add 1 point to the score (hint: use closure)
 //         console.log(questionList[randNo].question);
 //         for (var i = 0; i < questionList[randNo].answerList.length; i++) {
 //             // Format the display of options
-//             console.log(`${i + 1} : ${questionList[randNo].answerList[i]}\n`);
+//             console.log(`${i + 1} :
+// ${questionList[randNo].answerList[i]}\n`);
 //         }
 //     }
 
-//     // the return function- only one got access to the constructor and the list
+//     // the return function- only one got access to the constructor and
+// the list
 //     // bounded by closure.
 //     return function () {
 //         var response = 'play';
 //         while (response !== 'exit') {
-//             console.log('**************************************************');
+//             console.log('************************************************');
 //             logQuestion();
-//             response = prompt('Open your console, enter the key of your answer. Type \'exit\' to close the game');
+//             response = prompt('Open your console, enter the key of your
+// answer. Type \'exit\' to close the game');
 //             // check the response using inbuilt method(prototype)
 //             // prompt input converted to integer for checking
 //             questionList[randNo].displayCorrect(parseInt(response));
