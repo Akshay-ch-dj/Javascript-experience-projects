@@ -53,6 +53,9 @@ const restaurant = {
   },
 };
 
+
+// Foot ball game object
+
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -94,6 +97,149 @@ const game = {
   },
 };
 
+// 1. Loop over the game.scored array and print each player name to the console,
+// along with the goal number (Example: "Goal 1: Lewandowski")
+
+for (const [index, player] of game.scored.entries()) {
+  console.log(`Goal ${index + 1}: ${player}`);
+}
+
+// 2. Use a loop to calculate the average odd and log it to the console
+
+// Using Object.values
+const odds = Object.values(game.odds);
+let avg = 0;
+for (const val of odds) {
+  avg += val;
+}
+
+avg = avg / odds.length;
+console.log(avg);
+
+// 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like
+// this:
+//       Odd of victory Bayern Munich: 1.33
+//       Odd of draw: 3.25
+//       Odd of victory Borrussia Dortmund: 6.5
+// Get the team names directly from the game object, don't hardcode them (
+// except for "draw"). HINT: Note how the odds and the game objects have the
+// same property names 😉
+
+/*
+const [odd1, odd2, odd3] = Object.values(game.odds);
+console.log(`Odd of victory ${game.team1}: ${odd1}`);
+console.log(`Odd of draw: ${odd2}`);
+console.log(`Odd of victory ${game.team2}: ${odd3}`);
+*/
+for (const [key, val] of Object.entries(game.odds)) {
+  const teamStr = key === 'x' ? 'draw' : `victory ${game[key]}`;
+  console.log(`Odd of ${teamStr}: ${val}`);
+}
+
+/*
+BONUS: Create an object called 'scorers' which contains the names of the
+players who scored as properties, and the number of goals as the value.
+In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+*/
+
+/*
+const scorers = {};
+
+// frequency counter
+game.scored.forEach((player) => {
+  if (Object.prototype.hasOwnProperty.call(scorers, player)) {
+    scorers[player]++;
+  } else {
+    scorers[player] = 1;
+  }
+});
+
+console.log(scorers);
+*/
+
+
+// USing turnery operator
+const scorers = {};
+
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+
+console.log(scorers);
+
+// Coding Challenge #2
+
+/*
+Let's continue with our football betting app!
+1. Loop over the game.scored array and print each player name to the console,
+along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console
+(We already studied how to calculate averages, you can go check if you don't
+remember)
+3. Print the 3 odds to the console, but in a nice formatted way, exaclty like
+this:
+      Odd of victory Bayern Munich: 1.33
+      Odd of draw: 3.25
+      Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them (
+except for "draw"). HINT: Note how the odds and the game objects have the
+same property names 😉
+BONUS: Create an object called 'scorers' which contains the names of the
+players who scored as properties, and the number of goals as the value.
+In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+
+/*
+
+// Looping over objects in an indirect way
+// Looping over property names or keys
+
+// Actually the keys are converted to some type of array and then
+// we loop through it
+
+const days = Object.keys(restaurant.openingHours);
+console.log(days);
+
+let openStr = `We are open for ${days.length} days in a week.`;
+
+for (const day of days) {
+  openStr += ` ${day},`;
+}
+
+console.log(openStr);
+
+// Getting or looping through values
+
+const values = Object.values(restaurant.openingHours);
+console.log(values);
+
+// Getting all the entries( note for a list with index in for loop we use
+// list_name.entries())
+// Here we got array objects of length 2 contains key and the object
+const entriesObj = Object.entries(restaurant.openingHours);
+console.log(entriesObj);
+
+for (const x of entriesObj) {
+  console.log(`on ${x[0]} we open at ${x[1].open} and close at ${x[1].close}`);
+}
+
+// With destructuring object
+for (const [day, { open, close }] of entriesObj) {
+  console.log(`on ${day} we open at ${open} and close at ${close}`);
+}
+
+*/
+
+/*
 // console.log(restaurant.openingHours.mon.open);
 // But actually the restaurant.openingHours.mon didn't exists
 // Need to check before doing an operation
@@ -128,7 +274,7 @@ const users = [{
   name: 'Akshay', email: 'hello&akshay.oi',
 }];
 console.log(users[0]?.name ?? 'Empty array');
-
+*/
 
 /*
 // ES6 enhanced object literals
@@ -146,7 +292,7 @@ const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 for (const item of menu) console.log(item);
 
-// To get the idex too
+// To get the index too
 // for (const item of menu.entries()) {
 //   // Each item will be an array
 //   console.log(item);
