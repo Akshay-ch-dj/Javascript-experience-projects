@@ -1,4 +1,5 @@
 'use strict';
+
 // object
 class QueueArray {
   constructor(size, defElement) {
@@ -13,9 +14,11 @@ class QueueArray {
       } else {
         throw 'Error: defined array size is large';
       }
-    } else if (typeof(defElement) === 'string' ||
-                typeof(defElement) === 'number' ||
-                typeof(defElement) === 'boolean') {
+    } else if (
+      typeof defElement === 'string' ||
+      typeof defElement === 'number' ||
+      typeof defElement === 'boolean'
+    ) {
       this.queueArray.fill(defElement);
     } else if (defElement) {
       throw 'Error: default element type not accepted';
@@ -25,12 +28,11 @@ class QueueArray {
     console.log(this.queueArray);
   }
 
-
   // prototype
   enter(element) {
     // the whole thing shifts right that kicks out the last element
-    for (let i = this.queueArray.length-1; i >= 1; i--) {
-      this.queueArray[i] = this.queueArray[i-1];
+    for (let i = this.queueArray.length - 1; i >= 1; i--) {
+      this.queueArray[i] = this.queueArray[i - 1];
     }
     // the element is added in first position
     this.queueArray[0] = element;
@@ -54,7 +56,6 @@ reg.enter(9);
 
 reg.sortQueue('ascending');
 console.log(reg);
-
 
 // As an extension to this data structure, I've thought of a Sorted Q array,
 // (also to get practice with JS OOP)

@@ -29,20 +29,20 @@ const UI = (() => {
   };
 
   return {
-    changeMessage: function(text) {
+    changeMessage: function (text) {
       DOMElement.message.textContent = text;
     },
-    reduceScore: function() {
-      score--;
+    reduceScore: function () {
+      score -= 1;
       DOMElement.score.textContent = score;
     },
-    checkHighScore: function() {
+    checkHighScore: function () {
       DOMElement.highScore.textContent = getHighScore();
     },
-    displayNum: function(num) {
+    displayNum: function (num) {
       DOMElement.number.textContent = num;
     },
-    resetUI: function() {
+    resetUI: function () {
       this.clearInput();
       // set score back to 20
       score = 20;
@@ -57,7 +57,7 @@ const UI = (() => {
       // reset the message
       this.changeMessage('Start guessing...');
     },
-    gameWin: function() {
+    gameWin: function () {
       // change background
       document.body.style.backgroundColor = '#60b347';
       // add mario jump-flip
@@ -68,10 +68,10 @@ const UI = (() => {
       this.checkHighScore();
       DOMElement.checkButton.disabled = true;
     },
-    clearInput: function() {
+    clearInput: function () {
       DOMElement.guessedNum.value = '';
     },
-    marioJump: function() {
+    marioJump: function () {
       DOMElement.mario.classList.remove('mario--jump');
       setTimeout(() => {
         DOMElement.mario.classList.add('mario--jump');
@@ -104,7 +104,7 @@ const controller = ((UI) => {
     const guessedNum = Number(DOM.guessedNum.value);
     UI.displayNum(guessedNum);
     // check the number input
-    if (guessedNum && guessedNum < 2 || guessedNum > 19) {
+    if ((guessedNum && guessedNum < 2) || guessedNum > 19) {
       UI.changeMessage('😈 Number out of the range!');
       UI.reduceScore();
     } else if (guessedNum && guessedNum < randNum) {
@@ -127,7 +127,7 @@ const controller = ((UI) => {
   };
 
   return {
-    init: function() {
+    init: function () {
       // reset game at start and call event listeners
       resetGame();
       setupEventListeners();

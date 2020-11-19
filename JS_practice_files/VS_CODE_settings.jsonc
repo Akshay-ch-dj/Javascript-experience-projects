@@ -172,6 +172,11 @@
         "esversion": 6
     },
     "editor.detectIndentation": false,
-    "editor.tabSize": 2
-
+    "editor.tabSize": 2,
+    "prettier.disableLanguages": [
+      "django-html"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "prettier.singleQuote": true,
+    "javascript.validate.enable": false,
 }

@@ -24,7 +24,7 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function(starterIndex, mainIndex) {
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
@@ -33,26 +33,23 @@ const restaurant = {
 
   // For destructuring the names need to be matched
   // ES6 object enhanced literals
-  orderDelivery: function({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address }) {
-    console.log(`Order received! ${this.starterMenu[starterIndex]} and` +
-    ` ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and` +
+        ` ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
   },
 
-  orderPasta: function(ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and
     ${ing3}`);
   },
 
-  orderPizza: function(mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
   },
 };
-
 
 // Foot ball game object
 
@@ -97,6 +94,8 @@ const game = {
   },
 };
 
+/*
+
 // 1. Loop over the game.scored array and print each player name to the console,
 // along with the goal number (Example: "Goal 1: Lewandowski")
 
@@ -125,16 +124,21 @@ console.log(avg);
 // except for "draw"). HINT: Note how the odds and the game objects have the
 // same property names 😉
 
+*/
+
 /*
 const [odd1, odd2, odd3] = Object.values(game.odds);
 console.log(`Odd of victory ${game.team1}: ${odd1}`);
 console.log(`Odd of draw: ${odd2}`);
 console.log(`Odd of victory ${game.team2}: ${odd3}`);
 */
+
+/*
 for (const [key, val] of Object.entries(game.odds)) {
   const teamStr = key === 'x' ? 'draw' : `victory ${game[key]}`;
   console.log(`Odd of ${teamStr}: ${val}`);
 }
+*/
 
 /*
 BONUS: Create an object called 'scorers' which contains the names of the
@@ -162,7 +166,7 @@ game.scored.forEach((player) => {
 console.log(scorers);
 */
 
-
+/*
 // USing turnery operator
 const scorers = {};
 
@@ -171,7 +175,7 @@ for (const player of game.scored) {
 }
 
 console.log(scorers);
-
+*/
 // Coding Challenge #2
 
 /*
@@ -373,7 +377,6 @@ team1 < team2 && console.log('Team1 wins');
 team1 > team2 && console.log('Team2 wins');
 */
 
-
 // call the orderDelivery function and passing in an object
 // restaurant.orderDelivery({
 //   time: '23:30',
@@ -461,7 +464,6 @@ const {
 } = openingHours;
 console.log(o, c);
 */
-
 
 // Spread operator
 /*
@@ -560,7 +562,6 @@ const add = function(...numbers) {
   return sum;
 };
 
-
 console.log(add(1, 2, 3, 5, 7));
 
 const x = [45, 45, 65];
@@ -606,7 +607,6 @@ console.log(guests2);
 // That simply happens because the first one doesn't exists or it is falsy
 // NOTE:- If the actual guests is 0, this 2 methods don't work, (sometimes
 // called boundary values, solution is use logical chaining-->coming below)
-
 
 // Short circuiting using AND operator
 console.log(0 && 'Akshay');
