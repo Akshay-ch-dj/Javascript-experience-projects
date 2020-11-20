@@ -94,6 +94,169 @@ const game = {
   },
 };
 
+// Maps in JS
+// const rest = new Map();
+
+// // Fill map up
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// rest.set(2, 'Lisbon, Portugal');
+
+// rest.set('catagories');
+// console.log(rest);
+
+// // Chaining the set methods
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegan', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open :D')
+//   .set(false, 'We are closed :(');
+
+// console.log(rest);
+
+// // Get items from map
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
+
+// const time = 21;
+// // Logs if we are open or not based on the time
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// // has method
+// console.log(rest.has('catagories'));
+// // Delete from map
+
+// rest.delete(2);
+// console.log(rest);
+
+// console.log(rest.size);
+
+// rest.set([1, 2], 'Test');
+// console.log(rest.get([1, 2])); // Gives 'undefined'
+// // Only because those arrays are structurally same they are stored in different
+// // locations in memory heap, they didn't point to the same location so they are
+// // not same, think about the equating of co-ordinates ((1,2))
+
+// rest.set(document.querySelector('h1'), 'Heading');
+
+// Method to add values to the map other than the set method
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'Javascript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again'],
+]);
+
+// console.log(question);
+
+// // Convert objects to map
+
+// console.log(Object.entries(openingHours));
+
+// // As we know it returns array objects of key value pairs, also the map create
+// // a new one from that, chaining it together
+
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(openingHours);
+
+// // Maps are iterables,
+
+// // for (const [key, value] of question) {
+// //   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// // }
+
+// question.forEach((value, key) => {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// });
+
+// // const answer = prompt('your answer');
+// // console.log(answer);
+
+// // if (question.get('correct') === Number(answer)) {
+// //   console.log(question.get(true));
+// // } else {
+// //   console.log(question.get(false));
+// // }
+
+// // console.log(question.get(question.get('correct') === Number(answer)));
+
+// // Convert map to array
+
+// console.log([...question]);
+// // Which is same as
+// // console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+// console.log(question.values());
+// console.log(question.keys());
+
+// for (const obj in question) {
+//   console.log(obj);
+// }
+
+/*
+// Sets in JS
+
+const orderSet = new Set([
+  'pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(orderSet);
+
+console.log(new Set('Jonas'));
+
+console.log(orderSet.size);
+
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bred'));
+
+// Add elements
+orderSet.add('Garlic Bread');
+console.log(orderSet);
+
+// Delete elements
+orderSet.delete('Risotto');
+console.log(orderSet);
+
+// In sets there are no indexes, ie getting values out of a set don't make any sense
+// For that array is there already,
+
+// const orderSet1 = ['m', 'j', 'k'];
+
+orderSet.forEach((order) => console.log(order));
+
+// for (const order of orderSet) {
+//   console.log(order);
+// }
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+// If needed a unique array
+// const staffUnique = new Set(staff);
+
+// Unpack the set back to array using spread operator
+const staffUnique = [...new Set(staff)];
+
+console.log(staffUnique);
+
+// How many different letter there are in my name
+console.log(new Set('akshaychandran').size);
+
+// Only mind about sets if any uniqueness cf a data comes into the mind
+*/
+
 /*
 
 // 1. Loop over the game.scored array and print each player name to the console,
