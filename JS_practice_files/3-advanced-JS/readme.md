@@ -4,7 +4,7 @@
 
 The brief description, practices and challenges using the ES6 data structures and methods such as
 Sets, Maps, destructuring, Rest and Spread operators, for...of etc..\
-All in the [script2.js](./script.js),
+All in the [script2.js](./script2.js),
 
 ## Which data structure to choose
 
