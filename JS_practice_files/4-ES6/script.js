@@ -5,7 +5,6 @@
 
 // console.log(i);
 
-
 // let firstName = 'Akshay';
 // let lastName = 'Chandran';
 // const yearOfBirth = 1995;
@@ -205,7 +204,6 @@
 // console.log(age);
 // console.log(retirement);
 
-
 // Arrays in ES6
 
 // const boxes = document.querySelectorAll('.box');
@@ -222,7 +220,6 @@
 
 // Array.from(boxes).forEach(curr => curr.style.backgroundColor = 'dodgerblue');
 
-
 // console.log('kjds');
 
 // function narcissistic(value) {
@@ -234,7 +231,6 @@
 // console.log(narcissistic(371));
 // console.log(narcissistic(153));
 // console.log(narcissistic(45));
-
 
 // // Loops
 
@@ -283,8 +279,6 @@
 
 // console.log(ages.findIndex(cur => cur >= 18));
 // console.log(ages.find(cur => cur >= 18));
-
-
 
 // // The spread operator
 
@@ -352,7 +346,6 @@
 // // but an object, For to loop through it, use the ES5 hack to convert it to an
 // // array
 
-
 // // ES6, by making use of rest parameters
 
 // function isFullage6(...years) {
@@ -391,7 +384,6 @@
 // }
 
 // isFullage6(17, 1990, 1995, 1996, 2003, 1997);
-
 
 // Default Parameter
 
@@ -437,7 +429,6 @@
 //     this.yearOfBirth = yearOfBirth;
 //     this.nationality = nationality;
 // }
-
 
 // Maps in ES6
 
@@ -698,9 +689,7 @@
 // johnAthlete6.wonMedal(); // 11
 // johnAthlete6.calculateAge(); // 35
 
-
 // Challenges with ES6.
-
 
 /*
 Suppose that you're working in a small town administration, and you're in charge of two town elements:
@@ -740,7 +729,6 @@ And finally which paradigm or approach to take, the functional approach or objec
 
 // 1. Functional Approach. (MORE ES5 way)
 
-
 // // How to protect data with {}, or modules
 // const data = (function () {
 //     const parks = [
@@ -761,7 +749,6 @@ And finally which paradigm or approach to take, the functional approach or objec
 //         street: streets
 //     };
 // })();
-
 
 // const operations = (function (data) {
 //     return {
@@ -849,124 +836,135 @@ And finally which paradigm or approach to take, the functional approach or objec
 //     console.log(s);
 // })
 
-
+/*
 // 2. Class or OOP based approch.active
 
 // The park object constructor
 class Park {
-    constructor(name, year, treeCount, area) {
-        this.name = name;
-        this.year = year;
-        this.treeCount=treeCount;
-        this.area = area;
-    }
+  constructor(name, year, treeCount, area) {
+    this.name = name;
+    this.year = year;
+    this.treeCount = treeCount;
+    this.area = area;
+  }
 
-    // Park object prototype methods
-    tree_density() {
-        return this.treeCount/this.area;
-    };
+  // Park object prototype methods
+  tree_density() {
+    return this.treeCount / this.area;
+  }
 
-    calc_age() {
-        return new Date().getFullYear() - this.year;
-    }
+  calc_age() {
+    return new Date().getFullYear() - this.year;
+  }
 
-    is_large_park() {
-        return this.treeCount > 1000;
-    }
+  is_large_park() {
+    return this.treeCount > 1000;
+  }
 }
 
 // The street object constructor (which extends from the park, also got the calc_age function )
 class Street extends Park {
-    constructor(name, year, streetLen) {
-        super(name, year)
-        this.streetLen = streetLen;
-    }
+  constructor(name, year, streetLen) {
+    super(name, year);
+    this.streetLen = streetLen;
+  }
 
-    // Street object prototype properties
-    classify_street() {
-        const compData = {tiny: 1, small: 3,
-                              normal: 5, big: 10, huge: 20};
-        const len = this.streetLen;
+  // Street object prototype properties
+  classify_street() {
+    const compData = { tiny: 1, small: 3, normal: 5, big: 10, huge: 20 };
+    const len = this.streetLen;
 
-        switch (true) {
-            case (len <= compData.tiny):
-                return `${this.name} built in ${this.year}, is a tiny street`;
-            case (len > compData.tiny && len <= compData.small):
-                return `${this.name} built in ${this.year}, is a small street`;
-            case (len > compData.small && len <= compData.normal):
-                return `${this.name} built in ${this.year}, is a normal street`;
-            case (len > compData.normal && len <= compData.big):
-                return `${this.name} built in ${this.year}, is a big street`;
-            case (len > compData.big && len <= compData.huge):
-                return `${this.name} built in ${this.year}, is a huge street`;
-            case (len > compData.huge):
-                return `${this.name} built in ${this.year}, is out of state boundary`;
-            default:
-                return `${this.name} built in ${this.year}, is a normal street`;
-        }
+    switch (true) {
+      case len <= compData.tiny:
+        return `${this.name} built in ${this.year}, is a tiny street`;
+      case len > compData.tiny && len <= compData.small:
+        return `${this.name} built in ${this.year}, is a small street`;
+      case len > compData.small && len <= compData.normal:
+        return `${this.name} built in ${this.year}, is a normal street`;
+      case len > compData.normal && len <= compData.big:
+        return `${this.name} built in ${this.year}, is a big street`;
+      case len > compData.big && len <= compData.huge:
+        return `${this.name} built in ${this.year}, is a huge street`;
+      case len > compData.huge:
+        return `${this.name} built in ${this.year}, is out of state boundary`;
+      default:
+        return `${this.name} built in ${this.year}, is a normal street`;
     }
+  }
 }
 
 // Creating park objects and storing them in a map object
 const parks = new Map();
 
 parks.set(1, new Park('Green Park', '2001', 598, 2));
-parks.set(2, new Park('HWS Park', '1994', 1052, 10))
-parks.set(3, new Park('ManGo Park', '1990', 2005, 15))
+parks.set(2, new Park('HWS Park', '1994', 1052, 10));
+parks.set(3, new Park('ManGo Park', '1990', 2005, 15));
 
 const streets = new Map();
 
-streets.set(1, new Street('Michael Street', 1948, 5))
-streets.set(2, new Street('Greenway Street', 2005, 10))
-streets.set(3, new Street('CaveGo Street', 1985, 16))
-streets.set(4, new Street('MG street', 1900, 2))
+streets.set(1, new Street('Michael Street', 1948, 5));
+streets.set(2, new Street('Greenway Street', 2005, 10));
+streets.set(3, new Street('CaveGo Street', 1985, 16));
+streets.set(4, new Street('MG street', 1900, 2));
 
 // Global functions
 
 // 1. Avg park age
 avg_park_age = () => {
-    const parkAges = []
-    for (let [key, value] of parks.entries()) {
-        parkAges.push(value.calc_age());
-    }
+  const parkAges = [];
+  for (const [key, value] of parks.entries()) {
+    parkAges.push(value.calc_age());
+  }
 
-    const ageSum = parkAges.reduce((a, b) => a + b, 0);
-    return ageSum/parks.size;
-}
-
+  const ageSum = parkAges.reduce((a, b) => a + b, 0);
+  return ageSum / parks.size;
+};
 
 // 2. Total Street length.
 total_street_length = () => {
-    const streetLengths = [];
-    for (let [key, value] of streets.entries()) {
-        streetLengths.push(value.streetLen);
-    }
+  const streetLengths = [];
+  for (const [key, value] of streets.entries()) {
+    streetLengths.push(value.streetLen);
+  }
 
-    return  streetLengths.reduce((a, b) => a + b, 0);
-}
+  return streetLengths.reduce((a, b) => a + b, 0);
+};
 
 // 3. Average Street Length
 avg_street_length = () => {
-    return total_street_length()/streets.size;
-}
+  return total_street_length() / streets.size;
+};
 
-console.log("----------PARKS REPORT----------");
-console.log(`Our ${parks.size} parks have an average of ${avg_park_age()} years`);
+console.log('----------PARKS REPORT----------');
+console.log(
+  `Our ${parks.size} parks have an average of ${avg_park_age()} years`
+);
 
 const largeParksKey = [];
 parks.forEach((value, key) => {
-    console.log(`${value.name} has a tree density of ${value.tree_density()} trees per sq. km`);
+  console.log(
+    `${
+      value.name
+    } has a tree density of ${value.tree_density()} trees per sq. km`
+  );
 
-    if (value.is_large_park()){
-        largeParksKey.push(key);
-    }
-})
+  if (value.is_large_park()) {
+    largeParksKey.push(key);
+  }
+});
 
-console.log(`${largeParksKey.map(k => parks.get(k).name).join(", ")} got more than 1000 trees`);
+console.log(
+  `${largeParksKey
+    .map((k) => parks.get(k).name)
+    .join(', ')} got more than 1000 trees`
+);
 
-console.log("------------Streets Report----------");
-console.log(`Our four streets have a total length of ${total_street_length()} km with an average of ${avg_street_length()} km.`);
+console.log('------------Streets Report----------');
+console.log(
+  `Our four streets have a total length of ${total_street_length()} km with an average of ${avg_street_length()} km.`
+);
 
 streets.forEach((value, key) => {
-    console.log(value.classify_street());
-})
+  console.log(value.classify_street());
+});
+*/

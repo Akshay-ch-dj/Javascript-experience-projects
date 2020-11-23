@@ -234,6 +234,7 @@ Afterwards, test with your own test data!
 GOOD LUCK 😀
 */
 
+/*
 const textArea = document.getElementById('text');
 const getBtn = document.querySelector('.getText');
 const output = document.querySelector('.output');
@@ -278,3 +279,4 @@ getBtn.addEventListener('click', () => {
     output.textContent = conArray.join(', ');
   }
 });
+*/
