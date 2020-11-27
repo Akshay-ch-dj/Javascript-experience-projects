@@ -179,4 +179,5 @@
     "eslint.alwaysShowStatus": true,
     "prettier.singleQuote": true,
     "javascript.validate.enable": false,
+    "jshint.enable": false,
 }
