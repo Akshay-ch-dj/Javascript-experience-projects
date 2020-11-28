@@ -55,7 +55,6 @@
 
 // console.log(x, y);
 
-
 // challenge1
 
 // BMI = mass/(height**2)
@@ -210,7 +209,6 @@
 
 // function statements and expressions
 
-
 // // Function expression
 // var whatDoYouDo = function(job, firstName) {
 //     switch(job) {
@@ -266,9 +264,7 @@
 
 // console.log(john.indexOf(1990));
 
-
 // challenge 3
-
 
 // // Different restaurant bills $124, $48 and $268.
 
@@ -357,7 +353,6 @@
 //     return +(Math.round(num + "e+2") + "e-2");
 // }
 
-
 // // challenge
 // var mark = {
 //     fullName: 'Mark Mathayi',
@@ -424,7 +419,6 @@
 //     i++;
 // }
 
-
 // // Break and continue
 // var akshay = ['Akshay', 'Chandran', 1998, 'designer', false];
 
@@ -436,7 +430,6 @@
 //      if (typeof(akshay[i]) == 'number') break;
 //      console.log(akshay[i]);
 //  }
-
 
 // // Challenge 5:- Advanced Tip calculator
 
@@ -455,7 +448,6 @@
 // //  use a function to calculate tha avg. of given array of tips
 // //  Calculate the average tip for each family.
 // //  log on which family paid the highest tip in average.
-
 
 // var john = {
 //     name: 'Jhon Kurishinkal',
@@ -528,16 +520,9 @@
 // console.log((averageBill(john.tipList) > averageBill(mark.tipList)? john.name
 // : mark.name) + ' spent more more average tip ' );
 
-
-
-
-
-
-
-
-/*****************************
-* Variables and data types
-*/
+/** ***************************
+ * Variables and data types
+ */
 /*
 var firstName = 'John';
 console.log(firstName);
@@ -560,11 +545,9 @@ var johnMark = 'John and MArk';
 var if = 23;
 */
 
-
-
-/*****************************
-* Variable mutation and type coercion
-*/
+/** ***************************
+ * Variable mutation and type coercion
+ */
 /*
 var firstName = 'John';
 var age = 28;
@@ -588,11 +571,9 @@ var lastName = prompt('What is his last Name?');
 console.log(firstName + ' ' + lastName);
 */
 
-
-
-/*****************************
-* Basic operators
-*/
+/** ***************************
+ * Basic operators
+ */
 /*
 var year, yearJohn, yearMark;
 now = 2018;
@@ -623,11 +604,9 @@ var x;
 console.log(typeof x);
 */
 
-
-
-/*****************************
-* Operator precedence
-*/
+/** ***************************
+ * Operator precedence
+ */
 /*
 var now = 2018;
 var yearJohn = 1989;
@@ -658,11 +637,9 @@ x--;
 console.log(x);
 */
 
-
-
-/*****************************
-* CODING CHALLENGE 1
-*/
+/** ***************************
+ * CODING CHALLENGE 1
+ */
 
 /*
 Mark and John are trying to compare their BMI (Body Mass Index), which is calculated using the formula: BMI = mass / height^2 = mass / (height * height). (mass in kg and height in meter).
@@ -689,11 +666,9 @@ var markHigherBMI = BMIMark > BMIJohn;
 console.log('Is Mark\'s BMI higher than John\'s? ' + markHigherBMI);
 */
 
-
-
-/*****************************
-* If / else statements
-*/
+/** ***************************
+ * If / else statements
+ */
 /*
 var firstName = 'John';
 var civilStatus = 'single';
@@ -728,11 +703,9 @@ if (BMIMark > BMIJohn) {
 }
 */
 
-
-
-/*****************************
-* Boolean logic
-*/
+/** ***************************
+ * Boolean logic
+ */
 /*
 var firstName = 'John';
 var age = 20;
@@ -748,11 +721,9 @@ if (age < 13) {
 }
 */
 
-
-
-/*****************************
-* The Ternary Operator and Switch Statements
-*/
+/** ***************************
+ * The Ternary Operator and Switch Statements
+ */
 /*
 var firstName = 'John';
 var age = 14;
@@ -802,11 +773,9 @@ switch (true) {
 }
 */
 
-
-
-/*****************************
-* Truthy and Falsy values and equality operators
-*/
+/** ***************************
+ * Truthy and Falsy values and equality operators
+ */
 /*
 // falsy values: undefined, null, 0, '', NaN
 // truthy values: NOT falsy values
@@ -827,11 +796,9 @@ if (height === '23') {
 }
 */
 
-
-
-/*****************************
-* CODING CHALLENGE 2
-*/
+/** ***************************
+ * CODING CHALLENGE 2
+ */
 
 /*
 John and Mike both play basketball in different teams. In the latest 3 games, John's team scored 89, 120 and 103 points, while Mike's team scored 116, 94 and 123 points.
@@ -871,11 +838,9 @@ if (scoreJohn > scoreMike) {
 }
 */
 
-
-
-/*****************************
-* Functions
-*/
+/** ***************************
+ * Functions
+ */
 /*
 function calculateAge(birthYear) {
     return 2018 - birthYear;
@@ -904,11 +869,9 @@ yearsUntilRetirement(1948, 'Mike');
 yearsUntilRetirement(1969, 'Jane');
 */
 
-
-
-/*****************************
-* Function Statements and Expressions
-*/
+/** ***************************
+ * Function Statements and Expressions
+ */
 /*
 // Function declaration
 // function whatDoYouDo(job, firstName) {}
@@ -932,11 +895,9 @@ console.log(whatDoYouDo('designer', 'Jane'));
 console.log(whatDoYouDo('retired', 'Mark'));
 */
 
-
-
-/*****************************
-* Arrays
-*/
+/** ***************************
+ * Arrays
+ */
 /*
 // Initialize new array
 var names = ['John', 'Mark', 'Jane'];
@@ -968,11 +929,9 @@ var isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'J
 console.log(isDesigner);
 */
 
-
-
-/*****************************
-* CODING CHALLENGE 3
-*/
+/** ***************************
+ * CODING CHALLENGE 3
+ */
 
 /*
 John and his family went on a holiday and went to 3 different restaurants. The bills were $124, $48 and $268.
@@ -1012,11 +971,9 @@ var finalValues = [bills[0] + tips[0],
 console.log(tips, finalValues);
 */
 
-
-
-/*****************************
-* Objects and properties
-*/
+/** ***************************
+ * Objects and properties
+ */
 /*
 // Object literal
 var john = {
@@ -1045,11 +1002,9 @@ jane['lastName'] = 'Smith';
 console.log(jane);
 */
 
-
-
-/*****************************
-* Objects and methods
-*/
+/** ***************************
+ * Objects and methods
+ */
 /*
 var john = {
     firstName: 'John',
@@ -1067,11 +1022,9 @@ john.calcAge();
 console.log(john);
 */
 
-
-
-/*****************************
-* CODING CHALLENGE 4
-*/
+/** ***************************
+ * CODING CHALLENGE 4
+ */
 
 /*
 Let's remember the first coding challenge where Mark and John compared their BMIs. Let's now implement the same functionality with objects and methods.
@@ -1113,11 +1066,9 @@ if (john.calcBMI() > mark.calcBMI()) {
 }
 */
 
-
-
-/*****************************
-* Loops and iteration
-*/
+/** ***************************
+ * Loops and iteration
+ */
 
 /*
 // for loop
@@ -1164,11 +1115,9 @@ for (var i = john.length - 1; i >= 0; i--) {
 }
 */
 
-
-
-/*****************************
-* CODING CHALLENGE 5
-*/
+/** ***************************
+ * CODING CHALLENGE 5
+ */
 
 /*
 Remember the tip calculator challenge? Let's create a more advanced version using everything we learned!
@@ -1272,7 +1221,6 @@ if (john.average > mark.average) {
 }
 */
 
-
 // New coding challenge in the course version 2
 /*
 Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new gymnastics discipline, which works differently.
@@ -1298,7 +1246,6 @@ GOOD LUCK 😀
 // Use the problem-solving framework: Understand the problem and break it up into sub-problems!
 // TEST DATA 1: [17, 21, 23]
 // TEST DATA 2: [12, 5, -5, 0, 4];
-
 
 // What is the problem?
 // - make a function to take an array and log its values to the console in a specific format.
@@ -1342,8 +1289,6 @@ function forecastTemp(TempArray)
 // tempArray.reduce((str, currStr) => str + currStr, '');
 
 // console.log(tempArray.reduce((str, currTemp, index) => str + `... ${currTemp}ºC in ${index + 1} days `, ''));
-
-
 
 // const forecastTemp = tempArray => tempArray.reduce((str, currTemp, index) => str + `... ${currTemp}ºC in ${index + 1} days `, '');
 

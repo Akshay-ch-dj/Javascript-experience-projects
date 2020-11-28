@@ -521,7 +521,7 @@ if (restaurant.openingHours) {
 // are optional, then separate conditionals needed chained with &&..
 
 // ES 2020 introduced optional chaining
-// Only if the property exist then it it reads otherwise it drops
+// Only if the property exist then it reads otherwise it drops
 console.log(restaurant.openingHours.mon?.open);
 console.log(restaurant.openingHours?.mon?.open);
 
