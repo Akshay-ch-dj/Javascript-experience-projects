@@ -199,3 +199,13 @@ function timeMachine(s, fn) {
 console.log(timeMachine('Its all about 2020', darkCave));
 // you travelled 66 years back: Its all about 1954
 */
+
+/*
+// Functions returning functions
+
+// One arrow function returning another one
+const greet = (greeting) => (name) => console.log(`${greeting} ${name}`);
+
+const greetHai = greet('Hi');
+greetHai('Akshay');
+*/
