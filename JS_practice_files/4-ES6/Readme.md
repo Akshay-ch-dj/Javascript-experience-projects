@@ -2,6 +2,8 @@
 
 ---
 
+For closure notes: [CLOSURE IN JS](./closure.md)
+
 1. ## `var` replace with `const` and `let`.
 
    * `var` is function scoped but, `let` & `const` are block scoped, (block is a block of code wrapped between parenthesis, eg: if, for, while loops..)
@@ -732,7 +734,7 @@
 
 13. ### Implementing Inheritance from one class to another.
 
-    ![paragraph-plain](./inheritance.png)
+    ![paragraph-plain](./images/inheritance.png)
 
     * Generic class person for all persons,
     * Specific sub class for an athlete, an athlete is also a person but contains some more specific attributes and methods
