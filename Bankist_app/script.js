@@ -59,7 +59,58 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {};
+// Number formatting, number to be formatted and its type(deposit, withdrawal)
+const formatNumber = function (num, type) {
+  // 2 decimals fix
+  const ModNum = Math.abs(num).toFixed(2);
+
+  // split to integer and decimal parts
+  const numPart = ModNum.toString().split('.');
+  // eslint-disable-next-line prefer-const
+  let [intPart, decPart] = numPart;
+
+  // integer part splits to an array.
+  intPart = intPart.split('');
+
+  // adds the ',' separation
+  let i = intPart.length - 3;
+  while (i > 0) {
+    intPart.splice(i, 0, ',');
+    i -= 2;
+  }
+
+  // rejoin back to string
+  intPart = intPart.join('');
+
+  // Add rupees &'+' / '-' for the type
+
+  return `${type === 'deposit' ? '' : '-'} ₹ ${intPart}.${decPart}`;
+};
+
+// Display the movement array to DOM
+const displayMovements = function (movements) {
+  // Empty the container before adding elements(all html)
+  containerMovements.innerHTML = '';
+
+  console.log(movements);
+  movements.forEach((amount, i) => {
+    // Deposit or withdrawal
+    const type = amount > 0 ? 'deposit' : 'withdrawal';
+
+    // Dirty but straightforward direct html injection
+    const html = `<div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${formatNumber(amount, type)}</div>
+        </div>`;
+
+    // Insert using insertAdjacentHTML to the movement container
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+// displayMovements(account1.movements);
 
 /// //////////////////////////////////////////////
 /// //////////////////////////////////////////////
@@ -74,3 +125,25 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 */
+
+// Compute username for each of four users
+
+// eg for 'Walter White' => ww, 'Jimmy Cliff' => 'jc'
+
+const createUsername = function (accs) {
+  // modifies each account to add a username
+  accs.forEach((acc) => {
+    // generate the username grabbing the first letters of names
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map((n) => n[0])
+      .join('');
+  });
+};
+
+createUsername(accounts);
+
+accounts.forEach((acc) => {
+  console.log(acc.username);
+});
