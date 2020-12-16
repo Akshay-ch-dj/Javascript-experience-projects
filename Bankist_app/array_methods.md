@@ -268,3 +268,65 @@ currenciesUnique.forEach((item, _, set) => {
   ```
 
 * Also look in that altering the object passed to the function (modifying object property), that creates a side effect there.(need to be avoided in real functional programming), do a comment on the function  this creates side effects.
+
+### filter method
+
+* This filters out the elements from the array based on the condition given.
+
+  ```js
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+  // Filter deposits(movements that are above zero)
+  const deposit = movements.filter((trans) => trans > 0);
+
+  console.log(deposit);
+  // [200, 450, 3000, 70, 1300]
+
+  // And for withdrawals
+  const withdraw = movements.filter((trans) => trans < 0);
+  console.log(withdraw);
+  // [-400, -650, -130]
+  ```
+
+### reduce method
+
+* reduce accepts a callback function and a return value(inital/accumulator), the return value gets modified in the call back function for every iteration, finally it gets returned.
+
+* The call back function accepts up to 4 arguments(**previous value**, **current value**, current index, whole array), previous value is nothing but the modified return value of each preceding iteration(the accumulator), ie for the first iteration it is the initial one given.\
+current value is the current element from the array,
+* The previous value, current value and the initial return value are mandatory to run a reduce method.
+* In the sum example, in each iteration the current value gets added to the previous value, and the final value (ie the sum) gets returned at the end of the iteration.
+
+  ```js
+  // Using reduce lets add up all the elements in the movements array.
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+  const total = movements.reduce((accu, curr, i) => {
+    console.log(`Iteration ${i + 1}: ${accu} + ${curr}`);
+    return accu + curr;
+  }, 0);
+  console.log(total);
+
+  /*
+  Iteration 1: 0 + 200
+  Iteration 2: 200 + 450
+  Iteration 3: 650 + -400
+  Iteration 4: 250 + 3000
+  Iteration 5: 3250 + -650
+  Iteration 6: 2600 + -130
+  Iteration 7: 2470 + 70
+  Iteration 8: 2540 + 1300
+  3840
+  */
+  ```
+
+* It can be visualized as a snowball(our initial accumulator), getting bigger and bigger, on each roll.
+* Finding the max. value of that array using reduce method.
+
+  ```js
+  // reduce to maximum value
+  const maxValue = movements.reduce((a, c) => (a > c ? a : c), movements[0]);
+  console.log(maxValue);
+  ```
+
+*

@@ -59,32 +59,35 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-// Number formatting, number to be formatted and its type(deposit, withdrawal)
-const formatNumber = function (num, type) {
-  // 2 decimals fix
-  const ModNum = Math.abs(num).toFixed(2);
+// Number formatting, number to be formatted and its type(deposit, withdraw)
+const formatToRupee = function (num, type = 'deposit') {
+  if (num && Number.isFinite(num)) {
+    const ModNum = Math.abs(num).toFixed(2); // 2 decimals fix
 
-  // split to integer and decimal parts
-  const numPart = ModNum.toString().split('.');
-  // eslint-disable-next-line prefer-const
-  let [intPart, decPart] = numPart;
+    // symbol '+' or '-'
+    const symbol = type === 'withdraw' || num < 0 ? '-' : '';
 
-  // integer part splits to an array.
-  intPart = intPart.split('');
+    // split to integer and decimal parts
+    const numPart = ModNum.toString().split('.');
+    // eslint-disable-next-line prefer-const
+    let [intPart, decPart] = numPart;
 
-  // adds the ',' separation
-  let i = intPart.length - 3;
-  while (i > 0) {
-    intPart.splice(i, 0, ',');
-    i -= 2;
+    // integer part splits to an array.
+    intPart = intPart.split('');
+
+    // adds the ',' separation
+    let i = intPart.length - 3;
+    while (i > 0) {
+      intPart.splice(i, 0, ',');
+      i -= 2;
+    }
+
+    // rejoin back to string
+    intPart = intPart.join('');
+
+    return `${symbol} ₹ ${intPart}.${decPart}`;
   }
-
-  // rejoin back to string
-  intPart = intPart.join('');
-
-  // Add rupees &'+' / '-' for the type
-
-  return `${type === 'deposit' ? '' : '-'} ₹ ${intPart}.${decPart}`;
+  return `₹ _.__`;
 };
 
 // Display the movement array to DOM
@@ -102,7 +105,7 @@ const displayMovements = function (movements) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${formatNumber(amount, type)}</div>
+          <div class="movements__value">${formatToRupee(amount, type)}</div>
         </div>`;
 
     // Insert using insertAdjacentHTML to the movement container
@@ -142,8 +145,14 @@ const createUsername = function (accs) {
   });
 };
 
-createUsername(accounts);
+// createUsername(accounts);
 
-accounts.forEach((acc) => {
-  console.log(acc.username);
-});
+// Using the reduce to calculate and show the current balance
+
+const calcShowBalance = function (account) {
+  const balance = account.movements.reduce((a, cur) => a + cur, 0);
+  labelBalance.textContent = formatToRupee(balance);
+  return balance;
+};
+
+console.log(calcShowBalance(account1));

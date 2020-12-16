@@ -243,3 +243,86 @@ console.log(movementsSTR);
 
 // The idea of side effects, using forEach to do this thing (to log it to the console in each iteration) causes side effects, which is simply actions that causes inefficiency, in map the entire array after processing is logged at once, better efficient code.
 */
+
+// ******************** Filter method **********************
+
+/// ////////////////////////////////////
+
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// Filter deposits(movements that are above zero)
+const deposit = movements.filter((trans) => trans > 0);
+
+console.log(deposit);
+
+// And for withdrawals
+const withdraw = movements.filter((trans) => trans < 0);
+console.log(withdraw);
+*/
+
+// ******************** reduce method **********************
+
+/// ////////////////////////////////////
+
+/*
+// Using reduce lets add up all the elements in the movements array.
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const total = movements.reduce((accu, curr, i) => {
+  console.log(`Iteration ${i + 1}: ${accu} + ${curr}`);
+  return accu + curr;
+}, 0);
+console.log(total);
+// 3840
+
+// reduce accepts a callback function and a return value(inital), the return value gets modified in the call back function for every iteration, finally it gets returned.
+
+// The call back function accepts up to 4 arguments(previous value, current value, current index, whole array), previous value is nothing but the modified return value of each preceding iteration, ie for the first iteration it is the initial one given.\
+// current value is the current element from the array,
+// The previous value, current value and the initial return value are mandatory to run a reduce method.
+// In the sum example, in each iteration the current value gets added to the previous value, and the final value (ie the sum) gets returned at the end of the iteration.
+*/
+
+// To find the maximum value of an array using reduce
+// Logic set the initial value, in each iteration if a larger value encountered, set that instead. return the final one after traversing.
+
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// reduce to maximum value
+const maxValue = movements.reduce((a, c) => (a > c ? a : c), movements[0]);
+console.log(maxValue);
+*/
+
+/// ////////////////////////////////////
+// Coding Challenge #2
+
+/*
+Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+4. Run the function for both test datasets
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+GOOD LUCK 😀
+*/
+
+function calcAverageHumanAge(ages) {
+  // dog age in human years
+  const agesToHuman = ages.map((age) => (age <= 2 ? 2 * age : 16 + age * 4));
+
+  // Filter out 18+ human year dogs
+  const adultFilter = agesToHuman.filter((age) => age >= 18);
+
+  // Average human age
+  const avgHumanAge =
+    adultFilter.reduce((a, c) => a + c, 0) / adultFilter.length;
+
+  return avgHumanAge;
+}
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]).toFixed(2));
